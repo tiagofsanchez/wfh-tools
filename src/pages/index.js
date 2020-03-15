@@ -46,7 +46,7 @@ const IndexPage = ({ data }) => {
             })}
           </div>
           <ColumnFlex>
-            <h1 style={{ color: `gray`, fontWeight: `900` }}>
+            <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
               Project Management
             </h1>
             <SectionImage
@@ -59,7 +59,9 @@ const IndexPage = ({ data }) => {
       <section>
         <FlexBox>
           <ColumnFlex>
-            <h1 style={{ color: `gray`, fontWeight: `900` }}>Design</h1>
+            <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
+              Design
+            </h1>
             <SectionImage
               src={"https://image.flaticon.com/icons/svg/751/751429.svg"}
               alt={"Design"}
@@ -82,7 +84,9 @@ const IndexPage = ({ data }) => {
             })}
           </div>
           <ColumnFlex>
-            <h1 style={{ color: `gray`, fontWeight: `900` }}>Collaboration</h1>
+            <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
+              Collaboration
+            </h1>
             <SectionImage
               src={"https://image.flaticon.com/icons/svg/1189/1189188.svg"}
               alt={"Collaboration"}

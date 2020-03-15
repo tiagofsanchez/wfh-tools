@@ -19,7 +19,7 @@ const CompanyName = styled.h1`
   margin: auto;
   font-weight: 900;
   text-align: center;
-  color: gray;
+  color: rebeccapurple;
   margin-bottom: 20px;
 `
 
@@ -43,7 +43,7 @@ const Description = styled.p`
 `
 
 const Other = styled.div`
-  background-color: rgb(204, 204, 204, 0.15);
+  background-color: #ece6ff;
   width: 100%;
   padding-top: 40px;
   height: 200px;
