@@ -72,7 +72,7 @@ const Source = styled.div`
 `
 
 const Link = styled.a`
-  color: #d23669;
+  color: rebeccapurple;
   font-weight: 900;
   text-decoration: none;
 `
