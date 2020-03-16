@@ -16,13 +16,15 @@ const FlexBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: ${props => props.right? 'wrap-reverse' : 'wrap '};
 `
 const ColumnFlex = styled.div`
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin-left: 50px;
+  width: 100%;
+  margin: 20px;
   align-items: center;
+  flex: 1 1 280px;
 `
 
 const IndexPage = ({ data }) => {
@@ -38,13 +40,13 @@ const IndexPage = ({ data }) => {
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
       <section>
-        <FlexBox>
-          <div style={{ width: `50%` }}>
+        <FlexBox right >
+         <ColumnFlex>
             {PMToolsArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
-          </div>
+          </ColumnFlex>
           <ColumnFlex>
             <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
               Project Management
@@ -67,22 +69,22 @@ const IndexPage = ({ data }) => {
               alt={"Design"}
             />
           </ColumnFlex>
-          <div style={{ width: `50%` }}>
+        <ColumnFlex>
             {DESIGNToolsArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
-          </div>
+         </ColumnFlex>
         </FlexBox>
       </section>
       <section>
-        <FlexBox>
-          <div style={{ width: `50%` }}>
+        <FlexBox right> 
+          <ColumnFlex>
             {COLABToolsArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
-          </div>
+          </ColumnFlex>
           <ColumnFlex>
             <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
               Collaboration

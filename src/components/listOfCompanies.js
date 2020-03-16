@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 const Container = styled.div`
   padding: 10px;
+  width: 100%;
   &:hover {
     background-color: #ece6ff;
     border-radius: 5px;
