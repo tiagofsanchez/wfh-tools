@@ -158,7 +158,9 @@ const IndexPage = ({ data }) => {
           Don't worry! Let us know the tool that you would like to see in the
           database. We can add it for your!
         </Paragraph>
-        <Button href="https://google.com">Add new tool</Button>
+        <Button href="https://airtable.com/shrKIvCX7rU3tY3CN">
+          Add new tool
+        </Button>
       </section>
     </Layout>
   )
