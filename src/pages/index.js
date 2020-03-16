@@ -1,22 +1,27 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
+import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ListOfCompanies from "../components/listOfCompanies"
 
-const SectionImage = styled.img`
+const SectionImage = styled.div`
   width: 150px;
   height: 150px;
   margin-top: 20px;
+  @media (max-width: 680px) {
+    width: 90px;
+    hight: 90px;
+  }
 `
 
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: ${props => props.right? 'wrap-reverse' : 'wrap '};
+  flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
 const ColumnFlex = styled.div`
   display: flex;
@@ -26,59 +31,111 @@ const ColumnFlex = styled.div`
   align-items: center;
   flex: 1 1 280px;
 `
+const Description = styled.p`
+  font-size: 25px;
+  letter-spacing: 1px;
+  line-height: 30px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  text-align: center;
+`
+
+const Paragraph = styled.p`
+  letter-spacing: 1px;
+  color: gray;
+  padding: 20px;
+  font-weight: 600;
+  text-align: center;
+`
+
+const Span = styled.span`
+  padding: 2px 5px 2px 5px;
+  background-color: #ece6ff;
+  border-radius: 2px;
+`
+
+const H1 = styled.h1`
+  color: rebeccapurple;
+  fontweight: 900;
+`
+
+const Button = styled.a`
+  background-color: rebeccapurple;
+  border: 2px solid rebeccapurple;
+  color: white;
+  padding: 13px;
+  border-radius: 8px;
+  font-weight: 900;
+  text-decoration: none;
+  display: block;
+  width: max-content;
+  margin: auto;
+  &:hover {
+    background-color: #ece6ff;
+    color: rebeccapurple;
+  }
+`
 
 const IndexPage = ({ data }) => {
-  console.log(data)
   const PMToolsArray = data.PM.edges
   const DESIGNToolsArray = data.DESIGN.edges
   const COLABToolsArray = data.COLAB.edges
+  const PMIcon = data.PMIcon.edges[0].node.data.Icon.localFiles[0]
+  const DIcon = data.DIcon.edges[0].node.data.Icon.localFiles[0]
+  const CLIcon = data.CLIcon.edges[0].node.data.Icon.localFiles[0]
 
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
-      <p>Welcome to your new Gatsby site.</p>
-      <p>Now go build something great.</p>
-      <section>
-        <FlexBox right >
-         <ColumnFlex>
+      <section style={{ marginTop: `60px` }}>
+        <Description>
+          Hi there, this is the place where you will find all the tools{" "}
+          <span>⚒️</span> you will need to work from home. Check them out!
+        </Description>
+        <Paragraph>
+          I have decided to start this database due to the covid-19{" "}
+          <span>🦠</span> outbreak and the fact that most of teams are now
+          working from home. This is a <Span>beta</Span> version, and I am
+          counting on everyone's help to grow this database and share it.
+        </Paragraph>
+      </section>
+      <section style={{ marginBottom: `1.45rem` }}>
+        <FlexBox right>
+          <ColumnFlex>
             {PMToolsArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
           </ColumnFlex>
           <ColumnFlex>
-            <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
-              Project Management
-            </h1>
-            <SectionImage
-              src={"https://image.flaticon.com/icons/svg/1659/1659067.svg"}
-              alt={"Project Management"}
-            />
+            <H1>Project Management</H1>
+            <SectionImage>
+              <Img
+                fluid={PMIcon.childImageSharp.fluid}
+                alt={"Project Management"}
+              />
+            </SectionImage>
           </ColumnFlex>
         </FlexBox>
       </section>
-      <section>
+      <section style={{ marginBottom: `1.45rem` }}>
         <FlexBox>
           <ColumnFlex>
-            <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
-              Design
-            </h1>
-            <SectionImage
-              src={"https://image.flaticon.com/icons/svg/751/751429.svg"}
-              alt={"Design"}
-            />
+            <H1>Design</H1>
+            <SectionImage>
+              <Img fluid={DIcon.childImageSharp.fluid} alt={"Design"} />
+            </SectionImage>
           </ColumnFlex>
-        <ColumnFlex>
+          <ColumnFlex>
             {DESIGNToolsArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
-         </ColumnFlex>
+          </ColumnFlex>
         </FlexBox>
       </section>
-      <section>
-        <FlexBox right> 
+      <section style={{ marginBottom: `1.45rem` }}>
+        <FlexBox right>
           <ColumnFlex>
             {COLABToolsArray.map(company => {
               const { node } = company
@@ -86,15 +143,22 @@ const IndexPage = ({ data }) => {
             })}
           </ColumnFlex>
           <ColumnFlex>
-            <h1 style={{ color: `rebeccapurple`, fontWeight: `900` }}>
-              Collaboration
-            </h1>
-            <SectionImage
-              src={"https://image.flaticon.com/icons/svg/1189/1189188.svg"}
-              alt={"Collaboration"}
-            />
+            <H1>Collaboration</H1>
+            <SectionImage>
+              <Img fluid={CLIcon.childImageSharp.fluid} alt={"Collaboration"} />
+            </SectionImage>
           </ColumnFlex>
         </FlexBox>
+      </section>
+      <section style={{ marginBottom: `40px` }}>
+        <H1 style={{ textAlign: `center` }}>
+          Don't find the tool <span>⚒️</span> that you love?
+        </H1>
+        <Paragraph>
+          Don't worry! Let us know the tool that you would like to see in the
+          database. We can add it for your!
+        </Paragraph>
+        <Button href="https://google.com">Add new tool</Button>
       </section>
     </Layout>
   )
@@ -159,6 +223,61 @@ export const query = graphql`
                 childImageSharp {
                   fixed(width: 30, height: 30, grayscale: true) {
                     ...GatsbyImageSharpFixed_tracedSVG
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    PMIcon: allAirtable(
+      filter: { data: { IconName: { eq: "Program Management" } } }
+    ) {
+      edges {
+        node {
+          data {
+            Icon {
+              localFiles {
+                childImageSharp {
+                  fluid(grayscale: true) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    DIcon: allAirtable(filter: { data: { IconName: { eq: "Design" } } }) {
+      edges {
+        node {
+          data {
+            Icon {
+              localFiles {
+                childImageSharp {
+                  fluid(grayscale: true) {
+                    ...GatsbyImageSharpFluid_tracedSVG
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    CLIcon: allAirtable(
+      filter: { data: { IconName: { eq: "Collaboration" } } }
+    ) {
+      edges {
+        node {
+          data {
+            Icon {
+              localFiles {
+                childImageSharp {
+                  fluid(grayscale: true) {
+                    ...GatsbyImageSharpFluid_tracedSVG
                   }
                 }
               }

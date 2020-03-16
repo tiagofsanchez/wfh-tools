@@ -17,6 +17,11 @@ module.exports = {
             tableName: `WFH TOOLS`,
             mapping: { Screenshot: `fileNode`, Thumbnail: `fileNode` },
           },
+          {
+            baseId: process.env.AIRTABLE_BASE_ID,
+            tableName: `Icon`,
+            mapping: { Icon: `fileNode` },
+          },
         ],
       },
     },
@@ -33,13 +38,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `working-from-home-tools`,
+        short_name: `WFH-TOOLS`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/wfh-tools-icon.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
