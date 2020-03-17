@@ -1,6 +1,5 @@
 import React from "react"
 import styled from "@emotion/styled"
-import Img from "gatsby-image"
 
 const Button = styled.a`
   background-color: rebeccapurple;
@@ -36,7 +35,11 @@ const CallToAction = () => {
   return (
     <>
       <H1 style={{ textAlign: `center` }}>
-        Don't find the tool <span>⚒️</span> that you love?
+        Don't find the tool{" "}
+        <span role="img" aria-label="tools">
+          ⚒️
+        </span>{" "}
+        that you love?
       </H1>
       <Paragraph>
         Don't worry! Let us know the tool that you would like to see in the

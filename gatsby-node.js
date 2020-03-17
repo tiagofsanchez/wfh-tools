@@ -5,9 +5,18 @@ exports.createPages = async function({ actions, graphql }) {
         edges {
           node {
             data {
+              Name
               slug
               Type
-              Name
+              Thumbnail {
+                raw {
+                  thumbnails {
+                    small {
+                      url
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -20,7 +29,7 @@ exports.createPages = async function({ actions, graphql }) {
     alternatives.push({
       slug: data.slug,
       Type: data.Type,
-      // Thumbnail: data.Thumbnail,
+      Thumbnail: data.Thumbnail,
       Name: data.Name,
     })
   })

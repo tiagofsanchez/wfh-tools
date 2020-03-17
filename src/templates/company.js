@@ -64,7 +64,7 @@ const Box = styled.div`
   align-items: center;
 `
 
-const Icon = styled.div`
+const Icon = styled.span`
   font-size: 50px;
   margin-bottom: 30px;
 `
@@ -92,7 +92,7 @@ const Company = props => {
       goodAlternatives.push({
         Type: alternative.Type,
         slug: alternative.slug,
-        // Thumbnail: alternative.Thumbnail,
+        Thumbnail: alternative.Thumbnail,
         Name: alternative.Name,
       })
     }
@@ -126,11 +126,15 @@ const Company = props => {
       <Label>Other</Label>
       <Other>
         <Box>
-          <Icon>💡</Icon>
+          <Icon role="img" aria-label="source">
+            💡
+          </Icon>
           <Source>{company.Source}</Source>
         </Box>
         <Box>
-          <Icon>🕸️</Icon>
+          <Icon role="img" aria-label="webpage">
+            🕸️
+          </Icon>
           <Link href={company.Website}>webpage &#10132;</Link>
         </Box>
       </Other>
@@ -139,7 +143,7 @@ const Company = props => {
         <Alternatives alternatives={goodAlternatives} />
       </section>
       <section style={{ marginTop: `80px` }}>
-        <CallToAction test={company.Thumbnail} />
+        <CallToAction />
       </section>
     </Layout>
   )

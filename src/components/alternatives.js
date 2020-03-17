@@ -8,19 +8,10 @@ const Container = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 `
-const CompanyName = styled.h4`
-  font-weight: 900;
-  color: gray;
-  margin-bottom: 0;
-`
-
 const Card = styled.div`
   margin: 10px;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
   flex: 1 1 100px;
-  box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1);
   align-items: center;
   border-radius: 4px;
 `
@@ -30,15 +21,30 @@ const Alternatives = ({ alternatives }) => {
     <Container>
       {alternatives.map(alternative => {
         return (
-          <Card key={alternative.Name}>
-            <CompanyName>{alternative.Name}</CompanyName>
-            <Link
-              to={`/${alternative.slug}`}
-              style={{ textDecoration: `none` }}
-            >
-              &#10132;
-            </Link>
-          </Card>
+          <Link
+            key={alternative.Name}
+            to={`/${alternative.slug}`}
+            style={{
+              textDecoration: `none`,
+              display: `flex`,
+              flexDirection: `column`,
+              alignItems: `center`,
+              margin: `10px`,
+              padding: `10px`,
+              flex: `1 1 60px`,
+              height: `80px`,
+              width: `100%`,
+              boxShadow: `0 0 1px 2px rgba(0, 0, 0, 0.1)`,
+            }}
+          >
+            <Card>
+              <img
+                src={alternative.Thumbnail.raw[0].thumbnails.small.url}
+                atl={alternative.Name}
+                style={{ marginBottom: `0` }}
+              />
+            </Card>
+          </Link>
         )
       })}
     </Container>
