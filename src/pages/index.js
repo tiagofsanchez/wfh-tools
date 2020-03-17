@@ -6,6 +6,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import ListOfCompanies from "../components/listOfCompanies"
+import CallToAction from "../components/callToAction"
 
 const SectionImage = styled.div`
   width: 150px;
@@ -59,23 +60,6 @@ const H1 = styled.h1`
   fontweight: 900;
 `
 
-const Button = styled.a`
-  background-color: rebeccapurple;
-  border: 2px solid rebeccapurple;
-  color: white;
-  padding: 13px;
-  border-radius: 8px;
-  font-weight: 900;
-  text-decoration: none;
-  display: block;
-  width: max-content;
-  margin: auto;
-  &:hover {
-    background-color: #ece6ff;
-    color: rebeccapurple;
-  }
-`
-
 const IndexPage = ({ data }) => {
   const PMToolsArray = data.PM.edges
   const DESIGNToolsArray = data.DESIGN.edges
@@ -93,10 +77,10 @@ const IndexPage = ({ data }) => {
           <span>⚒️</span> you will need to work from home. Check them out!
         </Description>
         <Paragraph>
-          I have decided to start this database due to the covid-19{" "}
-          <span>🦠</span> outbreak and the fact that most of teams are now
-          working from home. This is a <Span>beta</Span> version, and I am
-          counting on everyone's help to grow this database and share it.
+          I have decided to start this database due to the covid-19 outbreak and
+          the fact that most of people are now working from home. This is a{" "}
+          <Span>beta</Span> version, and I am counting on everyone's help to
+          grow this database and share it.
         </Paragraph>
       </section>
       <section style={{ marginBottom: `1.45rem` }}>
@@ -150,17 +134,8 @@ const IndexPage = ({ data }) => {
           </ColumnFlex>
         </FlexBox>
       </section>
-      <section style={{ marginBottom: `40px` }}>
-        <H1 style={{ textAlign: `center` }}>
-          Don't find the tool <span>⚒️</span> that you love?
-        </H1>
-        <Paragraph>
-          Don't worry! Let us know the tool that you would like to see in the
-          database. We can add it for your!
-        </Paragraph>
-        <Button href="https://airtable.com/shrKIvCX7rU3tY3CN">
-          Add new tool
-        </Button>
+      <section style={{ marginTop: `40px` }}>
+        <CallToAction />
       </section>
     </Layout>
   )

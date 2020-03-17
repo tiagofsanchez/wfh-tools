@@ -4,6 +4,7 @@ import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
+import CallToAction from "../components/callToAction"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -114,6 +115,9 @@ const Company = ({ data }) => {
           <Link href={company.Website}>webpage &#10132;</Link>
         </Box>
       </Other>
+      <section style={{ marginTop: `80px` }}>
+        <CallToAction />
+      </section>
     </Layout>
   )
 }
