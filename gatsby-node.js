@@ -6,18 +6,30 @@ exports.createPages = async function({ actions, graphql }) {
           node {
             data {
               slug
+              Type
+              Name
             }
           }
         }
       }
     }
   `)
+  const alternatives = []
+  data.allAirtable.edges.forEach(edge => {
+    const data = edge.node.data
+    alternatives.push({
+      slug: data.slug,
+      Type: data.Type,
+      // Thumbnail: data.Thumbnail,
+      Name: data.Name,
+    })
+  })
   data.allAirtable.edges.forEach(edge => {
     const slug = edge.node.data.slug
     actions.createPage({
       path: slug,
       component: require.resolve(`./src/templates/company.js`),
-      context: { slug: slug },
+      context: { slug: slug, alternatives },
     })
   })
 }

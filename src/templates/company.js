@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import CallToAction from "../components/callToAction"
+import Alternatives from "../components/alternatives"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -78,8 +79,26 @@ const Link = styled.a`
   text-decoration: none;
 `
 
-const Company = ({ data }) => {
-  const company = data.airtable.data
+const Company = props => {
+  const company = props.data.airtable.data
+  const { alternatives } = props.pageContext
+
+  const goodAlternatives = []
+  alternatives.map(alternative => {
+    if (
+      (alternative.Type === company.Type) &
+      (alternative.Name !== company.Name)
+    ) {
+      goodAlternatives.push({
+        Type: alternative.Type,
+        slug: alternative.slug,
+        // Thumbnail: alternative.Thumbnail,
+        Name: alternative.Name,
+      })
+    }
+  })
+
+  console.log(goodAlternatives)
 
   return (
     <Layout>
@@ -115,8 +134,12 @@ const Company = ({ data }) => {
           <Link href={company.Website}>webpage &#10132;</Link>
         </Box>
       </Other>
+      <section>
+        <Label>You might also be interested</Label>
+        <Alternatives alternatives={goodAlternatives} />
+      </section>
       <section style={{ marginTop: `80px` }}>
-        <CallToAction />
+        <CallToAction test={company.Thumbnail} />
       </section>
     </Layout>
   )
