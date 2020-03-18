@@ -78,7 +78,7 @@ const IndexPage = ({ data }) => {
         </Description>
         <Paragraph>
           I have decided to start this database due to the covid-19 outbreak and
-          the fact that most of people are now working from home. This is a{" "}
+          the fact that most of us are now working from home. This is a{" "}
           <Span>beta</Span> version, and I am counting on everyone's help to
           grow this database and share it.
         </Paragraph>

@@ -13,7 +13,7 @@ const Card = styled.div`
   padding: 10px;
   flex: 1 1 100px;
   align-items: center;
-  border-radius: 4px;
+  width: 60px;
 `
 
 const Alternatives = ({ alternatives }) => {

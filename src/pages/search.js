@@ -1,10 +1,11 @@
-import React from "react"
+import React, { Component } from "react"
 import styled from "@emotion/styled"
 import { graphql, Link } from "gatsby"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SearchIcon from "../components/serchIcon"
+import CallToAction from "../components/callToAction"
 
 const IconContainer = styled.div`
   margin: auto;
@@ -32,14 +33,14 @@ const SearchBar = styled.input`
 
 const Thumbnail = styled.div`
   width: 40px;
-  height: 40px;
   margin: 5px;
+  border-radius: 50%;
   margin-bottom: 0;
   margin-right: 20px;
 `
 const CompanyName = styled.h3`
   font-weight: 900;
-  color: gray;
+  color: black;
   margin-bottom: 0;
   margin-right: 20px;
 `
@@ -50,6 +51,7 @@ const HitContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-wrap: wrap;
   &:hover {
     background-color: #ece6ff;
     border-radius: 5px;
@@ -62,57 +64,84 @@ const CompanyContainer = styled.div`
 `
 
 const ContentContainer = styled.div`
-  flex: 1 1 720px;
+  flex: 1 1 400px;
 `
 
 const Description = styled.p`
   letter-spacing: 1px;
-  color: black;
+  color: gray;
   margin-bottom: 0;
 `
 
-const Search = ({ data }) => {
-  const AllCompaniesArray = data.allAirtable.edges
-  console.log(AllCompaniesArray)
+class Search extends Component {
+  state = {
+    search: "",
+  }
 
-  return (
-    <Layout>
-      <section>
-        <IconContainer>
-          <SearchIcon />
-        </IconContainer>
-        <Title>Your search</Title>
-        <SearchBar
-          placeholder="Search for the name of the company..."
-          type="text"
-        />
-      </section>
-      <section>
-        {AllCompaniesArray.map(company => {
-          const { data } = company.node
-          let image = null
-          if (data.Thumbnail.localFiles[0].childImageSharp !== null) {
-            image = data.Thumbnail.localFiles[0].childImageSharp.fluid
-          }
-          const brief = data.Description
+  searchHandler(value) {
+    this.setState({ search: value })
+  }
+  render() {
+    const { data } = this.props
+    const { search } = this.state
 
-          return (
-            <Link to={`/${data.slug}`} style={{ textDecoration: `none` }}>
-              <HitContainer key={data.Name}>
-                <CompanyContainer>
-                  <Thumbnail>{image && <Img fluid={image} />}</Thumbnail>
-                  <CompanyName>{data.Name}</CompanyName>
-                </CompanyContainer>
-                <ContentContainer>
-                  <Description>{brief.slice(0, 100)}...</Description>
-                </ContentContainer>
-              </HitContainer>
-            </Link>
-          )
-        })}
-      </section>
-    </Layout>
-  )
+    const AllCompaniesArray = data.allAirtable.edges
+    let filteredCompanies = AllCompaniesArray
+    if (search !== null) {
+      filteredCompanies = AllCompaniesArray.filter(company =>
+        company.node.data.Name.toLowerCase().includes(search.toLowerCase())
+      )
+    }
+
+    return (
+      <Layout>
+        <section>
+          <IconContainer>
+            <SearchIcon />
+          </IconContainer>
+          <Title>Your search</Title>
+          <SearchBar
+            placeholder="Search for the name of the company..."
+            type="text"
+            value={search}
+            onChange={e => this.searchHandler(e.target.value)}
+          />
+        </section>
+        <section>
+          {filteredCompanies.length === 0 ? (
+            <CallToAction style={{ marginTop: `60px` }} />
+          ) : (
+            filteredCompanies.map(company => {
+              const { data } = company.node
+              let image = null
+              if (data.Thumbnail.localFiles[0].childImageSharp !== null) {
+                image = data.Thumbnail.localFiles[0].childImageSharp.fluid
+              }
+              const brief = data.Description
+
+              return (
+                <Link to={`/${data.slug}`} style={{ textDecoration: `none` }}>
+                  <HitContainer key={data.Name}>
+                    <CompanyContainer>
+                      <Thumbnail>
+                        {image && (
+                          <Img fluid={image} style={{ marginBottom: `0` }} />
+                        )}
+                      </Thumbnail>
+                      <CompanyName>{data.Name}</CompanyName>
+                    </CompanyContainer>
+                    <ContentContainer>
+                      <Description>{brief.slice(0, 100)}...</Description>
+                    </ContentContainer>
+                  </HitContainer>
+                </Link>
+              )
+            })
+          )}
+        </section>
+      </Layout>
+    )
+  }
 }
 
 export const query = graphql`
