@@ -47,15 +47,19 @@ const Description = styled.p`
 const Other = styled.div`
   background-color: #ece6ff;
   width: 100%;
-  padding-top: 40px;
-  height: 200px;
-  border-radius: 8px;
-  margin-bottom: 30px;
   display: flex;
   align-items: flex-start;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  @media (max-width: 380px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `
 const Box = styled.div`
-  width: 50%;
+  flex: 1 1 33%;
+  padding: 15px 0 5px 0;
   margin-top: 40px;
   margin: 10px;
   display: flex;
@@ -98,8 +102,6 @@ const Company = props => {
     }
   })
 
-  console.log(goodAlternatives)
-
   return (
     <Layout>
       <Thumbnail>
@@ -132,6 +134,12 @@ const Company = props => {
           <Source>{company.Source}</Source>
         </Box>
         <Box>
+          <Icon role="img" aria-lable="costs">
+            💰
+          </Icon>
+          <Source>{company.Costs}</Source>
+        </Box>
+        <Box>
           <Icon role="img" aria-label="webpage">
             🕸️
           </Icon>
@@ -159,6 +167,7 @@ export const companyData = graphql`
         Website
         Source
         slug
+        Costs
         Thumbnail {
           localFiles {
             childImageSharp {
