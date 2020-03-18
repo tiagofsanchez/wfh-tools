@@ -120,8 +120,12 @@ class Search extends Component {
               const brief = data.Description
 
               return (
-                <Link to={`/${data.slug}`} style={{ textDecoration: `none` }}>
-                  <HitContainer key={data.Name}>
+                <Link
+                  to={`/${data.slug}`}
+                  style={{ textDecoration: `none` }}
+                  key={data.slug}
+                >
+                  <HitContainer>
                     <CompanyContainer>
                       <Thumbnail>
                         {image && (

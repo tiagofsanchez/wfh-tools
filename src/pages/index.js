@@ -5,8 +5,8 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ListOfCompanies from "../components/listOfCompanies"
 import CallToAction from "../components/callToAction"
+import CompaniesSample from "../components/companiesSample"
 
 const SectionImage = styled.div`
   width: 150px;
@@ -61,6 +61,8 @@ const H1 = styled.h1`
 `
 
 const IndexPage = ({ data }) => {
+  console.log(data)
+
   const PMToolsArray = data.PM.edges
   const DESIGNToolsArray = data.DESIGN.edges
   const COLABToolsArray = data.COLAB.edges
@@ -85,53 +87,31 @@ const IndexPage = ({ data }) => {
       </section>
       <section style={{ marginBottom: `1.45rem` }}>
         <FlexBox right>
-          <ColumnFlex>
-            {PMToolsArray.map(company => {
-              const { node } = company
-              return <ListOfCompanies company={node} key={node.id} />
-            })}
-          </ColumnFlex>
-          <ColumnFlex>
-            <H1>Project Management</H1>
-            <SectionImage>
-              <Img
-                fluid={PMIcon.childImageSharp.fluid}
-                alt={"Project Management"}
-              />
-            </SectionImage>
-          </ColumnFlex>
+          <CompaniesSample
+            companiesArray={COLABToolsArray}
+            icon={CLIcon}
+            title="Collaboration"
+            right
+          />
         </FlexBox>
       </section>
       <section style={{ marginBottom: `1.45rem` }}>
         <FlexBox>
-          <ColumnFlex>
-            <H1>Design</H1>
-            <SectionImage>
-              <Img fluid={DIcon.childImageSharp.fluid} alt={"Design"} />
-            </SectionImage>
-          </ColumnFlex>
-          <ColumnFlex>
-            {DESIGNToolsArray.map(company => {
-              const { node } = company
-              return <ListOfCompanies company={node} key={node.id} />
-            })}
-          </ColumnFlex>
+          <CompaniesSample
+            companiesArray={DESIGNToolsArray}
+            icon={DIcon}
+            title="Design"
+          />
         </FlexBox>
       </section>
       <section style={{ marginBottom: `1.45rem` }}>
         <FlexBox right>
-          <ColumnFlex>
-            {COLABToolsArray.map(company => {
-              const { node } = company
-              return <ListOfCompanies company={node} key={node.id} />
-            })}
-          </ColumnFlex>
-          <ColumnFlex>
-            <H1>Collaboration</H1>
-            <SectionImage>
-              <Img fluid={CLIcon.childImageSharp.fluid} alt={"Collaboration"} />
-            </SectionImage>
-          </ColumnFlex>
+          <CompaniesSample
+            companiesArray={PMToolsArray}
+            icon={PMIcon}
+            title="Project Management"
+            right
+          />
         </FlexBox>
       </section>
       <section style={{ marginTop: `40px` }}>
@@ -143,6 +123,26 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query workFromHome {
+    allAirtable(filter: { data: { Publish: { eq: true } } }) {
+      edges {
+        node {
+          data {
+            Name
+            slug
+            Type
+            Thumbnail {
+              localFiles {
+                childImageSharp {
+                  fixed(width: 30, height: 30, grayscale: true) {
+                    ...GatsbyImageSharpFixed_tracedSVG
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     PM: allAirtable(
       filter: {
         data: { Publish: { eq: true }, Type: { eq: "Project Management" } }
