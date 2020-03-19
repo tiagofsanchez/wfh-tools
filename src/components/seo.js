@@ -4,7 +4,7 @@ import Helmet from "react-helmet"
 import urljoin from "url-join"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title, image }) {
+function SEO({ description, lang, title, image }) {
   const { site, logo } = useStaticQuery(
     graphql`
       query {
@@ -14,6 +14,7 @@ function SEO({ description, lang, meta, title, image }) {
             description
             author
             siteUrl
+            twitter
           }
         }
         logo: file(relativePath: { eq: "wfh-tools-icon.png" }) {
@@ -28,9 +29,13 @@ function SEO({ description, lang, meta, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
+
+  const url = site.siteMetadata.siteUrl
+  const twitter = site.siteMetadata.twitter
+
   console.log(`metaDescription:${metaDescription}`)
   console.log(`lang:${lang}`)
-  console.log(`meta:${meta}`)
+
   console.log(`title:${title}`)
 
   let favicon = null
@@ -43,60 +48,35 @@ function SEO({ description, lang, meta, title, image }) {
   console.log(`favicon:${favicon}`)
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta)}
-    />
+    <Helmet>
+      <title>{title}</title>
+      <link rel="canonical" href={url} />
+      <meta name="description" content={metaDescription} />
+      {favicon && <meta name="image" content={favicon} />}
+
+      <meta property="og:url" content={url} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={metaDescription} />
+      {favicon && <meta property="og:image" content={favicon} />}
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content={twitter} />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={metaDescription} />
+      {favicon && <meta name="twitter:image" content={favicon} />}
+    </Helmet>
   )
 }
 
 SEO.defaultProps = {
   lang: `en`,
-  meta: [],
   description: ``,
 }
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
 

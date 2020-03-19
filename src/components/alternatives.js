@@ -40,7 +40,7 @@ const Alternatives = ({ alternatives }) => {
             <Card>
               <img
                 src={alternative.Thumbnail.raw[0].thumbnails.small.url}
-                atl={alternative.Name}
+                alt={alternative.Name}
                 style={{ marginBottom: `0` }}
               />
             </Card>
