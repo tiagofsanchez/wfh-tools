@@ -43,7 +43,7 @@ const CallToAction = () => {
       </H1>
       <Paragraph>
         Don't worry! Let us know the tool that you would like to see in the
-        database. We can add it for your!
+        database. We can add it for you!
       </Paragraph>
       <Button href="https://airtable.com/shrKIvCX7rU3tY3CN">
         Add new tool

@@ -1,16 +1,10 @@
-/**
- * SEO component that queries for data with
- *  Gatsby's useStaticQuery React hook
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
+import urljoin from 'url-join'
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title , image }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -19,6 +13,8 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            siteUrl
+            icon
           }
         }
       }
@@ -26,7 +22,21 @@ function SEO({ description, lang, meta, title }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-
+  console.log(`metaDescription:${metaDescription}`);
+  console.log(`lang:${lang}`);
+  console.log(`meta:${meta}`);
+  console.log(`title:${title}`);
+  
+  let favicon = null
+  if (image === undefined) { 
+    favicon = urljoin( site.siteMetadata.siteUrl , site.siteMetadata.icon )
+  } else { 
+    favicon = urljoin(site.siteMetadata.siteUrl, image)
+  }
+  
+  console.log(`favicon:${favicon}`);
+  
+  
   return (
     <Helmet
       htmlAttributes={{

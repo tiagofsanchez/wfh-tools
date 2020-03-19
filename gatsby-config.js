@@ -5,6 +5,8 @@ module.exports = {
     title: `Working from home`,
     description: `All the tools you need so that you can work from home!`,
     author: `Tiago Sanchez`,
+    siteUrl: 'https://workingfromhome.netlify.com',
+    icon: `src/images/wfh-tools-icon.png`,
   },
   plugins: [
     {

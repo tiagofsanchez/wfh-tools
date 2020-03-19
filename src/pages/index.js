@@ -1,22 +1,13 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
-import Img from "gatsby-image"
+
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import CallToAction from "../components/callToAction"
 import CompaniesSample from "../components/companiesSample"
 
-const SectionImage = styled.div`
-  width: 150px;
-  height: 150px;
-  margin-top: 20px;
-  @media (max-width: 680px) {
-    width: 90px;
-    hight: 90px;
-  }
-`
 
 const FlexBox = styled.div`
   display: flex;
@@ -24,14 +15,7 @@ const FlexBox = styled.div`
   justify-content: space-between;
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
-const ColumnFlex = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 20px;
-  align-items: center;
-  flex: 1 1 280px;
-`
+
 const Description = styled.p`
   font-size: 25px;
   letter-spacing: 1px;
@@ -55,10 +39,6 @@ const Span = styled.span`
   border-radius: 2px;
 `
 
-const H1 = styled.h1`
-  color: rebeccapurple;
-  fontweight: 900;
-`
 
 const IndexPage = ({ data }) => {
   console.log(data)
@@ -70,9 +50,10 @@ const IndexPage = ({ data }) => {
   const DIcon = data.DIcon.edges[0].node.data.Icon.localFiles[0]
   const CLIcon = data.CLIcon.edges[0].node.data.Icon.localFiles[0]
 
+  //NOTE: I need to work on the SEO so that I can get the proper image and description there
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Working from home" />
       <section style={{ marginTop: `60px` }}>
         <Description>
           Hi there, this is the place where you will find all the tools{" "}
