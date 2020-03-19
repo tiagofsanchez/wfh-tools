@@ -4,7 +4,7 @@ import Helmet from "react-helmet"
 import urljoin from "url-join"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, title, image }) {
+function SEO({ description, slug, title, image }) {
   const { site, logo } = useStaticQuery(
     graphql`
       query {
@@ -19,7 +19,7 @@ function SEO({ description, lang, title, image }) {
         }
         logo: file(relativePath: { eq: "wfh-tools-icon.png" }) {
           childImageSharp {
-            fixed {
+            fixed(width: 90) {
               src
             }
           }
@@ -29,14 +29,12 @@ function SEO({ description, lang, title, image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-
-  const url = site.siteMetadata.siteUrl
+  const url = slug
+    ? urljoin(site.siteMetadata.siteUrl, slug)
+    : site.siteMetadata.siteUrl
   const twitter = site.siteMetadata.twitter
 
-  console.log(`metaDescription:${metaDescription}`)
-  console.log(`lang:${lang}`)
-
-  console.log(`title:${title}`)
+  console.log(url)
 
   let favicon = null
   if (image === undefined) {
@@ -44,8 +42,6 @@ function SEO({ description, lang, title, image }) {
   } else {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
-
-  console.log(`favicon:${favicon}`)
 
   return (
     <Helmet>

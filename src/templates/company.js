@@ -6,7 +6,7 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import CallToAction from "../components/callToAction"
 import Alternatives from "../components/alternatives"
-import SEO from '../components/seo';
+import SEO from "../components/seo"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -104,10 +104,15 @@ const Company = props => {
   })
 
   const image = company.Thumbnail.localFiles[0].childImageSharp.fluid.src
-  
+
   return (
     <Layout>
-       <SEO title={company.Name} description={company.Description} image={image} />
+      <SEO
+        title={company.Name}
+        description={company.Description}
+        image={image}
+        slug={company.slug}
+      />
       <Thumbnail>
         <Img
           fluid={company.Thumbnail.localFiles[0].childImageSharp.fluid}
