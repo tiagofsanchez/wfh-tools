@@ -5,7 +5,7 @@ module.exports = {
     title: `Working from home`,
     description: `All the tools you need so that you can work from home!`,
     author: `Tiago Sanchez`,
-    siteUrl: "https://workingfromhome.netlify.com",
+    siteUrl: "https://crushingwfh.com",
     icon: `src/images/wfh-tools-icon.png`,
     twitter: `@tiagofsanchez`,
   },
@@ -48,6 +48,12 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/wfh-tools-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-161261182-1",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
