@@ -1,11 +1,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import urljoin from 'url-join'
+import urljoin from "url-join"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title , image }) {
-  const { site } = useStaticQuery(
+function SEO({ description, lang, meta, title, image }) {
+  const { site, logo } = useStaticQuery(
     graphql`
       query {
         site {
@@ -14,7 +14,13 @@ function SEO({ description, lang, meta, title , image }) {
             description
             author
             siteUrl
-            icon
+          }
+        }
+        logo: file(relativePath: { eq: "wfh-tools-icon.png" }) {
+          childImageSharp {
+            fixed {
+              src
+            }
           }
         }
       }
@@ -22,21 +28,20 @@ function SEO({ description, lang, meta, title , image }) {
   )
 
   const metaDescription = description || site.siteMetadata.description
-  console.log(`metaDescription:${metaDescription}`);
-  console.log(`lang:${lang}`);
-  console.log(`meta:${meta}`);
-  console.log(`title:${title}`);
-  
+  console.log(`metaDescription:${metaDescription}`)
+  console.log(`lang:${lang}`)
+  console.log(`meta:${meta}`)
+  console.log(`title:${title}`)
+
   let favicon = null
-  if (image === undefined) { 
-    favicon = urljoin( site.siteMetadata.siteUrl , site.siteMetadata.icon )
-  } else { 
+  if (image === undefined) {
+    favicon = urljoin(site.siteMetadata.siteUrl, logo.childImageSharp.fixed.src)
+  } else {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
-  
-  console.log(`favicon:${favicon}`);
-  
-  
+
+  console.log(`favicon:${favicon}`)
+
   return (
     <Helmet
       htmlAttributes={{
