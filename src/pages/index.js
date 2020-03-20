@@ -57,7 +57,7 @@ const IndexPage = ({ data }) => {
         <IconContainer>
           <Logo />
         </IconContainer>
-        <Title>Crushing Working From Home</Title>
+        <Title>Crushing Work From Home</Title>
         <Description>
           All the tools{" "}
           <span role="img" aria-label="Tools">

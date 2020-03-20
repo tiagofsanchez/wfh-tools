@@ -20,9 +20,9 @@ const Title = styled.h2`
 `
 
 const FlexBox = styled.div`
-display: flex; 
-align-items: center; 
-justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `
 
 const SearchBar = styled.input`
@@ -78,15 +78,14 @@ const Description = styled.p`
 `
 
 const Button = styled.button`
-  widht: 40px;
-  color: ${props => (props.clear ? "white" :"rebeccapurple" )};
-  background-color: ${props => (props.clear? "rebeccapurple": null )};
+  color: ${props => (props.clear ? "white" : "rebeccapurple")};
+  background-color: ${props => (props.clear ? "rebeccapurple" : null)};
   border: none;
-  padding: 5px 10px 5px 10px; 
+  padding: 5px 10px 5px 10px;
   margin: 5px 5px 10px 0px;
   border-radius: 8px;
   font-weight: 500;
-  &:hover  {
+  &:hover {
     background-color: rebeccapurple;
     color: white;
   }
@@ -95,7 +94,7 @@ const Button = styled.button`
 const Span = styled.span`
   font-weight: 900;
   color: rebeccapurple;
-  padding: 2px 10px 5px 10px; 
+  padding: 2px 10px 5px 10px;
   border-radius: 8px;
   background-color: #ece6ff;
 `
@@ -120,15 +119,14 @@ class Search extends Component {
 
   clearHandler() {
     this.setState(prevState => ({
-      ...prevState, 
+      ...prevState,
       selectedSearch: "All",
     }))
   }
 
   render() {
     const { data } = this.props
-    const { search , selectedSearch } = this.state
-
+    const { search, selectedSearch } = this.state
 
     //NOTE: need to create a util function that will take better care of the search
     //all data from the companies
@@ -143,11 +141,12 @@ class Search extends Component {
     })
 
     //select only the TYPES of companies
-    let selectedTypesArray = allCompaniesArray; 
-    if(selectedSearch !== "All" ) { 
-      selectedTypesArray = allCompaniesArray.filter(
-        company =>
-          company.node.data.Type.toLowerCase().includes(selectedSearch.toLowerCase())
+    let selectedTypesArray = allCompaniesArray
+    if (selectedSearch !== "All") {
+      selectedTypesArray = allCompaniesArray.filter(company =>
+        company.node.data.Type.toLowerCase().includes(
+          selectedSearch.toLowerCase()
+        )
       )
     }
 
@@ -164,8 +163,8 @@ class Search extends Component {
       )
     }
 
-    const numberOfCompanies= filteredCompanies.length;
-    
+    const numberOfCompanies = filteredCompanies.length
+
     return (
       <Layout>
         <SEO title="Crushing W.F.H. | Search" />
@@ -173,9 +172,9 @@ class Search extends Component {
           <IconContainer>
             <SearchIcon />
           </IconContainer>
-            <Title>
-              Search for <Span>{selectedSearch}</Span> companies
-            </Title>
+          <Title>
+            Search for <Span>{selectedSearch}</Span> companies
+          </Title>
           <Button clear onClick={() => this.clearHandler()}>
             x
           </Button>
@@ -197,8 +196,8 @@ class Search extends Component {
               value={search}
               onChange={e => this.searchHandler(e.target.value)}
             />
-            <div style={{flex: `1 1 70px`, textAlign:`center`}}>
-            <Span style={{fontSize: `29px`}}>{numberOfCompanies}</Span>
+            <div style={{ flex: `1 1 70px`, textAlign: `center` }}>
+              <Span style={{ fontSize: `29px` }}>{numberOfCompanies}</Span>
             </div>
           </FlexBox>
         </section>
