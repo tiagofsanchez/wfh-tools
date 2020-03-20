@@ -79,7 +79,7 @@ const Description = styled.p`
 
 const Button = styled.button`
   color: ${props => (props.clear ? "white" : "rebeccapurple")};
-  background-color: ${props => (props.clear ? "rebeccapurple" : null)};
+  background-color: ${props => (props.clear ? "rebeccapurple" : "eeeeee")};
   border: none;
   padding: 5px 10px 5px 10px;
   margin: 5px 5px 10px 0px;
