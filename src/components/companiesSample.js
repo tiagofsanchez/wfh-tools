@@ -3,13 +3,14 @@ import Img from "gatsby-image"
 import styled from "@emotion/styled"
 
 import ListOfCompanies from "./listOfCompanies"
+import GoToSearch from './goToSearch';
 
 const ColumnFlex = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 20px;
-  align-items: center;
+  align-items: ${props => (props.start ? "flex-start" : "center")};
   flex: 1 1 280px;
 `
 const SectionImage = styled.div`
@@ -31,11 +32,12 @@ const CompaniesSample = ({ companiesArray, icon, title, right }) => {
     <>
       {right ? (
         <>
-          <ColumnFlex>
+          <ColumnFlex start>
             {companiesArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
+            <GoToSearch />
           </ColumnFlex>
           <ColumnFlex>
             <H1>{title}</H1>
@@ -52,11 +54,12 @@ const CompaniesSample = ({ companiesArray, icon, title, right }) => {
               <Img fluid={icon.childImageSharp.fluid} alt={title} />
             </SectionImage>
           </ColumnFlex>
-          <ColumnFlex>
+          <ColumnFlex start>
             {companiesArray.map(company => {
               const { node } = company
               return <ListOfCompanies company={node} key={node.id} />
             })}
+            <GoToSearch />
           </ColumnFlex>
         </>
       )}

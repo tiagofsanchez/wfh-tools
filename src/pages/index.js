@@ -2,10 +2,9 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Logo from '../components/logo'
+import Logo from "../components/logo"
 import CallToAction from "../components/callToAction"
 import CompaniesSample from "../components/companiesSample"
 
@@ -32,16 +31,17 @@ const Description = styled.p`
   color: gray;
 `
 
-
 const Title = styled.h1`
   text-align: center;
   color: rebeccapurple;
   fontweight: 900;
 `
 
-
 const IndexPage = ({ data }) => {
   console.log(data)
+
+  //Note this could probably be and UTIL
+  const allCompaniesArray = data.allAirtable.edges
 
   const PMToolsArray = data.PM.edges
   const DESIGNToolsArray = data.DESIGN.edges
@@ -50,31 +50,34 @@ const IndexPage = ({ data }) => {
   const DIcon = data.DIcon.edges[0].node.data.Icon.localFiles[0]
   const CLIcon = data.CLIcon.edges[0].node.data.Icon.localFiles[0]
 
-  //NOTE: I need to work on the SEO so that I can get the proper image and description there
   return (
     <Layout>
       <SEO title="Crushing W.F.H." />
-      <section style={{marginBottom: `50px`}}>
+      <section style={{ marginBottom: `50px` }}>
         <IconContainer>
-          <Logo/>
+          <Logo />
         </IconContainer>
         <Title>Crushing Working From Home</Title>
         <Description>
-           All the tools{" "}
-          <span role="img" aria-label="Tools" >⚒️</span> you will need to W.F.H. in one place!
+          All the tools{" "}
+          <span role="img" aria-label="Tools">
+            ⚒️
+          </span>{" "}
+          you will need to W.F.H. in one place!
         </Description>
       </section>
-      <section style={{marginBottom: `50px`}}>
-        <FlexBox right>
+      <section style={{ marginBottom: `50px` }}>
+      <FlexBox right>
           <CompaniesSample
-            companiesArray={COLABToolsArray}
-            icon={CLIcon}
-            title="Collaboration"
+            companiesArray={PMToolsArray}
+            icon={PMIcon}
+            title="Project Management"
             right
           />
         </FlexBox>
+       
       </section>
-      <section style={{marginBottom: `50px`}}>
+      <section style={{ marginBottom: `50px` }}>
         <FlexBox>
           <CompaniesSample
             companiesArray={DESIGNToolsArray}
@@ -83,17 +86,17 @@ const IndexPage = ({ data }) => {
           />
         </FlexBox>
       </section>
-      <section style={{marginBottom: `50px`}}>
-        <FlexBox right>
+      <section style={{ marginBottom: `50px` }}>
+      <FlexBox right>
           <CompaniesSample
-            companiesArray={PMToolsArray}
-            icon={PMIcon}
-            title="Project Management"
+            companiesArray={COLABToolsArray}
+            icon={CLIcon}
+            title="Collaboration"
             right
           />
         </FlexBox>
       </section>
-      <section style={{ marginTop: `50px` }}>
+      <section style={{ marginTop: `90px` }}>
         <CallToAction />
       </section>
     </Layout>
@@ -102,13 +105,14 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query workFromHome {
-    allAirtable(filter: { data: { Publish: { eq: true } } }) {
+    allAirtable(filter: { data: { Publish: { eq: true } , Created_time: {ne:null} } }) {
       edges {
         node {
           data {
             Name
             slug
             Type
+            Created_time (difference: "days")
             Thumbnail {
               localFiles {
                 childImageSharp {
@@ -123,6 +127,7 @@ export const query = graphql`
       }
     }
     PM: allAirtable(
+      limit: 4,
       filter: {
         data: { Publish: { eq: true }, Type: { eq: "Project Management" } }
       }
@@ -146,6 +151,7 @@ export const query = graphql`
       }
     }
     DESIGN: allAirtable(
+      limit: 4,
       filter: { data: { Publish: { eq: true }, Type: { eq: "Design" } } }
     ) {
       edges {
@@ -167,6 +173,7 @@ export const query = graphql`
       }
     }
     COLAB: allAirtable(
+      limit: 4,
       filter: { data: { Publish: { eq: true }, Type: { eq: "Collaboration" } } }
     ) {
       edges {
@@ -241,7 +248,7 @@ export const query = graphql`
           }
         }
       }
-    }
+    } 
   }
 `
 
