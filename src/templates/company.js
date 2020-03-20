@@ -108,7 +108,7 @@ const Company = props => {
   return (
     <Layout>
       <SEO
-        title={company.Name}
+        title={`Crushing W.F.H. | ${company.Name}`}
         description={company.Description}
         image={image}
         slug={company.slug}
