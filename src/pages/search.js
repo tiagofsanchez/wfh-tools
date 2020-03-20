@@ -6,18 +6,24 @@ import Img from "gatsby-image"
 import Layout from "../components/layout"
 import SearchIcon from "../components/serchIcon"
 import CallToAction from "../components/callToAction"
+import SEO from "../components/seo"
 
 const IconContainer = styled.div`
-  margin: auto;
-  width: 100px;
-  margin-bottom: 30px;
+  width: 80px;
+  margin-bottom: 10px;
+  margin-bottom: 15px;
 `
-const Title = styled.h1`
-  margin: auto;
+const Title = styled.h2`
   font-weight: 900;
-  text-align: center;
   color: rebeccapurple;
   margin-bottom: 20px;
+  line-height: 40px;
+`
+
+const FlexBox = styled.div`
+display: flex; 
+align-items: center; 
+justify-content: space-between;
 `
 
 const SearchBar = styled.input`
@@ -25,7 +31,6 @@ const SearchBar = styled.input`
   padding: 10px;
   border: 2px solid rebeccapurple;
   border-radius: 8px;
-  margin-bottom: 40px;
   &:focus {
     background-color: #ece6ff;
   }
@@ -73,39 +78,130 @@ const Description = styled.p`
   margin-bottom: 0;
 `
 
+const Button = styled.button`
+  widht: 40px;
+  color: ${props => (props.clear ? "white" :"rebeccapurple" )};
+  background-color: ${props => (props.clear? "rebeccapurple": null )};
+  border: none;
+  padding: 5px 10px 5px 10px; 
+  margin: 5px 5px 10px 0px;
+  border-radius: 8px;
+  font-weight: 500;
+  &:hover  {
+    background-color: rebeccapurple;
+    color: white;
+  }
+`
+
+const Span = styled.span`
+  font-weight: 900;
+  color: rebeccapurple;
+  padding: 2px 10px 5px 10px; 
+  border-radius: 8px;
+  background-color: #ece6ff;
+`
+
 class Search extends Component {
   state = {
     search: "",
+    selectedSearch: "All",
   }
 
   searchHandler(value) {
     this.setState({ search: value })
   }
+
+  onClickHandler(e) {
+    const { name } = e.target
+    this.setState(prevState => ({
+      ...prevState,
+      selectedSearch: name,
+    }))
+  }
+
+  clearHandler() {
+    this.setState(prevState => ({
+      ...prevState, 
+      selectedSearch: "All",
+    }))
+  }
+
   render() {
     const { data } = this.props
-    const { search } = this.state
+    const { search , selectedSearch } = this.state
 
-    const AllCompaniesArray = data.allAirtable.edges
-    let filteredCompanies = AllCompaniesArray
-    if (search !== null) {
-      filteredCompanies = AllCompaniesArray.filter(company =>
-        company.node.data.Name.toLowerCase().includes(search.toLowerCase())
+
+    //NOTE: need to create a util function that will take better care of the search
+    //all data from the companies
+    const allCompaniesArray = data.allAirtable.edges
+    //Existing types into an array to create my buttons
+    const typesArray = []
+    allCompaniesArray.forEach(({ node }) => {
+      const company = node
+      if (typesArray.includes(company.data.Type) === false) {
+        typesArray.push(company.data.Type)
+      }
+    })
+
+    //select only the TYPES of companies
+    let selectedTypesArray = allCompaniesArray; 
+    if(selectedSearch !== "All" ) { 
+      selectedTypesArray = allCompaniesArray.filter(
+        company =>
+          company.node.data.Type.toLowerCase().includes(selectedSearch.toLowerCase())
       )
     }
 
+    // only searching the companies that the user wants
+    let filteredCompanies = selectedTypesArray
+    if (search !== null) {
+      filteredCompanies = selectedTypesArray.filter(
+        company =>
+          company.node.data.Name.toLowerCase().includes(search.toLowerCase()) ||
+          company.node.data.Description.toLowerCase().includes(
+            search.toLowerCase()
+          ) ||
+          company.node.data.Type.toLowerCase().includes(search.toLowerCase())
+      )
+    }
+
+    const numberOfCompanies= filteredCompanies.length;
+    
     return (
       <Layout>
-        <section>
+        <SEO title="Search" />
+        <section style={{ marginBottom: `40px` }}>
           <IconContainer>
             <SearchIcon />
           </IconContainer>
-          <Title>Your search</Title>
-          <SearchBar
-            placeholder="Search for the name of the company..."
-            type="text"
-            value={search}
-            onChange={e => this.searchHandler(e.target.value)}
-          />
+            <Title>
+              Search for <Span>{selectedSearch}</Span> companies
+            </Title>
+          <Button clear onClick={() => this.clearHandler()}>
+            x
+          </Button>
+          {typesArray.map(type => (
+            <Button
+              key={type}
+              type="button"
+              name={type}
+              onClick={e => this.onClickHandler(e)}
+              style={{}}
+            >
+              {type}
+            </Button>
+          ))}
+          <FlexBox>
+            <SearchBar
+              placeholder="Search for the name of the company..."
+              type="text"
+              value={search}
+              onChange={e => this.searchHandler(e.target.value)}
+            />
+            <div style={{flex: `1 1 70px`, textAlign:`center`}}>
+            <Span style={{fontSize: `29px`}}>{numberOfCompanies}</Span>
+            </div>
+          </FlexBox>
         </section>
         <section>
           {filteredCompanies.length === 0 ? (
