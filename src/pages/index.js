@@ -5,9 +5,9 @@ import styled from "@emotion/styled"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Logo from '../components/logo'
 import CallToAction from "../components/callToAction"
 import CompaniesSample from "../components/companiesSample"
-
 
 const FlexBox = styled.div`
   display: flex;
@@ -16,27 +16,27 @@ const FlexBox = styled.div`
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
 
+const IconContainer = styled.div`
+  width: 100px;
+  margin: auto;
+  margin-bottom: 15px;
+`
+
 const Description = styled.p`
   font-size: 25px;
   letter-spacing: 1px;
-  line-height: 30px;
+  line-height: 40px;
   margin-bottom: 5px;
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
-`
-
-const Paragraph = styled.p`
-  letter-spacing: 1px;
   color: gray;
-  padding: 20px;
-  font-weight: 600;
-  text-align: center;
 `
 
-const Span = styled.span`
-  padding: 2px 5px 2px 5px;
-  background-color: #ece6ff;
-  border-radius: 2px;
+
+const Title = styled.h1`
+  text-align: center;
+  color: rebeccapurple;
+  fontweight: 900;
 `
 
 
@@ -53,20 +53,18 @@ const IndexPage = ({ data }) => {
   //NOTE: I need to work on the SEO so that I can get the proper image and description there
   return (
     <Layout>
-      <SEO title="Working from home" />
-      <section style={{ marginTop: `60px` }}>
+      <SEO title="Crushing W.F.H." />
+      <section style={{marginBottom: `50px`}}>
+        <IconContainer>
+          <Logo/>
+        </IconContainer>
+        <Title>Crushing Working From Home</Title>
         <Description>
-          Hi there, this is the place where you will find all the tools{" "}
-          <span>⚒️</span> you will need to work from home. Check them out!
+           All the tools{" "}
+          <span role="img" aria-label="Tools" >⚒️</span> you will need to W.F.H. in one place!
         </Description>
-        <Paragraph>
-          I have decided to start this database due to the covid-19 outbreak and
-          the fact that most of us are now working from home. This is a{" "}
-          <Span>beta</Span> version, and I am counting on everyone's help to
-          grow this database and share it.
-        </Paragraph>
       </section>
-      <section style={{ marginBottom: `1.45rem` }}>
+      <section style={{marginBottom: `50px`}}>
         <FlexBox right>
           <CompaniesSample
             companiesArray={COLABToolsArray}
@@ -76,7 +74,7 @@ const IndexPage = ({ data }) => {
           />
         </FlexBox>
       </section>
-      <section style={{ marginBottom: `1.45rem` }}>
+      <section style={{marginBottom: `50px`}}>
         <FlexBox>
           <CompaniesSample
             companiesArray={DESIGNToolsArray}
@@ -85,7 +83,7 @@ const IndexPage = ({ data }) => {
           />
         </FlexBox>
       </section>
-      <section style={{ marginBottom: `1.45rem` }}>
+      <section style={{marginBottom: `50px`}}>
         <FlexBox right>
           <CompaniesSample
             companiesArray={PMToolsArray}
@@ -95,7 +93,7 @@ const IndexPage = ({ data }) => {
           />
         </FlexBox>
       </section>
-      <section style={{ marginTop: `40px` }}>
+      <section style={{ marginTop: `50px` }}>
         <CallToAction />
       </section>
     </Layout>

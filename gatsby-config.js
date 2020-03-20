@@ -2,11 +2,11 @@ require("dotenv").config({ path: ".env" })
 
 module.exports = {
   siteMetadata: {
-    title: `Working from home`,
+    title: `💻 Crushing W.F.H.`,
     description: `All the tools you need so that you can work from home!`,
     author: `Tiago Sanchez`,
     siteUrl: "https://crushingwfh.com",
-    icon: `src/images/wfh-tools-icon.png`,
+    icon: `src/images/icon.png`,
     twitter: `@tiagofsanchez`,
   },
   plugins: [
@@ -41,13 +41,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `working-from-home-tools`,
-        short_name: `WFH-TOOLS`,
+        name: `crushing working from home`,
+        short_name: `crushingWFH`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/wfh-tools-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/logo-icon.png`, // This path is relative to the root of the site.
       },
     },
     {

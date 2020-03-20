@@ -36,7 +36,7 @@ const CallToAction = () => {
     <>
       <H1 style={{ textAlign: `center` }}>
         Don't find the tool{" "}
-        <span role="img" aria-label="tools">
+        <span role="img" aria-label="Tools">
           ⚒️
         </span>{" "}
         that you love?

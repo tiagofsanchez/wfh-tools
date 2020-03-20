@@ -17,7 +17,7 @@ function SEO({ description, slug, title, image }) {
             twitter
           }
         }
-        logo: file(relativePath: { eq: "wfh-tools-icon.png" }) {
+        logo: file(relativePath: { eq: "logo-icon.png" }) {
           childImageSharp {
             fixed(width: 90) {
               src
@@ -34,7 +34,6 @@ function SEO({ description, slug, title, image }) {
     : site.siteMetadata.siteUrl
   const twitter = site.siteMetadata.twitter
 
-  console.log(url)
 
   let favicon = null
   if (image === undefined) {
@@ -42,6 +41,7 @@ function SEO({ description, slug, title, image }) {
   } else {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
+
 
   return (
     <Helmet>

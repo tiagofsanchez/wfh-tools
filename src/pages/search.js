@@ -10,7 +10,6 @@ import SEO from "../components/seo"
 
 const IconContainer = styled.div`
   width: 80px;
-  margin-bottom: 10px;
   margin-bottom: 15px;
 `
 const Title = styled.h2`
