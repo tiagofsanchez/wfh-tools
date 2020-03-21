@@ -181,7 +181,7 @@ export const companyData = graphql`
           localFiles {
             childImageSharp {
               fluid {
-                ...GatsbyImageSharpFluid_tracedSVG
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -190,7 +190,7 @@ export const companyData = graphql`
           localFiles {
             childImageSharp {
               fluid {
-                ...GatsbyImageSharpFluid_tracedSVG
+                ...GatsbyImageSharpFluid
               }
             }
           }

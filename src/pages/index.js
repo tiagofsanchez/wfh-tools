@@ -59,7 +59,7 @@ const IndexPage = ({ data }) => {
         </IconContainer>
         <Title>Crushing Work From Home</Title>
         <Description>
-          All the tools{" "}
+          Search all the tools{" "}
           <span role="img" aria-label="Tools">
             ⚒️
           </span>{" "}
@@ -117,7 +117,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed_tracedSVG
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -141,7 +141,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed_tracedSVG
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -163,7 +163,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed_tracedSVG
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -185,7 +185,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed_tracedSVG
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }
@@ -204,7 +204,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fluid(grayscale: true) {
-                    ...GatsbyImageSharpFluid_tracedSVG
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -221,7 +221,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fluid(grayscale: true) {
-                    ...GatsbyImageSharpFluid_tracedSVG
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -240,7 +240,7 @@ export const query = graphql`
               localFiles {
                 childImageSharp {
                   fluid(grayscale: true) {
-                    ...GatsbyImageSharpFluid_tracedSVG
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
