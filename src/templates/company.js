@@ -30,6 +30,7 @@ const Label = styled.h3`
   font-weight: 900;
 `
 
+
 const Screenshot = styled.div`
   width: 100%;
   margin: 5px;
@@ -137,9 +138,15 @@ const Company = props => {
       <Label>Other</Label>
       <Other>
         <Box>
-          <Icon role="img" aria-label="source">
-            💡
-          </Icon>
+          {company.Source === "crushingwfh" ? (
+            <Icon role="img" aria-label="source">
+              💻
+            </Icon>
+          ) : (
+            <Icon role="img" aria-label="source">
+              👤
+            </Icon>
+          )}
           <Source>{company.Source}</Source>
         </Box>
         <Box>

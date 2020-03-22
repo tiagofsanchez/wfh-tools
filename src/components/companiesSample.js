@@ -15,24 +15,32 @@ const ColumnFlex = styled.div`
 `
 const SectionImage = styled.div`
   width: 150px;
-  margin-top: 20px;
+  margin: 20px 0px 0px 0px;
   @media (max-width: 680px) {
     width: 90px;
   }
 `
+const Description = styled.p`
+  letter-spacing: 1px;
+  color: rebeccapurple;
+  padding: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0;
+`
+
 const H1 = styled.h1`
   color: rebeccapurple;
   fontweight: 900;
 `
 
-const CompaniesSample = ({ companiesArray, icon, title, right }) => {
+const CompaniesSample = ({ companiesArray, icon, title, right , description }) => {
   return (
     <>
       {right ? (
         <>
           <ColumnFlex start="true">
-            {companiesArray.map(company => {
-             
+            {companiesArray.map(company => {     
               return <ListOfCompanies company={company} key={company.id} />
             })}
             <GoToSearch />
@@ -42,6 +50,7 @@ const CompaniesSample = ({ companiesArray, icon, title, right }) => {
             <SectionImage>
               <Img fluid={icon} alt={title} />
             </SectionImage>
+          <Description>{description}</Description>
           </ColumnFlex>
         </>
       ) : (
@@ -51,6 +60,7 @@ const CompaniesSample = ({ companiesArray, icon, title, right }) => {
             <SectionImage>
               <Img fluid={icon} alt={title} />
             </SectionImage>
+      <Description>{description}</Description>
           </ColumnFlex>
           <ColumnFlex start="true">
             {companiesArray.map(company => {

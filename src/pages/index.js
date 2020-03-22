@@ -102,6 +102,7 @@ const IndexPage = ({ data }) => {
             icon={Icons.ProgramManagement.childImageSharp.fluid}
             title="Project Management"
             right
+            description="Plan, organized and share your projects with teams and managers"
           />
         </FlexBox>
       </section>
@@ -111,6 +112,7 @@ const IndexPage = ({ data }) => {
             companiesArray={DArray}
             icon={Icons.Design.childImageSharp.fluid}
             title="Design"
+            description="Improve your product UX and UI before jumping into code "
           />
         </FlexBox>
       </section>
@@ -121,6 +123,7 @@ const IndexPage = ({ data }) => {
             icon={Icons.Collaboration.childImageSharp.fluid}
             title="Collaboration"
             right
+            description="Work efficiently together without sending attachments and emails"
           />
         </FlexBox>
         </section>
@@ -130,6 +133,7 @@ const IndexPage = ({ data }) => {
             companiesArray={VCArray}
             icon={Icons.VideoConferencing.childImageSharp.fluid}
             title="Video Conferencing"
+            description="Engage your team and clients with video wherever you are"
           />
         </FlexBox>
       </section>
@@ -140,6 +144,7 @@ const IndexPage = ({ data }) => {
             icon={Icons.TimeTracking.childImageSharp.fluid}
             title="Time Tracking"
             right
+            description="Track your time and gain valuable insights on how to improve"
           />
         </FlexBox>
         </section>
