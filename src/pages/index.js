@@ -38,17 +38,46 @@ const Title = styled.h1`
 `
 
 const IndexPage = ({ data }) => {
-  console.log(data)
-
-  //Note this could probably be and UTIL
+  //TODO: this could probably be and UTIL (YES, Will need to use UTIL HERE, to messy)
+  //TOD0 III: implement 'new companies' tag in the landing page
+  //TODO IV: small leaderboard on the landing page
   const allCompaniesArray = data.allAirtable.edges
+  let PMArray = []
+  let DArray = []
+  let COArray = []
+  let VCArray = []
+  let TTArray = []
+  let SCArray = []
+  let PRArray = []
+  allCompaniesArray.forEach(company => {
+    const { node } = company
+    if ((node.data.Type === "Project Management") & (PMArray.length < 3)) {
+      PMArray.push(node)
+    } else if ((node.data.Type === "Design") & (DArray.length < 3)) {
+      DArray.push(node)
+    } else if ((node.data.Type === "Collaboration") & (COArray.length < 3)) {
+      COArray.push(node)
+    } else if (
+      (node.data.Type === "Video Conferencing") &
+      (VCArray.length < 4)
+    ) {
+      VCArray.push(node)
+    } else if ((node.data.Type === "Time Tracking") & (TTArray.length < 3)) {
+      TTArray.push(node)
+    } else if ((node.data.Type === "Scheduling") & (SCArray.length < 3)) {
+      SCArray.push(node)
+    } else if ((node.data.Type === "Productivity") & (PRArray.length < 3)) {
+      PRArray.push(node)
+    }
+  })
+  //Creating and Object with all Icons  
+  const IArray = data.Icons.edges
+  let Icons = {}
+  IArray.forEach(icon => {
+   const { node } = icon
+   Icons[node.data.IconName] = node.data.Icon.localFiles[0]
+  })
 
-  const PMToolsArray = data.PM.edges
-  const DESIGNToolsArray = data.DESIGN.edges
-  const COLABToolsArray = data.COLAB.edges
-  const PMIcon = data.PMIcon.edges[0].node.data.Icon.localFiles[0]
-  const DIcon = data.DIcon.edges[0].node.data.Icon.localFiles[0]
-  const CLIcon = data.CLIcon.edges[0].node.data.Icon.localFiles[0]
 
   return (
     <Layout>
@@ -67,35 +96,53 @@ const IndexPage = ({ data }) => {
         </Description>
       </section>
       <section style={{ marginBottom: `50px` }}>
-      <FlexBox right>
+        <FlexBox right>
           <CompaniesSample
-            companiesArray={PMToolsArray}
-            icon={PMIcon}
+            companiesArray={PMArray}
+            icon={Icons.ProgramManagement.childImageSharp.fluid}
             title="Project Management"
             right
           />
         </FlexBox>
-       
       </section>
       <section style={{ marginBottom: `50px` }}>
         <FlexBox>
           <CompaniesSample
-            companiesArray={DESIGNToolsArray}
-            icon={DIcon}
+            companiesArray={DArray}
+            icon={Icons.Design.childImageSharp.fluid}
             title="Design"
           />
         </FlexBox>
       </section>
       <section style={{ marginBottom: `50px` }}>
-      <FlexBox right>
+        <FlexBox right>
           <CompaniesSample
-            companiesArray={COLABToolsArray}
-            icon={CLIcon}
+            companiesArray={COArray}
+            icon={Icons.Collaboration.childImageSharp.fluid}
             title="Collaboration"
             right
           />
         </FlexBox>
+        </section>
+        <section style={{ marginBottom: `50px` }}>
+        <FlexBox>
+          <CompaniesSample
+            companiesArray={VCArray}
+            icon={Icons.VideoConferencing.childImageSharp.fluid}
+            title="Video Conferencing"
+          />
+        </FlexBox>
       </section>
+      <section style={{ marginBottom: `50px` }}>
+        <FlexBox right>
+          <CompaniesSample
+            companiesArray={TTArray}
+            icon={Icons.TimeTracking.childImageSharp.fluid}
+            title="Time Tracking"
+            right
+          />
+        </FlexBox>
+        </section>
       <section style={{ marginTop: `90px` }}>
         <CallToAction />
       </section>
@@ -105,14 +152,17 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query workFromHome {
-    allAirtable(filter: { data: { Publish: { eq: true } , Created_time: {ne:null} } }) {
+    allAirtable(
+      filter: { data: { Publish: { eq: true }, Created_time: { ne: null } } }
+      sort: {order: DESC, fields: data___Created_time}
+    ) {
       edges {
         node {
           data {
             Name
             slug
             Type
-            Created_time (difference: "days")
+            Created_time(difference: "days")
             Thumbnail {
               localFiles {
                 childImageSharp {
@@ -126,80 +176,11 @@ export const query = graphql`
         }
       }
     }
-    PM: allAirtable(
-      limit: 4,
-      filter: {
-        data: { Publish: { eq: true }, Type: { eq: "Project Management" } }
-      }
-    ) {
+    Icons: allAirtable(filter: { data: { Created_time: { eq: null } } }) {
       edges {
         node {
           data {
-            Name
-            slug
-            Thumbnail {
-              localFiles {
-                childImageSharp {
-                  fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    DESIGN: allAirtable(
-      limit: 4,
-      filter: { data: { Publish: { eq: true }, Type: { eq: "Design" } } }
-    ) {
-      edges {
-        node {
-          data {
-            Name
-            slug
-            Thumbnail {
-              localFiles {
-                childImageSharp {
-                  fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    COLAB: allAirtable(
-      limit: 4,
-      filter: { data: { Publish: { eq: true }, Type: { eq: "Collaboration" } } }
-    ) {
-      edges {
-        node {
-          data {
-            Name
-            slug
-            Thumbnail {
-              localFiles {
-                childImageSharp {
-                  fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    PMIcon: allAirtable(
-      filter: { data: { IconName: { eq: "Program Management" } } }
-    ) {
-      edges {
-        node {
-          data {
+            IconName
             Icon {
               localFiles {
                 childImageSharp {
@@ -213,42 +194,6 @@ export const query = graphql`
         }
       }
     }
-    DIcon: allAirtable(filter: { data: { IconName: { eq: "Design" } } }) {
-      edges {
-        node {
-          data {
-            Icon {
-              localFiles {
-                childImageSharp {
-                  fluid(grayscale: true) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    CLIcon: allAirtable(
-      filter: { data: { IconName: { eq: "Collaboration" } } }
-    ) {
-      edges {
-        node {
-          data {
-            Icon {
-              localFiles {
-                childImageSharp {
-                  fluid(grayscale: true) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    } 
   }
 `
 

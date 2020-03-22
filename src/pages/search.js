@@ -128,7 +128,8 @@ class Search extends Component {
     const { data } = this.props
     const { search, selectedSearch } = this.state
 
-    //NOTE: need to create a util function that will take better care of the search
+    //TODO: need to create a util function that will take better care of the search
+    //TODO II: need to do a dropdown menu instead of the current selection menu
     //all data from the companies
     const allCompaniesArray = data.allAirtable.edges
     //Existing types into an array to create my buttons

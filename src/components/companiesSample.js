@@ -15,11 +15,9 @@ const ColumnFlex = styled.div`
 `
 const SectionImage = styled.div`
   width: 150px;
-  height: 150px;
   margin-top: 20px;
   @media (max-width: 680px) {
     width: 90px;
-    hight: 90px;
   }
 `
 const H1 = styled.h1`
@@ -32,17 +30,17 @@ const CompaniesSample = ({ companiesArray, icon, title, right }) => {
     <>
       {right ? (
         <>
-          <ColumnFlex start>
+          <ColumnFlex start="true">
             {companiesArray.map(company => {
-              const { node } = company
-              return <ListOfCompanies company={node} key={node.id} />
+             
+              return <ListOfCompanies company={company} key={company.id} />
             })}
             <GoToSearch />
           </ColumnFlex>
           <ColumnFlex>
             <H1>{title}</H1>
             <SectionImage>
-              <Img fluid={icon.childImageSharp.fluid} alt={title} />
+              <Img fluid={icon} alt={title} />
             </SectionImage>
           </ColumnFlex>
         </>
@@ -51,13 +49,13 @@ const CompaniesSample = ({ companiesArray, icon, title, right }) => {
           <ColumnFlex>
             <H1>{title}</H1>
             <SectionImage>
-              <Img fluid={icon.childImageSharp.fluid} alt={title} />
+              <Img fluid={icon} alt={title} />
             </SectionImage>
           </ColumnFlex>
-          <ColumnFlex start>
+          <ColumnFlex start="true">
             {companiesArray.map(company => {
               const { node } = company
-              return <ListOfCompanies company={node} key={node.id} />
+              return <ListOfCompanies company={company} key={company.id} />
             })}
             <GoToSearch />
           </ColumnFlex>
