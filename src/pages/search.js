@@ -11,6 +11,11 @@ import SEO from "../components/seo"
 const IconContainer = styled.div`
   width: 80px;
   margin-bottom: 15px;
+  @media (max-width: 680px) {
+    width: 50px;
+    margin: auto;
+    margin-bottom: 15px;
+  }
 `
 const Title = styled.h2`
   font-weight: 900;
@@ -32,6 +37,7 @@ const SearchBar = styled.input`
   border-radius: 8px;
   &:focus {
     background-color: #ece6ff;
+    border: 2px dashed rebeccapurple;
   }
 `
 
@@ -77,26 +83,27 @@ const Description = styled.p`
   margin-bottom: 0;
 `
 
-const Button = styled.button`
-  color: ${props => (props.clear ? "white" : "rebeccapurple")};
-  background-color: ${props => (props.clear ? "rebeccapurple" : "#eeeeee")};
-  border: none;
-  padding: 5px 10px 5px 10px;
-  margin: 5px 5px 10px 0px;
-  border-radius: 8px;
-  font-weight: 500;
-  &:hover {
-    background-color: rebeccapurple;
-    color: white;
-  }
-`
-
 const Span = styled.span`
   font-weight: 900;
   color: rebeccapurple;
   padding: 2px 10px 5px 10px;
   border-radius: 8px;
   background-color: #ece6ff;
+`
+
+const Select = styled.select`
+  width: 250px;
+  color: rebeccapurple;
+  border: 2px solid #ece6ff;
+  background-color: #ece6ff;
+  border-radius: 8px;
+  font-size: 19px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='rebeccapurple' height='40' viewBox='0 0 24 24' width='40' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
 `
 
 class Search extends Component {
@@ -124,12 +131,21 @@ class Search extends Component {
     }))
   }
 
+  selectOnChangeHandler(e) {
+    const { value } = e.target
+    this.setState(prevState => ({
+      ...prevState,
+      selectedSearch: value,
+    }))
+  }
+
   render() {
     const { data } = this.props
     const { search, selectedSearch } = this.state
 
     //TODO: need to create a util function that will take better care of the search
     //TODO II: need to do a dropdown menu instead of the current selection menu
+
     //all data from the companies
     const allCompaniesArray = data.allAirtable.edges
     //Existing types into an array to create my buttons
@@ -174,22 +190,18 @@ class Search extends Component {
             <SearchIcon />
           </IconContainer>
           <Title>
-            Search for <Span>{selectedSearch}</Span> companies
+            Search for{" "}
+            <Select onChange={e => this.selectOnChangeHandler(e)}>
+              <option>All</option>
+              {typesArray.map(type => (
+                <option value={type} key={type}>
+                  {type}
+                </option>
+              ))}
+            </Select>{" "}
+            companies
           </Title>
-          <Button clear onClick={() => this.clearHandler()}>
-            x
-          </Button>
-          {typesArray.map(type => (
-            <Button
-              key={type}
-              type="button"
-              name={type}
-              onClick={e => this.onClickHandler(e)}
-              style={{}}
-            >
-              {type}
-            </Button>
-          ))}
+
           <FlexBox>
             <SearchBar
               placeholder="Search for the name of the company..."
