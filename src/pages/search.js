@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 import styled from "@emotion/styled"
-import { graphql, Link } from "gatsby"
-import Img from "gatsby-image"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SearchIcon from "../components/serchIcon"
-import CallToAction from "../components/callToAction"
 import SEO from "../components/seo"
+import SearcResults from "../components/searchResults"
 
 const IconContainer = styled.div`
   width: 80px;
@@ -39,48 +38,6 @@ const SearchBar = styled.input`
     background-color: #ece6ff;
     border: 2px dashed rebeccapurple;
   }
-`
-
-const Thumbnail = styled.div`
-  width: 40px;
-  margin: 5px;
-  border-radius: 50%;
-  margin-bottom: 0;
-  margin-right: 20px;
-`
-const CompanyName = styled.h3`
-  font-weight: 900;
-  color: black;
-  margin-bottom: 0;
-  margin-right: 20px;
-`
-
-const HitContainer = styled.div`
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  &:hover {
-    background-color: #ece6ff;
-    border-radius: 5px;
-  }
-`
-const CompanyContainer = styled.div`
-  flex: 1 1 120px;
-  display: flex;
-  align-items: center;
-`
-
-const ContentContainer = styled.div`
-  flex: 1 1 400px;
-`
-
-const Description = styled.p`
-  letter-spacing: 1px;
-  color: gray;
-  margin-bottom: 0;
 `
 
 const Span = styled.span`
@@ -144,7 +101,6 @@ class Search extends Component {
     const { search, selectedSearch } = this.state
 
     //TODO: need to create a util function that will take better care of the search
-    //TODO II: need to do a dropdown menu instead of the current selection menu
 
     //all data from the companies
     const allCompaniesArray = data.allAirtable.edges
@@ -199,7 +155,7 @@ class Search extends Component {
                 </option>
               ))}
             </Select>{" "}
-            companies
+            tools
           </Title>
 
           <FlexBox>
@@ -215,40 +171,7 @@ class Search extends Component {
           </FlexBox>
         </section>
         <section>
-          {filteredCompanies.length === 0 ? (
-            <CallToAction style={{ marginTop: `60px` }} />
-          ) : (
-            filteredCompanies.map(company => {
-              const { data } = company.node
-              let image = null
-              if (data.Thumbnail.localFiles[0].childImageSharp !== null) {
-                image = data.Thumbnail.localFiles[0].childImageSharp.fluid
-              }
-              const brief = data.Description
-
-              return (
-                <Link
-                  to={`/${data.slug}`}
-                  style={{ textDecoration: `none` }}
-                  key={data.slug}
-                >
-                  <HitContainer>
-                    <CompanyContainer>
-                      <Thumbnail>
-                        {image && (
-                          <Img fluid={image} style={{ marginBottom: `0` }} />
-                        )}
-                      </Thumbnail>
-                      <CompanyName>{data.Name}</CompanyName>
-                    </CompanyContainer>
-                    <ContentContainer>
-                      <Description>{brief.slice(0, 100)}...</Description>
-                    </ContentContainer>
-                  </HitContainer>
-                </Link>
-              )
-            })
-          )}
+          <SearcResults filteredCompanies={filteredCompanies} />
         </section>
       </Layout>
     )
@@ -257,7 +180,10 @@ class Search extends Component {
 
 export const query = graphql`
   {
-    allAirtable(filter: { data: { Publish: { eq: true } } }) {
+    allAirtable(
+      filter: { data: { Publish: { eq: true } } }
+      sort: { order: ASC, fields: data___Name }
+    ) {
       edges {
         node {
           data {
