@@ -13,8 +13,8 @@ If you want to contribute: Feel free to reach out if you have any feedback aroun
 
 ### Home Page
 
-![homepage](../src/images/HomepageView.png)
+![homepage](./src/images/HomepageView.png)
 
 ### Search Page
 
-![search page](../src/images/SearchView.png)
+![search page](./src/images/SearchView.png)
