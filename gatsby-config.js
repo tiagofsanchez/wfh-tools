@@ -56,6 +56,18 @@ module.exports = {
         trackingId: "UA-161261182-1",
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `crushingWFH`,
+        short_name: `crushingWFH`,
+        start_url: `/?source=pwa'`,
+        background_color: `#f7f0eb`,
+        theme_color: `#a2466c`,
+        display: `standalone`,
+        icon: `./src/images/logo-icon.png`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
