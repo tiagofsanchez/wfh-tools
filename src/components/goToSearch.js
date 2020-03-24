@@ -19,9 +19,9 @@ const Go = styled.div`
 `
 
 const goToSearch = () => {
-  return(
+  return (
     <Link to={"/search"} style={{ textDecoration: `none` }}>
-      <Go>More &#10132;</Go>
+      <Go>Search all &#10132;</Go>
     </Link>
   )
 }

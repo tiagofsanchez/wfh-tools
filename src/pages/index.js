@@ -70,14 +70,13 @@ const IndexPage = ({ data }) => {
       PRArray.push(node)
     }
   })
-  //Creating and Object with all Icons  
+  //Creating and Object with all Icons
   const IArray = data.Icons.edges
   let Icons = {}
   IArray.forEach(icon => {
-   const { node } = icon
-   Icons[node.data.IconName] = node.data.Icon.localFiles[0]
+    const { node } = icon
+    Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
-
 
   return (
     <Layout>
@@ -102,7 +101,7 @@ const IndexPage = ({ data }) => {
             icon={Icons.ProgramManagement.childImageSharp.fluid}
             title="Project Management"
             right
-            description="Plan, organized and share your projects with teams and managers"
+            description="Plan, organize and share your projects with teams and managers"
           />
         </FlexBox>
       </section>
@@ -126,8 +125,8 @@ const IndexPage = ({ data }) => {
             description="Work efficiently together without sending attachments and emails"
           />
         </FlexBox>
-        </section>
-        <section style={{ marginBottom: `50px` }}>
+      </section>
+      <section style={{ marginBottom: `50px` }}>
         <FlexBox>
           <CompaniesSample
             companiesArray={VCArray}
@@ -147,7 +146,7 @@ const IndexPage = ({ data }) => {
             description="Track your time and gain valuable insights on how to improve"
           />
         </FlexBox>
-        </section>
+      </section>
       <section style={{ marginTop: `90px` }}>
         <CallToAction />
       </section>
@@ -159,7 +158,7 @@ export const query = graphql`
   query workFromHome {
     allAirtable(
       filter: { data: { Publish: { eq: true }, Created_time: { ne: null } } }
-      sort: {order: DESC, fields: data___Created_time}
+      sort: { order: DESC, fields: data___Created_time }
     ) {
       edges {
         node {

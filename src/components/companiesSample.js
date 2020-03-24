@@ -1,9 +1,10 @@
 import React from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
+import { Link } from "gatsby"
 
 import ListOfCompanies from "./listOfCompanies"
-import GoToSearch from './goToSearch';
+import GoToSearch from "./goToSearch"
 
 const ColumnFlex = styled.div`
   display: flex;
@@ -33,34 +34,45 @@ const H1 = styled.h1`
   color: rebeccapurple;
   fontweight: 900;
 `
+const _ = require("lodash")
 
-const CompaniesSample = ({ companiesArray, icon, title, right , description }) => {
+const CompaniesSample = ({
+  companiesArray,
+  icon,
+  title,
+  right,
+  description,
+}) => {
   return (
     <>
       {right ? (
         <>
           <ColumnFlex start="true">
-            {companiesArray.map(company => {     
+            {companiesArray.map(company => {
               return <ListOfCompanies company={company} key={company.id} />
             })}
             <GoToSearch />
           </ColumnFlex>
           <ColumnFlex>
             <H1>{title}</H1>
-            <SectionImage>
-              <Img fluid={icon} alt={title} />
-            </SectionImage>
-          <Description>{description}</Description>
+            <Link to={`${_.kebabCase(title)}/`}>
+              <SectionImage>
+                <Img fluid={icon} alt={title} />
+              </SectionImage>
+            </Link>
+            <Description>{description}</Description>
           </ColumnFlex>
         </>
       ) : (
         <>
           <ColumnFlex>
             <H1>{title}</H1>
-            <SectionImage>
-              <Img fluid={icon} alt={title} />
-            </SectionImage>
-      <Description>{description}</Description>
+            <Link to={`${_.kebabCase(title)}/`}>
+              <SectionImage>
+                <Img fluid={icon} alt={title} />
+              </SectionImage>
+            </Link>
+            <Description>{description}</Description>
           </ColumnFlex>
           <ColumnFlex start="true">
             {companiesArray.map(company => {
