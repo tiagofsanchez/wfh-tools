@@ -7,6 +7,7 @@ import Layout from "../components/layout"
 import CallToAction from "../components/callToAction"
 import Alternatives from "../components/alternatives"
 import SEO from "../components/seo"
+import GoHome from "../components/goHome"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -29,7 +30,6 @@ const CompanyName = styled.h1`
 const Label = styled.h3`
   font-weight: 900;
 `
-
 
 const Screenshot = styled.div`
   width: 100%;
@@ -169,6 +169,7 @@ const Company = props => {
       <section style={{ marginTop: `80px` }}>
         <CallToAction />
       </section>
+      <GoHome />
     </Layout>
   )
 }

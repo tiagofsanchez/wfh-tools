@@ -34,16 +34,12 @@ function SEO({ description, slug, title, image }) {
     : site.siteMetadata.siteUrl
   const twitter = site.siteMetadata.twitter
 
-
   let favicon = null
   if (image === undefined) {
     favicon = urljoin(site.siteMetadata.siteUrl, logo.childImageSharp.fixed.src)
   } else {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
-
-  console.log(favicon);
-  
 
   return (
     <Helmet>

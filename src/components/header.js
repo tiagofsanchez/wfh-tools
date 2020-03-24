@@ -5,14 +5,26 @@ import styled from "@emotion/styled"
 
 import SearchIcon from "./serchIcon"
 
-const IconContainer = styled.div`
-  width: 30px;
+const SearchContainer = styled.div`
+  width: 40px;
+  @media (max-width: 380px) {
+    z-index: 100;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 0px 20px 20px 0;
+    background-color: rebeccapurple;
+    border-radius: 50%;
+  }
 `
 
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 380px) {
+    justify-content: center;
+  }
 `
 
 const Header = ({ siteTitle }) => (
@@ -41,11 +53,11 @@ const Header = ({ siteTitle }) => (
             {siteTitle}
           </Link>
         </h2>
-        <IconContainer>
+        <SearchContainer>
           <Link to="/search">
             <SearchIcon />
           </Link>
-        </IconContainer>
+        </SearchContainer>
       </FlexBox>
     </div>
   </header>

@@ -6,11 +6,12 @@ import Layout from "../components/layout"
 import SearchIcon from "../components/serchIcon"
 import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
+import GoHome from "../components/goHome"
 
 const IconContainer = styled.div`
   width: 80px;
   margin-bottom: 15px;
-  @media (max-width: 680px) {
+  @media (max-width: 380px) {
     width: 50px;
     margin: auto;
     margin-bottom: 15px;
@@ -50,6 +51,7 @@ const Span = styled.span`
 
 const Select = styled.select`
   width: 250px;
+  padding: 0px 0px 0px 5px;
   color: rebeccapurple;
   border: 2px solid #ece6ff;
   background-color: #ece6ff;
@@ -99,6 +101,7 @@ class Search extends Component {
   render() {
     const { data } = this.props
     const { search, selectedSearch } = this.state
+    console.log(this.props)
 
     //TODO: need to create a util function that will take better care of the search
 
@@ -173,6 +176,7 @@ class Search extends Component {
         <section>
           <SearcResults filteredCompanies={filteredCompanies} />
         </section>
+        <GoHome />
       </Layout>
     )
   }
