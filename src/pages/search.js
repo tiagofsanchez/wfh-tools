@@ -6,7 +6,6 @@ import Layout from "../components/layout"
 import SearchIcon from "../components/serchIcon"
 import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
-import GoHome from "../components/goHome"
 
 const IconContainer = styled.div`
   width: 80px;
@@ -176,7 +175,7 @@ class Search extends Component {
         <section>
           <SearcResults filteredCompanies={filteredCompanies} />
         </section>
-        <GoHome />
+      
       </Layout>
     )
   }

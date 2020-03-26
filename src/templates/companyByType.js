@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import GoToSearch from "../components/goToSearch"
+import CompanyCard from "../components/companyCard"
 
 const Container = styled.div`
   display: flex;
@@ -64,19 +65,12 @@ const CompanyByType = ({ data, pageContext }) => {
             const icon = node.data.Thumbnail.localFiles[0].childImageSharp.fluid
             const brief = company.Description
             return (
-              <Link
-                to={company.slug}
-                key={company.Name}
-                style={{ textDecoration: `none` }}
-              >
-                <CardContainer>
-                  <LogoContainer>
-                    <Img fluid={icon} alt={company.Name} />
-                  </LogoContainer>
-                  <CompanyName>{company.Name}</CompanyName>
-                  <Description>{brief.slice(0, 100)}...</Description>
-                </CardContainer>
-              </Link>
+              <CompanyCard
+                name={company.Name}
+                brief={brief}
+                icon={icon}
+                slug={company.slug}
+              />
             )
           })}
         </Container>

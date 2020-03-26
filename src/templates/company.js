@@ -7,7 +7,7 @@ import Layout from "../components/layout"
 import CallToAction from "../components/callToAction"
 import Alternatives from "../components/alternatives"
 import SEO from "../components/seo"
-import GoHome from "../components/goHome"
+
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -169,7 +169,6 @@ const Company = props => {
       <section style={{ marginTop: `80px` }}>
         <CallToAction />
       </section>
-      <GoHome />
     </Layout>
   )
 }

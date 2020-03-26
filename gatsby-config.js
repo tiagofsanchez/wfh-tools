@@ -51,13 +51,11 @@ module.exports = {
         short_name: `crushingWFH`,
         start_url: `/?source=pwa'`,
         background_color: `#f7f0eb`,
-        theme_color: `#a2466c`,
+        theme_color: `#663399`,
         display: `standalone`,
         icon: `./src/images/laptop.svg`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
     {
       resolve:`gatsby-plugin-offline`,
       options: {
