@@ -10,15 +10,6 @@ exports.createPages = async function({ actions, graphql }) {
               Name
               slug
               Type
-              Thumbnail {
-                raw {
-                  thumbnails {
-                    small {
-                      url
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -27,25 +18,13 @@ exports.createPages = async function({ actions, graphql }) {
   `)
 
   const allCompaniesArray = data.allAirtable.edges
-
-  //data needed for my alternatives
-  const alternatives = []
-  allCompaniesArray.forEach(edge => {
-    const data = edge.node.data
-    alternatives.push({
-      slug: data.slug,
-      Type: data.Type,
-      Thumbnail: data.Thumbnail,
-      Name: data.Name,
-    })
-  })
   //creating the different pages for the companies and pushing the alternatives
   allCompaniesArray.forEach(edge => {
     const slug = edge.node.data.slug
     actions.createPage({
       path: slug,
       component: require.resolve(`./src/templates/company.js`),
-      context: { slug: slug, alternatives },
+      context: { slug: slug },
     })
   })
 

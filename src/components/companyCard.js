@@ -4,29 +4,34 @@ import {Link} from 'gatsby';
 import Img from "gatsby-image"
 import PropTypes from "prop-types"
 
+//mudar
 const CardContainer = styled.div`
   display: flex;
   margin: 10px;
   flex-direction: column;
   align-items: center;
-  width: 300px;
-  height: 400px;
+  width: ${props => props.big ? '300px' : '150px'}; 
+  height: ${props => props.big ? '400px' : '150px'};
   border-radius: 8px;
   box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
   &:hover {
     box-shadow: 1px 1px 4px 4px rgba(102, 51, 153, 0.4);
   }
 `
+
 const LogoContainer = styled.div`
-  margin-top: 20px;
-  width: 150px;
-  height: 150px;
+  margin-top:${props => props.big ? '20px' : '10px'};  
+  margin-bottom:${props => props.big ? null : '10px'};  
+  width: ${props => props.big ? '150px' : '80px'}; 
+  height: ${props => props.big ? '150px' : '80px'}; 
 `
+
 const CompanyName = styled.h2`
   color: rebeccapurple;
   width: 100%;
   margin-top: 15px;
   text-align: center;
+  font-size: ${props => props.big ? null : '20px'}
 `
 
 const Description = styled.p`
@@ -39,19 +44,19 @@ const Description = styled.p`
 const CompanyCard = ({ name, brief, icon, slug, big }) => {
   return (
     <Link to={slug} style={{ textDecoration: `none` }}>
-      <CardContainer>
-        <LogoContainer>
+      <CardContainer big={big}>
+        <LogoContainer big={big}>
           <Img fluid={icon} alt={name} />
         </LogoContainer>
-        <CompanyName>{name}</CompanyName>
-        <Description>{brief.slice(0, 100)}...</Description>
+        <CompanyName big={big}>{name}</CompanyName>
+        {brief && <Description>{brief.slice(0, 100)}...</Description>}
       </CardContainer>
     </Link>
   )
 }
 
 CompanyCard.propTypes ={
-    Name: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     icon: PropTypes.object.isRequired,
     slug: PropTypes.string.isRequired,
     brief: PropTypes.string,

@@ -5,9 +5,8 @@ import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import CallToAction from "../components/callToAction"
-import Alternatives from "../components/alternatives"
 import SEO from "../components/seo"
-
+import CompanyCard from "../components/companyCard"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -85,24 +84,28 @@ const Link = styled.a`
   text-decoration: none;
 `
 
-const Company = props => {
-  const company = props.data.airtable.data
-  const { alternatives } = props.pageContext
+const AltFlexBox = styled.div`
+display: flex;
+flex-wrap: wrap;
+`
 
-  const goodAlternatives = []
-  alternatives.map(alternative => {
-    if (
-      (alternative.Type === company.Type) &
-      (alternative.Name !== company.Name)
-    ) {
-      goodAlternatives.push({
-        Type: alternative.Type,
-        slug: alternative.slug,
-        Thumbnail: alternative.Thumbnail,
-        Name: alternative.Name,
+const Company = props => {
+  const company = props.data.company.data
+
+  const allCompaniesArray = props.data.alternatives.edges
+  const alternativesArray = []
+  allCompaniesArray.map(alternative => {
+    const { node } = alternative
+    if ((node.data.Type === company.Type) & (node.data.Name !== company.Name)) {
+      alternativesArray.push({
+        Type: node.data.Type,
+        slug: node.data.slug,
+        Thumbnail: node.data.Thumbnail,
+        Name: node.data.Name,
       })
     }
   })
+  console.log(alternativesArray)
 
   const image = company.Thumbnail.localFiles[0].childImageSharp.fluid.src
 
@@ -163,8 +166,19 @@ const Company = props => {
         </Box>
       </Other>
       <section>
-        <Label>You might also be interested</Label>
-        <Alternatives alternatives={goodAlternatives} />
+        <Label>You might also like</Label>
+        <AltFlexBox>
+        {alternativesArray.map(company =>{
+          return (
+            <CompanyCard 
+              key={company.Name}
+              name={company.Name}
+              slug={company.slug}
+              icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
+            />
+          )
+        })}
+        </AltFlexBox>
       </section>
       <section style={{ marginTop: `80px` }}>
         <CallToAction />
@@ -175,7 +189,7 @@ const Company = props => {
 
 export const companyData = graphql`
   query company($slug: String) {
-    airtable(data: { slug: { eq: $slug } }) {
+    company: airtable(data: { slug: { eq: $slug } }) {
       data {
         Name
         Description
@@ -198,6 +212,26 @@ export const companyData = graphql`
             childImageSharp {
               fluid {
                 ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+    }
+    alternatives: allAirtable(filter: { data: { Publish: { eq: true } } }) {
+      edges {
+        node {
+          data {
+            Name
+            Type
+            slug
+            Thumbnail {
+              localFiles {
+                childImageSharp {
+                  fluid (grayscale: true) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
               }
             }
           }
