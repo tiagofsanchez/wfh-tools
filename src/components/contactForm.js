@@ -15,7 +15,7 @@ const Input = styled.input`
     border: 1px solid rebeccapurple;
     background-color: #ece6ff;
   }
-  @media (max-width: 670px) {
+  @media (max-width: 680px) {
     width: 100%;
     padding: 13px;
     margin-bottom: 10px;
@@ -36,7 +36,7 @@ const Button = styled.button`
 `
 const Flex = styled.div`
   display: flex;
-  @media (max-width: 620px) {
+  @media (max-width: 680px) {
     flex-wrap: wrap;
   }
 `
@@ -45,11 +45,11 @@ const FormContainer = styled.form`
   background-color: #c9a0dc;
   border-radius: 10px;
   height: 170px;
-  @media (max-width: 620px) {
-    height: 330px;
+  @media (max-width: 680px) {
+    height: 315px;
   }
 `
-const Title = styled.h3`
+const Title = styled.h4`
   color: rebeccapurple;
   fontweight: 900;
 `

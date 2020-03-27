@@ -7,7 +7,6 @@ const app_key = process.env.GATSBY_AIRTABLE_API_KEY
 const view = "MailingList"
 
 export const addEmail = (name, email) => {
-  console.log(app_id)
 
   const data = {
     records: [
