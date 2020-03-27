@@ -4,9 +4,9 @@ import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
 import Layout from "../components/layout"
-import CallToAction from "../components/callToAction"
 import SEO from "../components/seo"
 import CompanyCard from "../components/companyCard"
+import ContactForm from "../components/contactForm"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -181,7 +181,7 @@ const Company = props => {
         </AltFlexBox>
       </section>
       <section style={{ marginTop: `80px` }}>
-        <CallToAction />
+        <ContactForm />
       </section>
     </Layout>
   )

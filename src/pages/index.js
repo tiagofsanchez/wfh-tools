@@ -5,7 +5,7 @@ import styled from "@emotion/styled"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Logo from "../components/logo"
-import CallToAction from "../components/callToAction"
+import ContactForm from '../components/contactForm'
 import CompaniesSample from "../components/companiesSample"
 
 const FlexBox = styled.div`
@@ -148,7 +148,7 @@ const IndexPage = ({ data }) => {
         </FlexBox>
       </section>
       <section style={{ marginTop: `90px` }}>
-        <CallToAction />
+        <ContactForm />
       </section>
     </Layout>
   )

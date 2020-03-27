@@ -5,6 +5,7 @@ import styled from "@emotion/styled"
 import Layout from "../components/layout"
 import GoToSearch from "../components/goToSearch"
 import CompanyCard from "../components/companyCard"
+import ContactForm from '../components/contactForm'
 
 const Container = styled.div`
   display: flex;
@@ -44,10 +45,13 @@ const CompanyByType = ({ data, pageContext }) => {
             )
           })}
         </Container>
-        <div style={{ marginTop: `40px` }}>
+        <div style={{ marginTop: `40px`, marginBottom: `40px` }}>
           <GoToSearch />
         </div>
       </Container>
+      <section>
+      <ContactForm />
+      </section>
     </Layout>
   )
 }
