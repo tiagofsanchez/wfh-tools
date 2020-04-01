@@ -59,7 +59,7 @@ const IndexPage = ({ data }) => {
       COArray.push(node)
     } else if (
       (node.data.Type === "Video Conferencing") &
-      (VCArray.length < 4)
+      (VCArray.length < 3)
     ) {
       VCArray.push(node)
     } else if ((node.data.Type === "Time Tracking") & (TTArray.length < 3)) {
@@ -91,7 +91,7 @@ const IndexPage = ({ data }) => {
           <span role="img" aria-label="Tools">
             ⚒️
           </span>{" "}
-          you will need to W.F.H. in one place!
+          you will need to WFH in one place!
         </Description>
       </section>
       <section style={{ marginBottom: `50px` }}>

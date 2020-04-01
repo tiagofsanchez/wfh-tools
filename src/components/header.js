@@ -15,6 +15,7 @@ const SearchContainer = styled.div`
     margin: 0px 20px 20px 0;
     background-color: rebeccapurple;
     border-radius: 50%;
+    width: 55px;
   }
 `
 

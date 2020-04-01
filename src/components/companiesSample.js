@@ -54,10 +54,10 @@ const CompaniesSample = ({
             <GoToSearch />
           </ColumnFlex>
           <ColumnFlex>
-            <H1>{title}</H1>
+            <H1 >{title}</H1>
             <Link to={`${_.kebabCase(title)}/`}>
-              <SectionImage>
-                <Img fluid={icon} alt={title} />
+              <SectionImage >
+                <Img fluid={icon} alt={title}  />
               </SectionImage>
             </Link>
             <Description>{description}</Description>

@@ -74,7 +74,7 @@ const Icon = styled.span`
   margin-bottom: 30px;
 `
 const Source = styled.div`
-  font-weight: 900;
+  font-weight: 600;
   color: gray;
 `
 
@@ -87,6 +87,12 @@ const Link = styled.a`
 const AltFlexBox = styled.div`
 display: flex;
 flex-wrap: wrap;
+`
+
+const Tag= styled.p`
+color: black; 
+margin: 0;
+font-weight: 900;
 `
 
 const Company = props => {
@@ -150,18 +156,21 @@ const Company = props => {
               👤
             </Icon>
           )}
+          <Tag>Researched by</Tag>
           <Source>{company.Source}</Source>
         </Box>
         <Box>
           <Icon role="img" aria-lable="costs">
             💰
           </Icon>
+          <Tag>Price</Tag>
           <Source>{company.Costs}</Source>
         </Box>
         <Box>
           <Icon role="img" aria-label="webpage">
             🕸️
           </Icon>
+          <Tag>Check them</Tag>
           <Link href={company.Website}>webpage &#10132;</Link>
         </Box>
       </Other>

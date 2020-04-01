@@ -100,7 +100,6 @@ class Search extends Component {
   render() {
     const { data } = this.props
     const { search, selectedSearch } = this.state
-    console.log(this.props)
 
     //TODO: need to create a util function that will take better care of the search
 
