@@ -49,7 +49,7 @@ const Span = styled.span`
 `
 
 const Select = styled.select`
-  width: 250px;
+  width: 270px;
   padding: 0px 0px 0px 5px;
   color: rebeccapurple;
   border: 2px solid #ece6ff;

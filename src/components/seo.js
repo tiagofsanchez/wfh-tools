@@ -41,6 +41,8 @@ function SEO({ description, slug, title, image }) {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
 
+  console.log(favicon);
+  
   return (
     <Helmet>
       <title>{title}</title>

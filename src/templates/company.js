@@ -170,7 +170,7 @@ const Company = props => {
           <Icon role="img" aria-label="webpage">
             🕸️
           </Icon>
-          <Tag>Check them</Tag>
+          <Tag>Check their</Tag>
           <Link href={company.Website}>webpage &#10132;</Link>
         </Box>
       </Other>

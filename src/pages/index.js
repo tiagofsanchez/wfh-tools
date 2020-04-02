@@ -77,6 +77,8 @@ const IndexPage = ({ data }) => {
     const { node } = icon
     Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
+  console.log(Icons);
+  
 
   return (
     <Layout>
@@ -98,7 +100,7 @@ const IndexPage = ({ data }) => {
         <FlexBox right>
           <CompaniesSample
             companiesArray={PMArray}
-            icon={Icons.ProgramManagement.childImageSharp.fluid}
+            icon={Icons.ProjectManagement.childImageSharp.fluid}
             title="Project Management"
             right
             description="Plan, organize and share your projects with teams and managers"
