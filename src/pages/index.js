@@ -77,7 +77,7 @@ const IndexPage = ({ data }) => {
     const { node } = icon
     Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
-  console.log(Icons);
+
   
 
   return (

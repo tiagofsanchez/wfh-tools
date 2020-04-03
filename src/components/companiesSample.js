@@ -78,7 +78,7 @@ const CompaniesSample = ({
           </ColumnFlex>
           <ColumnFlex start="true">
             {companiesArray.map(company => {
-              const { node } = company
+    
               return <ListOfCompanies company={company} key={company.id} />
             })}
             <GoToSearch />

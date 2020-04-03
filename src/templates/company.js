@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link} from "gatsby"
+import { graphql} from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
@@ -113,7 +113,7 @@ const Company = props => {
   })
 
    
-  const image = company.Thumbnail.localFiles[0].childImageSharp.fluid.src
+  const image = company.Thumbnail.localFiles[0].publicURL
 
   return (
     <Layout>
@@ -209,6 +209,7 @@ export const companyData = graphql`
         Costs
         Thumbnail {
           localFiles {
+            publicURL
             childImageSharp {
               fluid {
                 ...GatsbyImageSharpFluid
@@ -236,6 +237,7 @@ export const companyData = graphql`
             slug
             Thumbnail {
               localFiles {
+                publicURL
                 childImageSharp {
                   fluid (grayscale: true) {
                     ...GatsbyImageSharpFluid

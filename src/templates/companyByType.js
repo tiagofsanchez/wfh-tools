@@ -52,7 +52,7 @@ const CompanyByType = ({ data, pageContext }) => {
   const iconThumbnail =
     data.Type.edges[0].node.data.Icon.localFiles[0].childImageSharp.fluid
   const tagLine = data.Type.edges[0].node.data.TagLine
-
+  
   return (
     <Layout>
       <Seo
@@ -139,6 +139,7 @@ export const companyByType = graphql`
             TagLine
             Icon {
               localFiles {
+                publicURL
                 childImageSharp {
                   fluid(grayscale: true) {
                     ...GatsbyImageSharpFluid
