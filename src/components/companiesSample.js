@@ -6,6 +6,8 @@ import { Link } from "gatsby"
 import ListOfCompanies from "./listOfCompanies"
 import GoToSearch from "./goToSearch"
 
+const _ = require("lodash")
+
 const ColumnFlex = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,7 +36,7 @@ const H1 = styled.h1`
   color: rebeccapurple;
   fontweight: 900;
 `
-const _ = require("lodash")
+
 
 const CompaniesSample = ({
   companiesArray,

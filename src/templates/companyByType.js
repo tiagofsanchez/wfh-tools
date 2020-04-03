@@ -47,7 +47,7 @@ const PageTitle = styled.h1`
 
 const CompanyByType = ({ data, pageContext }) => {
   const companies = data.allAirtable.edges
-  console.log(data)
+  console.log(pageContext)
 
   const iconThumbnail = data.Type.edges[0].node.data.Icon.localFiles[0].childImageSharp.fluid
   const tagLine = data.Type.edges[0].node.data.TagLine

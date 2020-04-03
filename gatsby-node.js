@@ -18,7 +18,7 @@ exports.createPages = async function({ actions, graphql }) {
   `)
 
   const allCompaniesArray = data.allAirtable.edges
-  //creating the different pages for the companies and pushing the alternatives
+  //creating the different pages for the companies
   allCompaniesArray.forEach(edge => {
     const slug = edge.node.data.slug
     actions.createPage({
@@ -36,6 +36,8 @@ exports.createPages = async function({ actions, graphql }) {
       typesArray.push(company.data.Type)
     }
   })
+  console.log(typesArray);
+  
 
   // creates all the pages for me programmatically
   typesArray.forEach(type => {

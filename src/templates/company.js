@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link} from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
@@ -78,7 +78,7 @@ const Source = styled.div`
   color: gray;
 `
 
-const Link = styled.a`
+const Hlink = styled.a`
   color: rebeccapurple;
   font-weight: 900;
   text-decoration: none;
@@ -111,8 +111,8 @@ const Company = props => {
       })
     }
   })
-  console.log(alternativesArray)
 
+   
   const image = company.Thumbnail.localFiles[0].childImageSharp.fluid.src
 
   return (
@@ -171,7 +171,7 @@ const Company = props => {
             🕸️
           </Icon>
           <Tag>Check their</Tag>
-          <Link href={company.Website}>webpage &#10132;</Link>
+          <Hlink href={company.Website}>webpage &#10132;</Hlink>
         </Box>
       </Other>
       <section>

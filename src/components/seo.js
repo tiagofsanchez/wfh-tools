@@ -40,8 +40,6 @@ function SEO({ description, slug, title, image }) {
   } else {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
-
-  console.log(favicon);
   
   return (
     <Helmet>
