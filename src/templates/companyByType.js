@@ -7,7 +7,7 @@ import Layout from "../components/layout"
 import GoToSearch from "../components/goToSearch"
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
-import Seo from '../components/seo';
+import Seo from "../components/seo"
 
 const Thumbnail = styled.div`
   width: 100px;
@@ -19,11 +19,11 @@ const Thumbnail = styled.div`
   }
 `
 const Flex = styled.div`
-display: flex;
-flex-direction: column;
-margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
 `
-const TagLine= styled.p`
+const TagLine = styled.p`
   letter-spacing: 1px;
   color: gray;
   padding: 20px;
@@ -49,12 +49,13 @@ const CompanyByType = ({ data, pageContext }) => {
   const companies = data.allAirtable.edges
   console.log(pageContext)
 
-  const iconThumbnail = data.Type.edges[0].node.data.Icon.localFiles[0].childImageSharp.fluid
+  const iconThumbnail =
+    data.Type.edges[0].node.data.Icon.localFiles[0].childImageSharp.fluid
   const tagLine = data.Type.edges[0].node.data.TagLine
 
   return (
     <Layout>
-       <Seo
+      <Seo
         title={`Crushing W.F.H. | ${pageContext.type}`}
         description={tagLine}
         image={iconThumbnail.src}
@@ -67,26 +68,31 @@ const CompanyByType = ({ data, pageContext }) => {
           <PageTitle>{pageContext.type}</PageTitle>
           <TagLine>{tagLine}</TagLine>
         </Flex>
-        <Container>
-          {companies.map(({ node }) => {
-            const company = node.data
-            const icon = node.data.Thumbnail.localFiles[0].childImageSharp.fluid
-            const brief = company.Description
-            return (
-              <CompanyCard
-                big={true}
-                key={company.Name}
-                name={company.Name}
-                brief={brief}
-                icon={icon}
-                slug={company.slug}
-              />
-            )
-          })}
-        </Container>
-        <div style={{ marginTop: `40px`, marginBottom: `40px` }}>
-          <GoToSearch />
-        </div>
+        <section>
+          <Flex>
+          <Container>
+            {companies.map(({ node }) => {
+              const company = node.data
+              const icon =
+                node.data.Thumbnail.localFiles[0].childImageSharp.fluid
+              const brief = company.Description
+              return (
+                <CompanyCard
+                  big={true}
+                  key={company.Name}
+                  name={company.Name}
+                  brief={brief}
+                  icon={icon}
+                  slug={company.slug}
+                />
+              )
+            })}
+          </Container>
+          <div style={{ marginTop: `40px`, alignSelf:`center`  }}>
+            <GoToSearch />
+          </div>
+          </Flex>
+        </section>
       </Container>
       <section>
         <ContactForm />
