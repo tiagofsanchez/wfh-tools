@@ -50,7 +50,7 @@ const CompanyByType = ({ data, pageContext }) => {
   console.log(pageContext)
 
   const iconThumbnail =
-    data.Type.edges[0].node.data.Icon.localFiles[0].childImageSharp.fluid
+    data.Type.edges[0].node.data.Icon.localFiles[0]
   const tagLine = data.Type.edges[0].node.data.TagLine
   
   return (
@@ -58,12 +58,12 @@ const CompanyByType = ({ data, pageContext }) => {
       <Seo
         title={`Crushing W.F.H. | ${pageContext.type}`}
         description={tagLine}
-        image={iconThumbnail.src}
+        image={iconThumbnail.publicURL}
       />
       <Container>
         <Flex>
           <Thumbnail>
-            <Img fluid={iconThumbnail} />
+            <Img fluid={iconThumbnail.childImageSharp.fluid} />
           </Thumbnail>
           <PageTitle>{pageContext.type}</PageTitle>
           <TagLine>{tagLine}</TagLine>

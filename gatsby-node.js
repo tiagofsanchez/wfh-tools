@@ -36,7 +36,6 @@ exports.createPages = async function({ actions, graphql }) {
       typesArray.push(company.data.Type)
     }
   })
-  console.log(typesArray);
   
 
   // creates all the pages for me programmatically

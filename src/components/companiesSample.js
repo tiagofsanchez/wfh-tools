@@ -12,13 +12,20 @@ const ColumnFlex = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 320px; 
   margin: 20px;
+  padding: 5px; 
   align-items: ${props => (props.start ? "flex-start" : "center")};
+  justify-content: center; 
   flex: 1 1 280px;
+  @media (max-width: 680px) {
+    height: auto;
+  }
 `
 const SectionImage = styled.div`
   width: 150px;
   margin: 20px 0px 0px 0px;
+  padding: 20px;
   @media (max-width: 680px) {
     width: 90px;
   }
@@ -35,6 +42,7 @@ const Description = styled.p`
 const H1 = styled.h1`
   color: rebeccapurple;
   fontweight: 900;
+  text-align: center;
 `
 
 
