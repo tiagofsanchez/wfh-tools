@@ -56,7 +56,7 @@ const CompanyByType = ({ data, pageContext }) => {
   return (
     <Layout>
       <Seo
-        title={`Crushing W.F.H. | ${pageContext.type}`}
+        title={`Crushing WFH | ${pageContext.type}`}
         description={tagLine}
         image={iconThumbnail.publicURL}
       />

@@ -141,7 +141,7 @@ class Search extends Component {
 
     return (
       <Layout>
-        <SEO title="Crushing W.F.H. | Search" />
+        <SEO title="Crushing WFH | Search" />
         <section style={{ marginBottom: `40px` }}>
           <IconContainer>
             <SearchIcon />

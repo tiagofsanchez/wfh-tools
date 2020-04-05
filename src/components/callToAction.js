@@ -1,22 +1,6 @@
 import React from "react"
-import styled from "@emotion/styled"
-
-const Button = styled.a`
-  background-color: rebeccapurple;
-  border: 2px solid rebeccapurple;
-  color: white;
-  padding: 13px;
-  border-radius: 8px;
-  font-weight: 900;
-  text-decoration: none;
-  display: block;
-  width: max-content;
-  margin: auto;
-  &:hover {
-    background-color: #ece6ff;
-    color: rebeccapurple;
-  }
-`
+import styled from '@emotion/styled'
+import AddNewTool from './addNewTool';
 
 const H1 = styled.h1`
   color: rebeccapurple;
@@ -45,9 +29,7 @@ const CallToAction = () => {
         Don't worry! Let us know the tool you would like to see in the
         database. We can add it for you!
       </Paragraph>
-      <Button href="https://airtable.com/shrKIvCX7rU3tY3CN">
-        Add new tool
-      </Button>
+      <AddNewTool />
     </>
   )
 }

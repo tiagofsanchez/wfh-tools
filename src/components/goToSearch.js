@@ -10,6 +10,7 @@ const Go = styled.div`
   font-weight: 900;
   text-decoration: none;
   display: block;
+  padding: ${props => props.big ? "13px" : null }
   width: max-content;
   margin: 20px 0px 0px 20px;
   &:hover {
@@ -18,10 +19,12 @@ const Go = styled.div`
   }
 `
 
-const goToSearch = () => {
+const goToSearch = (props) => {
+
+  
   return (
     <Link to={"/search"} style={{ textDecoration: `none` }}>
-      <Go>Search all &#10132;</Go>
+      <Go >Search all &#10132;</Go>
     </Link>
   )
 }
