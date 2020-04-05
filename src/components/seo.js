@@ -42,6 +42,9 @@ function SEO({ description, slug, title, image }) {
   }
   
   console.log(favicon);
+  console.log(metaDescription);
+  console.log(url)
+  
   
   return (
     <Helmet>

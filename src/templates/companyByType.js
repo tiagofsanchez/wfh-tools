@@ -9,6 +9,8 @@ import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import Seo from "../components/seo"
 
+const _ = require("lodash")
+
 const Thumbnail = styled.div`
   width: 100px;
   margin: auto;
@@ -47,7 +49,8 @@ const PageTitle = styled.h1`
 
 const CompanyByType = ({ data, pageContext }) => {
   const companies = data.allAirtable.edges
-  console.log(pageContext)
+  const type=pageContext.type
+  const typeSlug=`${_.kebabCase(type)}/`
 
   const iconThumbnail =
     data.Type.edges[0].node.data.Icon.localFiles[0]
@@ -56,16 +59,17 @@ const CompanyByType = ({ data, pageContext }) => {
   return (
     <Layout>
       <Seo
-        title={`Crushing WFH | ${pageContext.type}`}
+        title={`Crushing WFH | ${type}`}
         description={tagLine}
         image={iconThumbnail.publicURL}
+        slug={typeSlug}
       />
       <Container>
         <Flex>
           <Thumbnail>
             <Img fluid={iconThumbnail.childImageSharp.fluid} />
           </Thumbnail>
-          <PageTitle>{pageContext.type}</PageTitle>
+          <PageTitle>{type}</PageTitle>
           <TagLine>{tagLine}</TagLine>
         </Flex>
         <section>
