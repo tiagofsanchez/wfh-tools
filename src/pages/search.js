@@ -24,13 +24,6 @@ const Title = styled.h2`
   line-height: 40px;
 `
 
-const FlexBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-
 const SearchTitle = styled.h4`
 margin-top: 20px;
 text-align: center; 

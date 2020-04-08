@@ -11,7 +11,7 @@ const CardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: ${props => props.big ? '300px' : '150px'}; 
-  height: ${props => props.big ? '400px' : '150px'};
+  height: ${props => props.big ? '400px' : '175px'};
   border-radius: 8px;
   box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
   &:hover {
@@ -20,8 +20,7 @@ const CardContainer = styled.div`
 `
 
 const LogoContainer = styled.div`
-  margin-top:${props => props.big ? '20px' : '10px'};  
-  margin-bottom:${props => props.big ? null : '10px'};  
+  margin-top:${props => props.big ? '20px' : '10px'};   
   width: ${props => props.big ? '150px' : '80px'}; 
   height: ${props => props.big ? '150px' : '80px'}; 
 `
