@@ -19,6 +19,22 @@ const SearchContainer = styled.div`
   }
 `
 
+const Flex = styled.div`
+display: flex;
+align-items: center; 
+`
+
+const Beta = styled.div`
+font-size: 12px; 
+padding: 2px 5px 2px 5px;
+border-radius: 8px;
+font-weight: 900;
+margin-left: 10px; 
+color: rebeccapurple; 
+background-color: #ece6ff
+`
+
+
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
@@ -43,17 +59,21 @@ const Header = ({ siteTitle }) => (
       }}
     >
       <FlexBox>
-        <h2 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: `white`,
-              textDecoration: `none`,
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </h2>
+        <Flex>
+          <h2 style={{ margin: 0 }}>
+            <Link
+              to="/"
+              style={{
+                color: `white`,
+                textDecoration: `none`,
+              }}
+            >
+              {siteTitle}
+            </Link>
+            </h2>
+            <Beta>BETA</Beta>
+          
+        </Flex>
         <SearchContainer>
           <Link to="/search">
             <SearchIcon />

@@ -9,15 +9,16 @@ import SearcResults from "../components/searchResults"
 
 const IconContainer = styled.div`
   width: 80px;
+  margin: auto;
   margin-bottom: 15px;
   @media (max-width: 380px) {
     width: 50px;
-    margin: auto;
     margin-bottom: 15px;
   }
 `
 const Title = styled.h2`
   font-weight: 900;
+  text-align: center;
   color: rebeccapurple;
   margin-bottom: 20px;
   line-height: 40px;
@@ -27,6 +28,13 @@ const FlexBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`
+
+
+const SearchTitle = styled.h4`
+margin-top: 20px;
+text-align: center; 
+color: gray;
 `
 
 const SearchBar = styled.input`
@@ -43,6 +51,7 @@ const SearchBar = styled.input`
 const Span = styled.span`
   font-weight: 900;
   color: rebeccapurple;
+  margin: 0px 8px 0px 8px;
   padding: 2px 10px 5px 10px;
   border-radius: 8px;
   background-color: #ece6ff;
@@ -142,10 +151,11 @@ class Search extends Component {
     return (
       <Layout>
         <SEO title="Crushing WFH | Search" />
-        <section style={{ marginBottom: `40px` }}>
+        <section style={{ marginBottom: `25px` }}>
           <IconContainer>
             <SearchIcon />
           </IconContainer>
+
           <Title>
             Search for{" "}
             <Select onChange={e => this.selectOnChangeHandler(e)}>
@@ -158,23 +168,21 @@ class Search extends Component {
             </Select>{" "}
             tools
           </Title>
-
-          <FlexBox>
-            <SearchBar
-              placeholder="Search for the name of the company..."
-              type="text"
-              value={search}
-              onChange={e => this.searchHandler(e.target.value)}
-            />
-            <div style={{ flex: `1 1 70px`, textAlign: `center` }}>
-              <Span style={{ fontSize: `29px` }}>{numberOfCompanies}</Span>
-            </div>
-          </FlexBox>
+          <SearchBar
+            placeholder="Search company here..."
+            type="text"
+            value={search}
+            onChange={e => this.searchHandler(e.target.value)}
+          />
         </section>
         <section>
+          <SearchTitle>
+            Result shows
+            <Span>{numberOfCompanies}</Span>
+            companies
+          </SearchTitle>
           <SearcResults filteredCompanies={filteredCompanies} />
         </section>
-      
       </Layout>
     )
   }

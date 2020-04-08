@@ -13,7 +13,8 @@ import AddNewTool from '../components/addNewTool';
 const HeaderSection = styled.section`
 margin-bottom: 50px;
 padding: 0px 10px 20px 10px; 
-background-color:  #f8f8f8;
+background-color:  #eeeeee;
+box-shadow: 0px 0px 6px 0px #eeeeee;
 border-radius: 10px;
 `
 
