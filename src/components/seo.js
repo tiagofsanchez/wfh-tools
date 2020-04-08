@@ -30,7 +30,7 @@ function SEO({ description, slug, title, image }) {
 
   const metaDescription = description || site.siteMetadata.description
   const url = slug
-    ? urljoin(site.siteMetadata.siteUrl, slug)
+    ? urljoin(site.siteMetadata.siteUrl, slug )
     : site.siteMetadata.siteUrl
   const twitter = site.siteMetadata.twitter
 
@@ -41,10 +41,10 @@ function SEO({ description, slug, title, image }) {
     favicon = urljoin(site.siteMetadata.siteUrl, image)
   }
   
-  console.log(favicon);
-  console.log(metaDescription);
-  console.log(url)
-  
+  //Everytime that I want to check Metadata structure is correct
+  // console.log(favicon);
+  // console.log(metaDescription);
+  // console.log(url)
   
   return (
     <Helmet>
@@ -54,7 +54,7 @@ function SEO({ description, slug, title, image }) {
       {favicon && <meta name="image" content={favicon} />}
 
       <meta property="og:url" content={url} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="article" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={metaDescription} />
       {favicon && <meta property="og:image" content={favicon} />}
