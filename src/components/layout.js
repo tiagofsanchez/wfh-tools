@@ -7,7 +7,7 @@ import Image from "./image"
 import styled from "@emotion/styled"
 import "./layout.css"
 
-const Link = styled.a`
+const ExternalLink = styled.a`
   padding: 2px 5px 2px 5px;
   background-color: #ece6ff;
   border-radius: 2px;
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">
             <Image />
           </a>
-          , by <Link href="https://www.tiagofsanchez.com/">Tiago</Link>
+          , by <ExternalLink href="https://www.tiagofsanchez.com/">Tiago</ExternalLink>
         </footer>
       </div>
     </>
