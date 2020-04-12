@@ -8,6 +8,7 @@ import GoToSearch from "../components/goToSearch"
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import Seo from "../components/seo"
+import RangeSlider from '../components/rangeSlider';
 
 const _ = require("lodash")
 
@@ -56,6 +57,9 @@ const CompanyByType = ({ data, pageContext }) => {
     data.Type.edges[0].node.data.Icon.localFiles[0]
   const tagLine = data.Type.edges[0].node.data.TagLine
   
+  function filterAge (array) {
+    console.log(array);
+  }
 
   return (
     <Layout>
@@ -72,7 +76,9 @@ const CompanyByType = ({ data, pageContext }) => {
           </Thumbnail>
           <PageTitle>{type}</PageTitle>
           <TagLine>{tagLine}</TagLine>
+          {type === "kids" ? <RangeSlider minAge={2} maxAge={70} onAgeSelection={filterAge}/> : null}
         </Flex>
+        
         <section>
           <Flex>
           <Container>
