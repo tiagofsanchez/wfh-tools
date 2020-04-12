@@ -3,10 +3,13 @@ import { graphql} from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import ageGap from '../components/ageGap';
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
+import AgeGap from "../components/ageGap"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -111,7 +114,6 @@ const Company = props => {
       })
     }
   })
-
    
   const image = company.Thumbnail.localFiles[0].publicURL
 
@@ -130,9 +132,9 @@ const Company = props => {
         />
       </Thumbnail>
       <CompanyName>{company.Name}</CompanyName>
+      {company.Age && <AgeGap ageArray={company.Age}/>}
       <Label>Description</Label>
       <Description>{company.Description}</Description>
-
       {company.Screenshot && (
         <>
           <Label>Screenshot</Label>
@@ -177,16 +179,16 @@ const Company = props => {
       <section>
         <Label>You might also like</Label>
         <AltFlexBox>
-        {alternativesArray.map(company =>{
-          return (
-            <CompanyCard 
-              key={company.Name}
-              name={company.Name}
-              slug={company.slug}
-              icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
-            />
-          )
-        })}
+          {alternativesArray.map(company => {
+            return (
+              <CompanyCard
+                key={company.Name}
+                name={company.Name}
+                slug={company.slug}
+                icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
+              />
+            )
+          })}
         </AltFlexBox>
       </section>
       <section style={{ marginTop: `80px` }}>
@@ -207,6 +209,7 @@ export const companyData = graphql`
         Source
         slug
         Costs
+        Age
         Thumbnail {
           localFiles {
             publicURL

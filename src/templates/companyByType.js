@@ -56,6 +56,7 @@ const CompanyByType = ({ data, pageContext }) => {
     data.Type.edges[0].node.data.Icon.localFiles[0]
   const tagLine = data.Type.edges[0].node.data.TagLine
   
+
   return (
     <Layout>
       <Seo
@@ -119,6 +120,7 @@ export const companyByType = graphql`
             Description
             Created_time(difference: "day")
             Type
+            Age
             Thumbnail {
               localFiles {
                 childImageSharp {
