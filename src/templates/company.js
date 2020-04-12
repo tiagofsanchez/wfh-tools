@@ -49,20 +49,20 @@ const Description = styled.p`
 `
 
 const Other = styled.div`
-  background-color: #ece6ff;
-  width: 100%;
+  width: 90%;
   display: flex;
-  align-items: flex-start;
+  margin: auto;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 30px;
+  box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
   @media (max-width: 380px) {
     flex-direction: column;
     align-items: center;
   }
 `
 const Box = styled.div`
-  flex: 1 1 33%;
+  flex: 1 1 80px;
   padding: 15px 0 5px 0;
   margin-top: 40px;
   margin: 10px;
@@ -70,6 +70,7 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 `
 
 const Icon = styled.span`
@@ -89,7 +90,10 @@ const Hlink = styled.a`
 
 const AltFlexBox = styled.div`
 display: flex;
+justify-content: center;
 flex-wrap: wrap;
+width: 95%;
+margin: auto;
 `
 
 const Tag= styled.p`
@@ -146,33 +150,18 @@ const Company = props => {
           </Screenshot>
         </>
       )}
-      <Label>Other</Label>
+      <Label>Price and webpage</Label>
       <Other>
-        <Box>
-          {company.Source === "crushingwfh" ? (
-            <Icon role="img" aria-label="source">
-              💻
-            </Icon>
-          ) : (
-            <Icon role="img" aria-label="source">
-              👤
-            </Icon>
-          )}
-          <Tag>Researched by</Tag>
-          <Source>{company.Source}</Source>
-        </Box>
         <Box>
           <Icon role="img" aria-lable="costs">
             💰
           </Icon>
-          <Tag>Price</Tag>
           <Source>{company.Costs}</Source>
         </Box>
         <Box>
           <Icon role="img" aria-label="webpage">
             🕸️
           </Icon>
-          <Tag>Check their</Tag>
           <Hlink href={company.Website}>webpage &#10132;</Hlink>
         </Box>
       </Other>
