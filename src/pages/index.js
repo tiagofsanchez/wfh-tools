@@ -1,30 +1,29 @@
-import React from "react";
-import { graphql , Link } from "gatsby";
-import styled from "@emotion/styled";
-import CountUp from 'react-countup';
-import Img from 'gatsby-image';
+import React from "react"
+import { graphql, Link } from "gatsby"
+import styled from "@emotion/styled"
+import CountUp from "react-countup"
+import Img from "gatsby-image"
 
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import Logo from "../components/logo";
-import ContactForm from '../components/contactForm';
-import CompaniesSample from "../components/companiesSample";
-import AddNewTool from '../components/addNewTool';
-
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import Logo from "../components/logo"
+import ContactForm from "../components/contactForm"
+import CompaniesSample from "../components/companiesSample"
+import AddNewTool from "../components/addNewTool"
 
 const _ = require("lodash")
 
 const HeaderSection = styled.section`
-margin-bottom: 50px;
-padding: 0px 10px 20px 10px; 
-background-color:  #eeeeee;
-box-shadow: 0px 0px 6px 0px #eeeeee;
-border-radius: 10px;
+  margin-bottom: 50px;
+  padding: 0px 10px 20px 10px;
+  background-color: #eeeeee;
+  box-shadow: 0px 0px 6px 0px #eeeeee;
+  border-radius: 10px;
 `
 
 const Span = styled.span`
-background: linear-gradient(180deg,rgba(255,255,255,0) 50%, #ece6ff 40%); 
-border-bottom: 2px solid rebeccapurple;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, #ece6ff 40%);
+  border-bottom: 2px solid rebeccapurple;
 `
 
 const IconContainer = styled.div`
@@ -34,15 +33,15 @@ const IconContainer = styled.div`
 `
 
 const Flex = styled.div`
-display: flex; 
-justify-content: center;
+  display: flex;
+  justify-content: center;
 `
 
 const CompanyCounter = styled.span`
-color:rebeccapurple; 
-font-size: 49px; 
-font-weight: 900;
-margin-right: 15px;
+  color: rebeccapurple;
+  font-size: 49px;
+  font-weight: 900;
+  margin-right: 15px;
 `
 
 const Paragraph = styled.p`
@@ -53,7 +52,6 @@ const Paragraph = styled.p`
   text-align: center;
   display: inline;
 `
-
 
 const Description = styled.p`
   font-size: 25px;
@@ -72,12 +70,33 @@ const FlexBox = styled.div`
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
 const SectionImage = styled.div`
-  width: 150px;
+  width: 200px;
   margin: 20px 0px 0px 0px;
   padding: 20px;
-  @media (max-width: 680px) {
-    width: 90px;
+  margin: auto;
+ 
+`
+const New = styled.h2`
+  margin: auto;
+  color: rebeccapurple;
+  background-color: #ece6ff;
+  padding: 5px 10px 5px 10px;
+  border-radius: 8px;
+  font-weight: 900;
+  display: block;
+  width: max-content;
+  margin-top: 20px;
+`
+const FeaturedSection = styled.section`
+  width: 300px;
+  padding: 20px;
+  margin: 20px auto 50px auto;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
+  &:hover {
+    box-shadow: 1px 1px 4px 4px rgba(102, 51, 153, 0.4);
   }
+
 `
 
 const Title = styled.h1`
@@ -127,7 +146,7 @@ const IndexPage = ({ data }) => {
     Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
 
-  
+  console.log(Icons)
 
   return (
     <Layout>
@@ -156,14 +175,15 @@ const IndexPage = ({ data }) => {
         </Description>
         <AddNewTool />
       </HeaderSection>
-      <section style={{ marginBottom: `50px` }}>
-        <Title>Kids</Title>
+      <FeaturedSection>
+        <Title >For kids</Title>
         <Link to={`${_.kebabCase("kids")}/`}>
           <SectionImage>
-            <Img fluid={Icons.kids.childImageSharp.fluid} alt={"kids"} />
+            <Img fluid={Icons.Kids.childImageSharp.fluid} alt={"kids"} />
           </SectionImage>
         </Link>
-      </section>
+        <New>New</New>
+      </FeaturedSection>
       <section style={{ marginBottom: `50px` }}>
         <FlexBox right>
           <CompaniesSample
