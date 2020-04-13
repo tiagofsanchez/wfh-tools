@@ -1,7 +1,8 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql , Link } from "gatsby";
 import styled from "@emotion/styled";
 import CountUp from 'react-countup';
+import Img from 'gatsby-image';
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -9,6 +10,9 @@ import Logo from "../components/logo";
 import ContactForm from '../components/contactForm';
 import CompaniesSample from "../components/companiesSample";
 import AddNewTool from '../components/addNewTool';
+
+
+const _ = require("lodash")
 
 const HeaderSection = styled.section`
 margin-bottom: 50px;
@@ -67,7 +71,14 @@ const FlexBox = styled.div`
   justify-content: space-between;
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
-
+const SectionImage = styled.div`
+  width: 150px;
+  margin: 20px 0px 0px 0px;
+  padding: 20px;
+  @media (max-width: 680px) {
+    width: 90px;
+  }
+`
 
 const Title = styled.h1`
   text-align: center;
@@ -78,7 +89,6 @@ const Title = styled.h1`
 const IndexPage = ({ data }) => {
   //TODO: this could probably be and UTIL (YES, Will need to use UTIL HERE, to messy)
   //TOD0 III: implement 'new companies' tag in the landing page
-  //TODO IV: small leaderboard on the landing page (this doesn't make sense yet!)
   const allCompaniesArray = data.allAirtable.edges
   const totalNumberOfCompanies = allCompaniesArray.length
   let PMArray = []
@@ -135,18 +145,25 @@ const IndexPage = ({ data }) => {
         </Flex>
         <Description>
           <Span>Search</Span> the tools{" "}
-          <span role="img" aria-label="Tools">
+          <span role="img" aria-labelledby="Tools">
             ⚒️
           </span>{" "}
           you need to WFH!{" "}
         </Description>
         <Description>
-          The tool that you love is not here? You can{" "}
-          <Span>add the tool</Span> in!
+          The tool that you love is not here? You can <Span>add the tool</Span>{" "}
+          in!
         </Description>
-
         <AddNewTool />
       </HeaderSection>
+      <section style={{ marginBottom: `50px` }}>
+        <Title>Kids</Title>
+        <Link to={`${_.kebabCase("kids")}/`}>
+          <SectionImage>
+            <Img fluid={Icons.kids.childImageSharp.fluid} alt={"kids"} />
+          </SectionImage>
+        </Link>
+      </section>
       <section style={{ marginBottom: `50px` }}>
         <FlexBox right>
           <CompaniesSample

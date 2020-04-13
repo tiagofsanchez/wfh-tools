@@ -1,12 +1,17 @@
 import React from 'react';
 import { makeStyles , withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import styled from '@emotion/styled';
+
+const Label = styled.h4`
+margin-bottom: 35px; 
+text-align: center;
+`
 
 const useStyles = makeStyles({
   root: {
     width: 280,
     margin: `auto`,
-    marginTop: `40px`,
   },
 });
 
@@ -32,6 +37,7 @@ function RangeSlider(props) {
 
   return (
     <div className={classes.root}>
+      <Label>Select the age group</Label>
       <WFHSlider
         value={value}
         min={minAge}

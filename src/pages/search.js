@@ -6,6 +6,7 @@ import Layout from "../components/layout"
 import SearchIcon from "../components/serchIcon"
 import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
+import ResultsSummary from "../components/resultsSummary"
 
 const IconContainer = styled.div`
   width: 80px;
@@ -24,12 +25,6 @@ const Title = styled.h2`
   line-height: 40px;
 `
 
-const SearchTitle = styled.h4`
-  margin-top: 20px;
-  text-align: center;
-  color: gray;
-`
-
 const SearchBar = styled.input`
   width: 100%;
   padding: 10px;
@@ -39,15 +34,6 @@ const SearchBar = styled.input`
     background-color: #ece6ff;
     border: 2px dashed rebeccapurple;
   }
-`
-
-const Span = styled.span`
-  font-weight: 900;
-  color: rebeccapurple;
-  margin: 0px 8px 0px 8px;
-  padding: 2px 10px 5px 10px;
-  border-radius: 8px;
-  background-color: #ece6ff;
 `
 
 const Select = styled.select`
@@ -143,7 +129,7 @@ class Search extends Component {
     return (
       <Layout>
         <SEO title="Crushing WFH | Search" />
-        <section style={{ marginBottom: `25px` }}>
+        <section style={{ marginBottom: `25px`}}>
           <IconContainer>
             <SearchIcon />
           </IconContainer>
@@ -168,11 +154,7 @@ class Search extends Component {
           />
         </section>
         <section>
-          <SearchTitle>
-            Result shows
-            <Span>{numberOfCompanies}</Span>
-            companies
-          </SearchTitle>
+          <ResultsSummary numberOfCompanies={numberOfCompanies} />
           <SearcResults filteredCompanies={filteredCompanies} />
         </section>
       </Layout>

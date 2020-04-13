@@ -9,6 +9,7 @@ import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import Seo from "../components/seo"
 import RangeSlider from "../components/rangeSlider"
+import ResultsSummary from "../components/resultsSummary"
 
 const _ = require("lodash")
 
@@ -26,11 +27,11 @@ const Flex = styled.div`
   flex-direction: column;
   margin-bottom: 40px;
 `
-const TagLine = styled.p`
+const TagLine = styled.h4`
   letter-spacing: 1px;
   color: gray;
   padding: 20px;
-  font-weight: 600;
+  font-weight: 900;
   text-align: center;
   margin-bottom: 0;
 `
@@ -87,8 +88,6 @@ const CompanyByType = ({ data, pageContext }) => {
     setFilteredCompanies(filteredByAge)
   }
 
-  console.log(filteredCompanies)
-
   return (
     <Layout>
       <Seo
@@ -105,8 +104,17 @@ const CompanyByType = ({ data, pageContext }) => {
           <PageTitle>{type}</PageTitle>
           <TagLine>{tagLine}</TagLine>
           {type === "kids" ? (
-            <RangeSlider minAge={2} maxAge={15} onAgeSelection={filterByAge} />
-          ) : null}
+            <>
+              <RangeSlider
+                minAge={2}
+                maxAge={15}
+                onAgeSelection={filterByAge}
+              />
+              <ResultsSummary numberOfCompanies={filteredCompanies.length} />
+            </>
+          ) : (
+            <ResultsSummary numberOfCompanies={filteredCompanies.length} />
+          )}
         </Flex>
         <section>
           <Flex>
@@ -118,7 +126,6 @@ const CompanyByType = ({ data, pageContext }) => {
                   ? (icon = company.icon)
                   : (icon =
                       node.data.Thumbnail.localFiles[0].childImageSharp.fluid)
-        
                 const brief = company.Description
                 return (
                   <CompanyCard
