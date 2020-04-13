@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
@@ -8,7 +8,7 @@ import GoToSearch from "../components/goToSearch"
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import Seo from "../components/seo"
-import RangeSlider from '../components/rangeSlider';
+import RangeSlider from "../components/rangeSlider"
 
 const _ = require("lodash")
 
@@ -50,16 +50,44 @@ const PageTitle = styled.h1`
 
 const CompanyByType = ({ data, pageContext }) => {
   const companies = data.allAirtable.edges
-  const type=pageContext.type
-  const typeSlug=`${_.kebabCase(type)}/`
+  const [filteredCompanies, setFilteredCompanies] = useState(companies)
+  const type = pageContext.type
+  const typeSlug = `${_.kebabCase(type)}/`
 
-  const iconThumbnail =
-    data.Type.edges[0].node.data.Icon.localFiles[0]
+  const iconThumbnail = data.Type.edges[0].node.data.Icon.localFiles[0]
   const tagLine = data.Type.edges[0].node.data.TagLine
-  
-  function filterAge (array) {
-    console.log(array);
+
+  function filterByAge(array) {
+    let companiesWip = []
+    companies.forEach(({ node }) => {
+      const company = node.data
+      const icon = node.data.Thumbnail.localFiles[0].childImageSharp.fluid
+      const Description = company.Description
+      const slug = company.slug
+      companiesWip.push({
+        node: {
+          data: {
+            Name: company.Name,
+            ageMax: Math.max(...company.Age),
+            ageMin: Math.min(...company.Age),
+            Description,
+            icon,
+            slug,
+          },
+        },
+      })
+    })
+    let filteredByAge = companiesWip
+    const ageMax = Math.max(...array)
+    const ageMin = Math.min(...array)
+    filteredByAge = companiesWip.filter(
+      company =>
+        company.node.data.ageMax >= ageMin && ageMax >= company.node.data.ageMin
+    )
+    setFilteredCompanies(filteredByAge)
   }
+
+  console.log(filteredCompanies)
 
   return (
     <Layout>
@@ -76,32 +104,37 @@ const CompanyByType = ({ data, pageContext }) => {
           </Thumbnail>
           <PageTitle>{type}</PageTitle>
           <TagLine>{tagLine}</TagLine>
-          {type === "kids" ? <RangeSlider minAge={2} maxAge={70} onAgeSelection={filterAge}/> : null}
+          {type === "kids" ? (
+            <RangeSlider minAge={2} maxAge={15} onAgeSelection={filterByAge} />
+          ) : null}
         </Flex>
-        
         <section>
           <Flex>
-          <Container>
-            {companies.map(({ node }) => {
-              const company = node.data
-              const icon =
-                node.data.Thumbnail.localFiles[0].childImageSharp.fluid
-              const brief = company.Description
-              return (
-                <CompanyCard
-                  big={true}
-                  key={company.Name}
-                  name={company.Name}
-                  brief={brief}
-                  icon={icon}
-                  slug={company.slug}
-                />
-              )
-            })}
-          </Container>
-          <div style={{ marginTop: `40px`, alignSelf:`center`  }}>
-            <GoToSearch />
-          </div>
+            <Container>
+              {filteredCompanies.map(({ node }) => {
+                const company = node.data
+                let icon = ""
+                node.data.Thumbnail === undefined
+                  ? (icon = company.icon)
+                  : (icon =
+                      node.data.Thumbnail.localFiles[0].childImageSharp.fluid)
+        
+                const brief = company.Description
+                return (
+                  <CompanyCard
+                    big={true}
+                    key={company.Name}
+                    name={company.Name}
+                    brief={brief}
+                    icon={icon}
+                    slug={company.slug}
+                  />
+                )
+              })}
+            </Container>
+            <div style={{ marginTop: `40px`, alignSelf: `center` }}>
+              <GoToSearch />
+            </div>
           </Flex>
         </section>
       </Container>

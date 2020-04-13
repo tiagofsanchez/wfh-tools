@@ -25,9 +25,9 @@ const Title = styled.h2`
 `
 
 const SearchTitle = styled.h4`
-margin-top: 20px;
-text-align: center; 
-color: gray;
+  margin-top: 20px;
+  text-align: center;
+  color: gray;
 `
 
 const SearchBar = styled.input`
@@ -104,7 +104,6 @@ class Search extends Component {
     const { search, selectedSearch } = this.state
 
     //TODO: need to create a util function that will take better care of the search
-
     //all data from the companies
     const allCompaniesArray = data.allAirtable.edges
     //Existing types into an array to create my buttons

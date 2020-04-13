@@ -15,8 +15,6 @@ background-color: #ece6ff;
 border-radius: 3px;
 `
 
-
-
 function ages(array) {
   let ageArrayInt = []
   array.map(age => {

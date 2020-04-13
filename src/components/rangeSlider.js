@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider';
 
 const useStyles = makeStyles({
   root: {
-    width: 300,
+    width: 280,
     margin: `auto`,
     marginTop: `40px`,
   },
@@ -29,8 +29,6 @@ function RangeSlider(props) {
     setValue(newValue);
     onAgeSelection(value)
   };
-  
-
 
   return (
     <div className={classes.root}>
