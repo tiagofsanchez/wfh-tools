@@ -8,15 +8,7 @@ import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
 import ResultsSummary from "../components/resultsSummary"
 
-const IconContainer = styled.div`
-  width: 80px;
-  margin: auto;
-  margin-bottom: 15px;
-  @media (max-width: 380px) {
-    width: 50px;
-    margin-bottom: 15px;
-  }
-`
+
 const Title = styled.h2`
   font-weight: 900;
   text-align: center;
@@ -130,9 +122,7 @@ class Search extends Component {
       <Layout>
         <SEO title="Crushing WFH | Search" />
         <section style={{ marginBottom: `25px`}}>
-          <IconContainer>
-            <SearchIcon />
-          </IconContainer>
+
 
           <Title>
             Search for{" "}

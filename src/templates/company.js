@@ -94,6 +94,9 @@ justify-content: center;
 flex-wrap: wrap;
 width: 95%;
 margin: auto;
+@media (max-width: 380px) {
+ width: 100%
+}
 `
 
 const Tag= styled.p`
