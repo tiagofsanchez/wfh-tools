@@ -23,7 +23,8 @@ padding: 0px 5px 0px 5px;
 border-radius: 3px;
 font-weight: 900;
 color: rebeccapurple; 
-background-color: #ece6ff
+background-color: #ece6ff;
+margin-left: 8px;
 `
 
 
@@ -80,7 +81,7 @@ const MenuBar = ({ siteTitle , typeOfCompanies }) => {
   return (
     <div className={classes.grow}>
       <MyDrawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} typeOfCompanies={typeOfCompanies} />
-      <AppBar position="static" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -91,12 +92,14 @@ const MenuBar = ({ siteTitle , typeOfCompanies }) => {
           >
             <MenuIcon />
           </IconButton>
+          <div  style={{margin: `auto`, display: `inline-flex`, justifyContent: `center`}}>
           <Link to='/' style={{textDecoration: `none`,   color: `white`}}>
-          <Typography className={classes.title} variant="h5" noWrap>
+          <Typography className={classes.title} variant="h7" noWrap>
             {siteTitle}
           </Typography>
           </Link>
           <Beta>BETA</Beta>
+          </div>
           
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

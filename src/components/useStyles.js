@@ -13,15 +13,11 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '100vh', 
     overflow: 'auto'
   },
+  title: { 
+    fontWeight: '900'
+  },
   menuButton: {
     marginRight: theme.spacing(2)
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-      margin: "auto"
-    }
   },
   sectionDesktop: {
     display: "none",
