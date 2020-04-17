@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '50px'
   },
   list: {
-    width: 250,
+    width: 280,
     maxHeight: '100vh', 
     overflow: 'auto'
   },

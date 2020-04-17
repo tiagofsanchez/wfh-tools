@@ -35,8 +35,12 @@ const Layout = ({ children }) => {
                 localFiles {
                   publicURL
                   childImageSharp {
-                    fluid(grayscale: true) {
-                      ...GatsbyImageSharpFluid
+                    fixed(
+                      width: 25
+                      height: 25
+                      grayscale: true
+                    ) {
+                      ...GatsbyImageSharpFixed
                     }
                   }
                 }
@@ -47,7 +51,6 @@ const Layout = ({ children }) => {
       }
     }
   `)
-  console.log(data.Type.edges)
 
   return (
     <>

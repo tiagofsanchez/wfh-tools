@@ -4,22 +4,26 @@ import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
+import ListItemIcon from "@material-ui/core/ListItemIcon"
 import useStyles from "./useStyles"
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles"
 import { Link } from "gatsby"
+import Img from "gatsby-image"
+import HomeWorkIcon from "@material-ui/icons/HomeWork"
+import SearchIcon from "@material-ui/icons/Search"
 
 const _ = require("lodash")
 
 const primaryMenu = [
-  { name: "Home", slug: "/" },
-  { name: "Search", slug: "/search" },
+  { name: "Home", slug: "/", icon: <HomeWorkIcon fontSize="large" /> },
+  { name: "Search", slug: "/search", icon: <SearchIcon fontSize="large" /> },
 ]
 
 const WFHDrawer = withStyles({
-    paper: {
-      backgroundColor: `rebeccapurple`,
-    },
-  })(Drawer)
+  paper: {
+    backgroundColor: `rebeccapurple`,
+  },
+})(Drawer)
 
 const MyDrawer = ({ isDrawerOpen, toggleDrawer, typeOfCompanies }) => {
   const classes = useStyles()
@@ -39,6 +43,7 @@ const MyDrawer = ({ isDrawerOpen, toggleDrawer, typeOfCompanies }) => {
             key={item.name}
           >
             <ListItem button>
+              <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText primary={item.name} />
             </ListItem>
           </Link>
@@ -49,6 +54,8 @@ const MyDrawer = ({ isDrawerOpen, toggleDrawer, typeOfCompanies }) => {
         {typeOfCompanies.map(type => {
           const typeName = type.node.data.Name
           const typeSlug = `${_.kebabCase(typeName)}/`
+          const img = type.node.data.Icon.localFiles[0].childImageSharp.fixed
+
           return (
             <Link
               to={typeSlug}
@@ -56,6 +63,9 @@ const MyDrawer = ({ isDrawerOpen, toggleDrawer, typeOfCompanies }) => {
               key={typeName}
             >
               <ListItem button>
+                <ListItemIcon>
+                  <Img fixed={img} />
+                </ListItemIcon>
                 <ListItemText primary={typeName} />
               </ListItem>
             </Link>
@@ -66,9 +76,9 @@ const MyDrawer = ({ isDrawerOpen, toggleDrawer, typeOfCompanies }) => {
   )
 
   return (
-    <WFHDrawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer} >
+    <WFHDrawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
       {list}
-    </WFHDrawer >
+    </WFHDrawer>
   )
 }
 

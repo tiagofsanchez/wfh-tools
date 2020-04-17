@@ -87,17 +87,6 @@ const New = styled.h2`
   width: max-content;
   margin-top: 20px;
 `
-const FeaturedSection = styled.section`
-  width: 300px;
-  padding: 20px;
-  margin: 20px auto 50px auto;
-  border-radius: 8px;
-  box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
-  &:hover {
-    box-shadow: 1px 1px 4px 4px rgba(102, 51, 153, 0.4);
-  }
-
-`
 
 const Title = styled.h1`
   text-align: center;
@@ -175,15 +164,6 @@ const IndexPage = ({ data }) => {
         </Description>
         <AddNewTool />
       </HeaderSection>
-      <FeaturedSection>
-        <Title >For kids</Title>
-        <Link to={`${_.kebabCase("kids")}/`}>
-          <SectionImage>
-            <Img fluid={Icons.Kids.childImageSharp.fluid} alt={"kids"} />
-          </SectionImage>
-        </Link>
-        <New>New</New>
-      </FeaturedSection>
       <section style={{ marginBottom: `50px` }}>
         <FlexBox right>
           <CompaniesSample
