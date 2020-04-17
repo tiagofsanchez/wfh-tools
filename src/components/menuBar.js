@@ -3,12 +3,12 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
-import Badge from "@material-ui/core/Badge"
 import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
 import MenuIcon from "@material-ui/icons/Menu"
 import SearchIcon from "@material-ui/icons/Search"
-import NotificationsIcon from "@material-ui/icons/Notifications"
+// import Badge from "@material-ui/core/Badge"
+// import NotificationsIcon from "@material-ui/icons/Notifications"
 import MoreIcon from "@material-ui/icons/MoreVert"
 import MyDrawer from "./drawer"
 import useStyles from "./useStyles"
@@ -27,7 +27,7 @@ background-color: #ece6ff
 `
 
 
-const MenuBar = ({ siteTitle }) => {
+const MenuBar = ({ siteTitle , typeOfCompanies }) => {
   const classes = useStyles()
 
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -79,7 +79,7 @@ const MenuBar = ({ siteTitle }) => {
 
   return (
     <div className={classes.grow}>
-      <MyDrawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+      <MyDrawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} typeOfCompanies={typeOfCompanies} />
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -131,6 +131,7 @@ const MenuBar = ({ siteTitle }) => {
 
 MenuBar.propTypes = {
   siteTitle: PropTypes.string,
+  typeOfCompanies: PropTypes.array
 }
 
 MenuBar.defaultProps = {

@@ -2,8 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
-import MenuBar from './menuBar';
+import MenuBar from "./menuBar"
 import Image from "./image"
 import styled from "@emotion/styled"
 import "./layout.css"
@@ -23,13 +22,39 @@ const Layout = ({ children }) => {
           title
         }
       }
+      Type: allAirtable(
+        filter: { data: { Created_time: { eq: null } } }
+        sort: { order: ASC, fields: data___Name }
+      ) {
+        edges {
+          node {
+            data {
+              IconName
+              Name
+              Icon {
+                localFiles {
+                  publicURL
+                  childImageSharp {
+                    fluid(grayscale: true) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
+  console.log(data.Type.edges)
 
   return (
     <>
-      {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-      <MenuBar siteTitle={data.site.siteMetadata.title}/>
+      <MenuBar
+        siteTitle={data.site.siteMetadata.title}
+        typeOfCompanies={data.Type.edges}
+      />
       <div
         style={{
           margin: `0 auto`,
@@ -44,7 +69,10 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.org">
             <Image />
           </a>
-          , by <ExternalLink href="https://www.tiagofsanchez.com/">Tiago</ExternalLink>
+          , by{" "}
+          <ExternalLink href="https://www.tiagofsanchez.com/">
+            Tiago
+          </ExternalLink>
         </footer>
       </div>
     </>

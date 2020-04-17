@@ -3,10 +3,8 @@ import { graphql} from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import ageGap from '../components/ageGap';
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import AgeGap from "../components/ageGap"
@@ -99,11 +97,6 @@ margin: auto;
 }
 `
 
-const Tag= styled.p`
-color: black; 
-margin: 0;
-font-weight: 900;
-`
 
 const Company = props => {
   const company = props.data.company.data

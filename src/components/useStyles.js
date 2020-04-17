@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -10,9 +10,8 @@ const useStyles = makeStyles(theme => ({
   },
   list: {
     width: 250,
-    height: "100%",
-    backgroundColor: "rebeccapurple",
-    color: "white"
+    maxHeight: '100vh', 
+    overflow: 'auto'
   },
   menuButton: {
     marginRight: theme.spacing(2)
