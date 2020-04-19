@@ -2,7 +2,7 @@ require("dotenv").config({ path: ".env" })
 
 module.exports = {
   siteMetadata: {
-    title: `💻 Crushing WFH`,
+    title: `Crushing WFH`,
     description: `All the tools you need so that you can work from home!`,
     author: `Tiago Sanchez`,
     siteUrl: "https://crushingwfh.com",
