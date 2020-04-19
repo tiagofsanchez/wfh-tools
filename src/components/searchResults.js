@@ -67,6 +67,7 @@ const SearchResults = ({ filteredCompanies , onClose }) => {
               key={data.slug}
               onClick={onClose}
             >
+              
               <HitContainer>
                 <CompanyContainer>
                   <Thumbnail>
@@ -80,6 +81,7 @@ const SearchResults = ({ filteredCompanies , onClose }) => {
                   <Description>{brief.slice(0, 100)}...</Description>
                 </ContentContainer>
               </HitContainer>
+
             </Link>
           )
         })

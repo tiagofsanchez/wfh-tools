@@ -86,13 +86,10 @@ const MenuBar = () => {
             aria-label="show new notifications"
             color="inherit"
             onClick={closeNotHandler}
-          
           >
-           
-              <Badge variant="dot" color="secondary">
-                <NotificationsIcon />
-              </Badge>
-        
+            <Badge variant="dot" color="secondary">
+              <NotificationsIcon />
+            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>

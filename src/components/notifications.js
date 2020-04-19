@@ -62,7 +62,7 @@ const Notifications = ({ onOpen, onClose }) => {
       <AppBar className={classes.appBar}>
         <ToolBar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Latest tools
+            Latest 15 tools added
           </Typography>
           <div className={classes.grow} />
           <IconButton

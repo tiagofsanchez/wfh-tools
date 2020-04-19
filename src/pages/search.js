@@ -7,7 +7,6 @@ import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
 import ResultsSummary from "../components/resultsSummary"
 
-
 const Title = styled.h2`
   font-weight: 900;
   text-align: center;
@@ -120,9 +119,7 @@ class Search extends Component {
     return (
       <Layout>
         <SEO title="Crushing WFH | Search" />
-        <section style={{ marginBottom: `25px`}}>
-
-
+        <section style={{ marginBottom: `25px` }}>
           <Title>
             Search for{" "}
             <Select onChange={e => this.selectOnChangeHandler(e)}>
