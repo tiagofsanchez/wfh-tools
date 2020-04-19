@@ -1,36 +1,40 @@
-import { makeStyles, } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles"
 
 const useStyles = makeStyles(theme => ({
+  rangeSlider: {
+    width: 280,
+    margin: `auto`,
+  },
   grow: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   appBar: {
     backgroundColor: "rebeccapurple",
-    marginBottom: '50px'
+    marginBottom: "50px",
   },
   list: {
-    width: 280,
-    maxHeight: '100vh', 
-    overflow: 'auto'
+    width: 300,
+    maxHeight: "100vh",
+    overflow: "auto",
   },
-  title: { 
-    fontWeight: '900'
+  title: {
+    fontWeight: "900",
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   sectionDesktop: {
     display: "none",
     [theme.breakpoints.up("sm")]: {
-      display: "flex"
-    }
+      display: "flex",
+    },
   },
   sectionMobile: {
     display: "flex",
     [theme.breakpoints.up("sm")]: {
-      display: "none"
-    }
-  }
-}));
+      display: "none",
+    },
+  },
+}))
 
-export default useStyles;
+export default useStyles

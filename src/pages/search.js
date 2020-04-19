@@ -3,7 +3,6 @@ import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SearchIcon from "../components/serchIcon"
 import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
 import ResultsSummary from "../components/resultsSummary"

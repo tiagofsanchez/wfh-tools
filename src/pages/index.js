@@ -1,8 +1,7 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import CountUp from "react-countup"
-import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -11,7 +10,6 @@ import ContactForm from "../components/contactForm"
 import CompaniesSample from "../components/companiesSample"
 import AddNewTool from "../components/addNewTool"
 
-const _ = require("lodash")
 
 const HeaderSection = styled.section`
   margin-bottom: 50px;
@@ -69,24 +67,7 @@ const FlexBox = styled.div`
   justify-content: space-between;
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
-const SectionImage = styled.div`
-  width: 200px;
-  margin: 20px 0px 0px 0px;
-  padding: 20px;
-  margin: auto;
- 
-`
-const New = styled.h2`
-  margin: auto;
-  color: rebeccapurple;
-  background-color: #ece6ff;
-  padding: 5px 10px 5px 10px;
-  border-radius: 8px;
-  font-weight: 900;
-  display: block;
-  width: max-content;
-  margin-top: 20px;
-`
+
 
 const Title = styled.h1`
   text-align: center;
@@ -134,8 +115,6 @@ const IndexPage = ({ data }) => {
     const { node } = icon
     Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
-
-  console.log(Icons)
 
   return (
     <Layout>

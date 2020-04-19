@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import MenuBar from "./menuBar"
 import Image from "./image"
@@ -15,49 +14,10 @@ const ExternalLink = styled.a`
 `
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-      Type: allAirtable(
-        filter: { data: { Created_time: { eq: null } } }
-        sort: { order: ASC, fields: data___Name }
-      ) {
-        edges {
-          node {
-            data {
-              IconName
-              Name
-              Icon {
-                localFiles {
-                  publicURL
-                  childImageSharp {
-                    fixed(
-                      width: 25
-                      height: 25
-                      grayscale: true
-                    ) {
-                      ...GatsbyImageSharpFixed
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
 
   return (
     <>
-      <MenuBar
-        siteTitle={data.site.siteMetadata.title}
-        typeOfCompanies={data.Type.edges}
-      />
+      <MenuBar  />
       <div
         style={{
           margin: `0 auto`,

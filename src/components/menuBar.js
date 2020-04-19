@@ -12,30 +12,51 @@ import SearchIcon from "@material-ui/icons/Search"
 import MoreIcon from "@material-ui/icons/MoreVert"
 import MyDrawer from "./drawer"
 import useStyles from "./useStyles"
-import PropTypes from "prop-types"
-import styled from '@emotion/styled'
-import { Link } from "gatsby"
+import { Link , graphql , useStaticQuery } from "gatsby"
 
+const MenuBar = () => {
+  const data = useStaticQuery(graphql`
+    query SiteTitleQuery {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+      Type: allAirtable(
+        filter: { data: { Created_time: { eq: null } } }
+        sort: { order: ASC, fields: data___Name }
+      ) {
+        edges {
+          node {
+            data {
+              IconName
+              Name
+              Icon {
+                localFiles {
+                  publicURL
+                  childImageSharp {
+                    fixed(
+                      width: 25
+                      height: 25
+                      grayscale: true
+                    ) {
+                      ...GatsbyImageSharpFixed
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
 
-const Beta = styled.div`
-font-size: 12px; 
-padding: 0px 5px 0px 5px;
-border-radius: 3px;
-font-weight: 900;
-color: rebeccapurple; 
-background-color: #ece6ff;
-margin-left: 8px;
-`
-
-
-const MenuBar = ({ siteTitle , typeOfCompanies }) => {
   const classes = useStyles()
-
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
-
+  
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen)
   }
@@ -68,11 +89,11 @@ const MenuBar = ({ siteTitle , typeOfCompanies }) => {
         <p>Notifications</p>
       </MenuItem> */}
       <MenuItem>
-      <Link to='/search' style={{textDecoration: `none`, display: `flex`}}>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-        <p style={{margin:`16px 0px`}}>Search</p>
+        <Link to="/search" style={{ textDecoration: `none`, display: `flex` }}>
+          <IconButton>
+            <SearchIcon />
+          </IconButton>
+          <p style={{ margin: `16px 0px` }}>Search</p>
         </Link>
       </MenuItem>
     </Menu>
@@ -80,7 +101,11 @@ const MenuBar = ({ siteTitle , typeOfCompanies }) => {
 
   return (
     <div className={classes.grow}>
-      <MyDrawer isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} typeOfCompanies={typeOfCompanies} />
+      <MyDrawer
+        isDrawerOpen={isDrawerOpen}
+        toggleDrawer={toggleDrawer}
+        typeOfCompanies={data.Type.edges}
+      />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -92,21 +117,25 @@ const MenuBar = ({ siteTitle , typeOfCompanies }) => {
           >
             <MenuIcon />
           </IconButton>
-          <div  style={{margin: `auto`, display: `inline-flex`, justifyContent: `center`}}>
-          <Link to='/' style={{textDecoration: `none`,   color: `white`}}>
-          <Typography className={classes.title} variant="h7" noWrap>
-            {siteTitle}
-          </Typography>
-          </Link>
-          <Beta>BETA</Beta>
+          <div
+            style={{
+              margin: `auto`,
+              display: `inline-flex`,
+              justifyContent: `center`,
+            }}
+          >
+            <Link to="/" style={{ textDecoration: `none`, color: `white` }}>
+              <Typography className={classes.title} variant="h6" noWrap>
+                {data.site.siteMetadata.title}
+              </Typography>
+            </Link>
           </div>
-          
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-           <Link to='/search'>
-            <IconButton>
-              <SearchIcon />
-            </IconButton>
+            <Link to="/search">
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
             </Link>
             {/* <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge variant="dot" color="secondary">
@@ -130,15 +159,6 @@ const MenuBar = ({ siteTitle , typeOfCompanies }) => {
       {renderMobileMenu}
     </div>
   )
-}
-
-MenuBar.propTypes = {
-  siteTitle: PropTypes.string,
-  typeOfCompanies: PropTypes.array
-}
-
-MenuBar.defaultProps = {
-  siteTitle: ``,
 }
 
 export default MenuBar
