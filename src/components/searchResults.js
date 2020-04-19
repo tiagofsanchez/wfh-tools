@@ -2,6 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
+import PropTypes from 'prop-types';
 
 import CallToAction from "./callToAction"
 
@@ -45,7 +46,7 @@ const Description = styled.p`
   margin-bottom: 0;
 `
 
-const SearchResults = ({ filteredCompanies }) => {
+const SearchResults = ({ filteredCompanies , onClose }) => {
   return (
     <>
       {filteredCompanies.length === 0 ? (
@@ -64,6 +65,7 @@ const SearchResults = ({ filteredCompanies }) => {
               to={`/${data.slug}`}
               style={{ textDecoration: `none` }}
               key={data.slug}
+              onClick={onClose}
             >
               <HitContainer>
                 <CompanyContainer>
@@ -84,6 +86,10 @@ const SearchResults = ({ filteredCompanies }) => {
       )}
     </>
   )
+}
+
+SearchResults.propTypes = { 
+  filteredCompanies: PropTypes.array.isRequired
 }
 
 export default SearchResults

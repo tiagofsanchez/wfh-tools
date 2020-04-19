@@ -3,18 +3,16 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
-import MenuItem from "@material-ui/core/MenuItem"
-import Menu from "@material-ui/core/Menu"
 import MenuIcon from "@material-ui/icons/Menu"
-import SearchIcon from "@material-ui/icons/Search"
-// import Badge from "@material-ui/core/Badge"
-// import NotificationsIcon from "@material-ui/icons/Notifications"
-import MoreIcon from "@material-ui/icons/MoreVert"
+import Badge from "@material-ui/core/Badge"
+import NotificationsIcon from "@material-ui/icons/Notifications"
+import Notifications from "./notifications"
 import MyDrawer from "./drawer"
 import useStyles from "./useStyles"
-import { Link , graphql , useStaticQuery } from "gatsby"
+import { Link, graphql, useStaticQuery } from "gatsby"
 
 const MenuBar = () => {
+  const classes = useStyles()
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -35,11 +33,7 @@ const MenuBar = () => {
                 localFiles {
                   publicURL
                   childImageSharp {
-                    fixed(
-                      width: 25
-                      height: 25
-                      grayscale: true
-                    ) {
+                    fixed(width: 25, height: 25, grayscale: true) {
                       ...GatsbyImageSharpFixed
                     }
                   }
@@ -52,52 +46,16 @@ const MenuBar = () => {
     }
   `)
 
-  const classes = useStyles()
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false)
-  
+  const [isNotOpen, setIsNotOpen] = React.useState(false)
+
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen)
   }
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null)
+  const closeNotHandler = () => {
+    setIsNotOpen(!isNotOpen)
   }
-
-  const handleMobileMenuOpen = event => {
-    setMobileMoreAnchorEl(event.currentTarget)
-  }
-
-  const mobileMenuId = "primary-search-account-menu-mobile"
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      {/* <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge variant="dot" color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem> */}
-      <MenuItem>
-        <Link to="/search" style={{ textDecoration: `none`, display: `flex` }}>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-          <p style={{ margin: `16px 0px` }}>Search</p>
-        </Link>
-      </MenuItem>
-    </Menu>
-  )
 
   return (
     <div className={classes.grow}>
@@ -106,6 +64,7 @@ const MenuBar = () => {
         toggleDrawer={toggleDrawer}
         typeOfCompanies={data.Type.edges}
       />
+      <Notifications onOpen={isNotOpen} onClose={closeNotHandler} />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -117,46 +76,26 @@ const MenuBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <div
-            style={{
-              margin: `auto`,
-              display: `inline-flex`,
-              justifyContent: `center`,
-            }}
-          >
-            <Link to="/" style={{ textDecoration: `none`, color: `white` }}>
-              <Typography className={classes.title} variant="h6" noWrap>
-                {data.site.siteMetadata.title}
-              </Typography>
-            </Link>
-          </div>
+          <Link to="/" style={{ textDecoration: `none`, color: `white` }}>
+            <Typography className={classes.title} variant="h6" noWrap>
+              {data.site.siteMetadata.title}
+            </Typography>
+          </Link>
           <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <Link to="/search">
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            </Link>
-            {/* <IconButton aria-label="show 17 new notifications" color="inherit">
+          <IconButton
+            aria-label="show new notifications"
+            color="inherit"
+            onClick={closeNotHandler}
+          
+          >
+           
               <Badge variant="dot" color="secondary">
                 <NotificationsIcon />
               </Badge>
-            </IconButton> */}
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
+        
+          </IconButton>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
     </div>
   )
 }
