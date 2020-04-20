@@ -75,9 +75,13 @@ class Search extends Component {
     }))
   }
 
+  
+
   render() {
     const { data } = this.props
     const { search, selectedSearch } = this.state
+
+    console.log(data)
 
     //TODO: need to create a util function that will take better care of the search
     //all data from the companies
@@ -161,6 +165,7 @@ export const query = graphql`
             slug
             Description
             Type
+            Created_time(fromNow: true)
             Thumbnail {
               localFiles {
                 childImageSharp {

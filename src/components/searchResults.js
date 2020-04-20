@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types"
 
 import CallToAction from "./callToAction"
 
@@ -19,6 +19,14 @@ const CompanyName = styled.h3`
   margin-bottom: 0;
   margin-right: 20px;
 `
+const Container = styled.div`
+margin: 8px auto;  
+padding: 8px;
+&:hover {
+    background-color: #ece6ff;
+    border-radius: 5px;
+  }
+`
 
 const HitContainer = styled.div`
   width: 100%;
@@ -27,11 +35,29 @@ const HitContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  &:hover {
-    background-color: #ece6ff;
-    border-radius: 5px;
-  }
 `
+const TitleTag = styled.div`
+  display: inline-block;
+  float: left;
+  font-weight: 900;
+  color: rebeccapurple;
+  background-color: #cccccc;
+  padding: 2px 5px 2px 5px;
+  border-radius: 4px;
+  text-decoration: none;
+`
+
+const CreatedDays = styled.div`
+margin-left: 5px;
+font-size: 15px;
+color: gray
+`
+
+const Flex = styled.div`
+display: flex;
+margin-top: 5px;
+`
+
 const CompanyContainer = styled.div`
   flex: 1 1 120px;
   display: flex;
@@ -46,7 +72,7 @@ const Description = styled.p`
   margin-bottom: 0;
 `
 
-const SearchResults = ({ filteredCompanies , onClose }) => {
+const SearchResults = ({ filteredCompanies, onClose }) => {
   return (
     <>
       {filteredCompanies.length === 0 ? (
@@ -67,21 +93,25 @@ const SearchResults = ({ filteredCompanies , onClose }) => {
               key={data.slug}
               onClick={onClose}
             >
-              
-              <HitContainer>
-                <CompanyContainer>
-                  <Thumbnail>
-                    {image && (
-                      <Img fluid={image} style={{ marginBottom: `0` }} />
-                    )}
-                  </Thumbnail>
-                  <CompanyName>{data.Name}</CompanyName>
-                </CompanyContainer>
-                <ContentContainer>
-                  <Description>{brief.slice(0, 100)}...</Description>
-                </ContentContainer>
-              </HitContainer>
-
+              <Container>
+                <HitContainer>
+                  <CompanyContainer>
+                    <Thumbnail>
+                      {image && (
+                        <Img fluid={image} style={{ marginBottom: `0` }} />
+                      )}
+                    </Thumbnail>
+                    <CompanyName>{data.Name}</CompanyName>
+                  </CompanyContainer>
+                  <ContentContainer>
+                    <Description>{brief.slice(0, 100)}...</Description>
+                    <Flex>
+                      <TitleTag>{data.Type}</TitleTag>
+                      <CreatedDays> Published: {data.Created_time}</CreatedDays>
+                    </Flex>
+                  </ContentContainer>
+                </HitContainer>
+              </Container>
             </Link>
           )
         })
@@ -90,8 +120,8 @@ const SearchResults = ({ filteredCompanies , onClose }) => {
   )
 }
 
-SearchResults.propTypes = { 
-  filteredCompanies: PropTypes.array.isRequired
+SearchResults.propTypes = {
+  filteredCompanies: PropTypes.array.isRequired,
 }
 
 export default SearchResults

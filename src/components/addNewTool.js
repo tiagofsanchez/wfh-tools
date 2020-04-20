@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from "react"
 import styled from "@emotion/styled"
 
 const Button = styled.a`
@@ -20,8 +20,14 @@ const Button = styled.a`
 
 const AddNewTool = props => {
   return (
-    <Button href="https://airtable.com/shrKIvCX7rU3tY3CN">Add a new tool</Button>
+    <Button
+      href="https://airtable.com/shrKIvCX7rU3tY3CN"
+      rel="noreferrer noopener"
+      target="_blank"
+    >
+      Add a new tool
+    </Button>
   )
 }
 
-export default AddNewTool;
+export default AddNewTool

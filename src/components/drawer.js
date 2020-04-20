@@ -2,6 +2,7 @@ import React from "react"
 import Drawer from "@material-ui/core/Drawer"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
+import AddIcon from "@material-ui/icons/Add"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
@@ -56,7 +57,6 @@ const MyDrawer = React.memo(
             const typeName = type.node.data.Name
             const typeSlug = `${_.kebabCase(typeName)}/`
             const img = type.node.data.Icon.localFiles[0].childImageSharp.fixed
-
             return (
               <Link
                 to={typeSlug}
@@ -72,6 +72,22 @@ const MyDrawer = React.memo(
               </Link>
             )
           })}
+        </List>
+        <Divider />
+        <List>
+          <a
+            href="https://airtable.com/shrKIvCX7rU3tY3CN"
+            rel="noreferrer noopener"
+            target="_blank"
+            style={{ color: `white`, textDecoration: `none` }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <AddIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary={"Add new tool"} />
+            </ListItem>
+          </a>
         </List>
       </div>
     )

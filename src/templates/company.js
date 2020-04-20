@@ -158,7 +158,7 @@ const Company = props => {
           <Icon role="img" aria-label="webpage">
             🕸️
           </Icon>
-          <Hlink href={company.Website}>webpage &#10132;</Hlink>
+          <Hlink href={company.Website} rel="noreferrer noopener" target="_blank">webpage &#10132;</Hlink>
         </Box>
       </Other>
       <section>
