@@ -1,6 +1,7 @@
-import React, { Component } from "react"
+import React from "react"
 import styled from "@emotion/styled"
 import { graphql } from "gatsby"
+import useFormInput from "../hooks/useFormInput"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -42,114 +43,76 @@ const Select = styled.select`
   background-position-y: 50%;
 `
 
-class Search extends Component {
-  state = {
-    search: "",
-    selectedSearch: "All",
-  }
+const Search = props => {
+  const search = useFormInput("")
+  const selectedSearch = useFormInput("All")
 
-  searchHandler(value) {
-    this.setState({ search: value })
-  }
-
-  onClickHandler(e) {
-    const { name } = e.target
-    this.setState(prevState => ({
-      ...prevState,
-      selectedSearch: name,
-    }))
-  }
-
-  clearHandler() {
-    this.setState(prevState => ({
-      ...prevState,
-      selectedSearch: "All",
-    }))
-  }
-
-  selectOnChangeHandler(e) {
-    const { value } = e.target
-    this.setState(prevState => ({
-      ...prevState,
-      selectedSearch: value,
-    }))
-  }
-
-  
-
-  render() {
-    const { data } = this.props
-    const { search, selectedSearch } = this.state
-
-    console.log(data)
-
-    //TODO: need to create a util function that will take better care of the search
-    //all data from the companies
-    const allCompaniesArray = data.allAirtable.edges
-    //Existing types into an array to create my buttons
-    const typesArray = []
-    allCompaniesArray.forEach(({ node }) => {
-      const company = node
-      if (typesArray.includes(company.data.Type) === false) {
-        typesArray.push(company.data.Type)
-      }
-    })
-
-    //select only the TYPES of companies
-    let selectedTypesArray = allCompaniesArray
-    if (selectedSearch !== "All") {
-      selectedTypesArray = allCompaniesArray.filter(company =>
-        company.node.data.Type.toLowerCase().includes(
-          selectedSearch.toLowerCase()
-        )
-      )
+  const { data } = props
+  //TODO: need to create a util function that will take better care of the search
+  //all data from the companies
+  const allCompaniesArray = data.allAirtable.edges
+  //Existing types into an array to create my buttons
+  const typesArray = []
+  allCompaniesArray.forEach(({ node }) => {
+    const company = node
+    if (typesArray.includes(company.data.Type) === false) {
+      typesArray.push(company.data.Type)
     }
+  })
 
-    // only searching the companies that the user wants
-    let filteredCompanies = selectedTypesArray
-    if (search !== null) {
-      filteredCompanies = selectedTypesArray.filter(
-        company =>
-          company.node.data.Name.toLowerCase().includes(search.toLowerCase()) ||
-          company.node.data.Description.toLowerCase().includes(
-            search.toLowerCase()
-          ) ||
-          company.node.data.Type.toLowerCase().includes(search.toLowerCase())
+  //select only the TYPES of companies
+  let selectedTypesArray = allCompaniesArray
+  if (selectedSearch.value !== "All") {
+    selectedTypesArray = allCompaniesArray.filter(company =>
+      company.node.data.Type.toLowerCase().includes(
+        selectedSearch.value.toLowerCase()
       )
-    }
-
-    const numberOfCompanies = filteredCompanies.length
-
-    return (
-      <Layout>
-        <SEO title="Crushing WFH | Search" />
-        <section style={{ marginBottom: `25px` }}>
-          <Title>
-            Search for{" "}
-            <Select onChange={e => this.selectOnChangeHandler(e)}>
-              <option>All</option>
-              {typesArray.map(type => (
-                <option value={type} key={type}>
-                  {type}
-                </option>
-              ))}
-            </Select>{" "}
-            tools
-          </Title>
-          <SearchBar
-            placeholder="Search company here..."
-            type="text"
-            value={search}
-            onChange={e => this.searchHandler(e.target.value)}
-          />
-        </section>
-        <section>
-          <ResultsSummary numberOfCompanies={numberOfCompanies} />
-          <SearcResults filteredCompanies={filteredCompanies} />
-        </section>
-      </Layout>
     )
   }
+
+  // only searching the companies that the user wants
+  let filteredCompanies = selectedTypesArray
+  if (search.value !== null) {
+    filteredCompanies = selectedTypesArray.filter(
+      company =>
+        company.node.data.Name.toLowerCase().includes(search.value.toLowerCase()) ||
+        company.node.data.Description.toLowerCase().includes(
+          search.value.toLowerCase()
+        ) ||
+        company.node.data.Type.toLowerCase().includes(search.value.toLowerCase())
+    )
+  }
+
+  const numberOfCompanies = filteredCompanies.length
+
+  return (
+    <Layout>
+      <SEO title="Crushing WFH | Search" />
+      <section style={{ marginBottom: `25px` }}>
+        <Title>
+          Search for{" "}
+          <Select {...selectedSearch}>
+            <option>All</option>
+            {typesArray.map(type => (
+              <option value={type} key={type}>
+                {type}
+              </option>
+            ))}
+          </Select>{" "}
+          tools
+        </Title>
+        <SearchBar
+          placeholder="Search company here..."
+          type="text"
+          {...search}
+        />
+      </section>
+      <section>
+        <ResultsSummary numberOfCompanies={numberOfCompanies} />
+        <SearcResults filteredCompanies={filteredCompanies} />
+      </section>
+    </Layout>
+  )
 }
 
 export const query = graphql`
