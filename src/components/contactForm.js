@@ -1,6 +1,7 @@
-import React, { Component } from "react"
+import React, { useState } from "react"
 import styled from "@emotion/styled"
 
+import useFormInput from "../hooks/useFormInput"
 import { addEmail } from "../utils/airtableApi"
 
 const Input = styled.input`
@@ -59,101 +60,67 @@ const Message = styled.h4`
   fontweight: 900;
 `
 
-class ContactForm extends Component {
-  state = {
-    name: "",
-    email: "",
-    sent: false,
-  }
+const ContactForm = () => {
+  const name = useFormInput("")
+  const email = useFormInput("")
+  const [sent, setSent] = useState(false)
 
   //for email validation
-  emailValidation = email => {
+  const emailValidation = email => {
     const re = /^.+@.+\..+$/
     return re.test(email)
   }
 
-  formChangeHandler = (e, name, value) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  formSubmitHandler = e => {
+  const formSubmitHandler = e => {
     e.preventDefault()
-    const { name, email } = this.state
-
-    if (this.emailValidation(email) === true) {
-      addEmail(name, email)
-      this.setState({
-        name: "",
-        email: "",
-        sent: true,
-      })
+    if (emailValidation(email.value) === true) {
+      addEmail(name.value, email.value)
+      setSent(true)
     } else {
       window.alert("Please, enter a correct email")
     }
   }
 
-  render() {
-    const { name, email, sent } = this.state
+  let disabled = true
+  if (name !== "" && email !== "") {
+    disabled = false
+  }
 
-    let disabled = true
-    if (name !== "" && email !== "") {
-      disabled = false
-    }
-
-    let gotEmailMessage = ""
-    if (sent === true) {
-      gotEmailMessage = (
-        <Message>
-          Thank you! Expect new tools every Wendsday in your inbox!
-        </Message>
-      )
-    }
-
-    return (
-      <FormContainer onSubmit={e => this.formSubmitHandler(e)}>
-        <Flex>
-          <Title>
-            Want to keep up with the latest tools? Subscribe to the newsletter!
-          </Title>
-        </Flex>
-        <Flex>
-          {sent ? (
-            gotEmailMessage
-          ) : (
-            <>
-              <Input
-                type="text"
-                placeholder="Your name"
-                name="name"
-                value={name}
-                onChange={(e, name, value) =>
-                  this.formChangeHandler(e, name, value)
-                }
-              />
-              <Input
-                type="email"
-                placeholder="your.email@example.com"
-                name="email"
-                value={email}
-                onChange={(e, name, value) =>
-                  this.formChangeHandler(e, name, value)
-                }
-              />
-
-              <Button
-                onSubmit={e => this.formSubmitHandler(e)}
-                disabled={disabled}
-              >
-                Subscribe
-              </Button>
-            </>
-          )}
-        </Flex>
-      </FormContainer>
+  let gotEmailMessage = ""
+  if (sent === true) {
+    gotEmailMessage = (
+      <Message>
+        Thank you! Expect new tools every Wendsday in your inbox!
+      </Message>
     )
   }
+
+  return (
+    <FormContainer onSubmit={formSubmitHandler}>
+      <Flex>
+        <Title>
+          Want to keep up with the latest tools? Subscribe to the newsletter!
+        </Title>
+      </Flex>
+      <Flex>
+        {sent ? (
+          gotEmailMessage
+        ) : (
+          <>
+            <Input type="text" placeholder="Your name" {...name} />
+            <Input
+              type="email"
+              placeholder="your.email@example.com"
+              {...email}
+            />
+            <Button onSubmit={formSubmitHandler} disabled={disabled}>
+              Subscribe
+            </Button>
+          </>
+        )}
+      </Flex>
+    </FormContainer>
+  )
 }
 
 export default ContactForm
