@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import styled from '@emotion/styled';
-import useStyles from '../components/useStyles'
+import useStyles from '../themes/useStyles'
 
 const Label = styled.h4`
 margin-bottom: 35px; 

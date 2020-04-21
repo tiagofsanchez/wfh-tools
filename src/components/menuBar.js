@@ -1,15 +1,12 @@
 import React from "react"
-import AppBar from "@material-ui/core/AppBar"
-import Toolbar from "@material-ui/core/Toolbar"
-import IconButton from "@material-ui/core/IconButton"
-import Typography from "@material-ui/core/Typography"
+import { AppBar, Toolbar, IconButton, Typography , Badge } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
-import Badge from "@material-ui/core/Badge"
 import NotificationsIcon from "@material-ui/icons/Notifications"
 import Notifications from "./notifications"
 import MyDrawer from "./drawer"
-import useStyles from "./useStyles"
+import useStyles from "../themes/useStyles"
 import { Link, graphql, useStaticQuery } from "gatsby"
+
 
 const MenuBar = () => {
   const classes = useStyles()
@@ -57,15 +54,18 @@ const MenuBar = () => {
     setIsNotOpen(!isNotOpen)
   }
 
+
+  
+
   return (
-    <div className={classes.grow}>
+    <div className={classes.grow} >
       <MyDrawer
         isDrawerOpen={isDrawerOpen}
         toggleDrawer={toggleDrawer}
         typeOfCompanies={data.Type.edges}
       />
       <Notifications onOpen={isNotOpen} onClose={closeNotHandler} />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} >
         <Toolbar>
           <IconButton
             edge="start"

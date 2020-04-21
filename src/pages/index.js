@@ -2,7 +2,9 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import CountUp from "react-countup"
+import {ThemeProvider} from "@material-ui/core";
 
+import wfhTheme from '../themes/theme'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Logo from "../components/logo"
@@ -116,7 +118,11 @@ const IndexPage = ({ data }) => {
     Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
 
+  console.log(wfhTheme);
+  
+
   return (
+    <ThemeProvider theme={wfhTheme}>
     <Layout>
       <SEO title="Crushing WFH" />
       <HeaderSection>
@@ -200,6 +206,7 @@ const IndexPage = ({ data }) => {
         <ContactForm />
       </section>
     </Layout>
+    </ThemeProvider>
   )
 }
 

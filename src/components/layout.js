@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import { useTheme } from '@material-ui/styles'
 import MenuBar from "./menuBar"
 import Image from "./image"
 import styled from "@emotion/styled"
@@ -14,7 +15,9 @@ const ExternalLink = styled.a`
 `
 
 const Layout = ({ children }) => {
-
+  const theme =useTheme()
+  console.log(theme);
+  
   return (
     <>
       <MenuBar  />

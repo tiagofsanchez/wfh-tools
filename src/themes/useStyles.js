@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   appBar: {
-    backgroundColor: "rebeccapurple",
+    // backgroundColor: "rebeccapurple",
     marginBottom: "50px",
   },
   list: {

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import SearchResults from "./searchResults"
 
 import CloseIcon from "@material-ui/icons/Close"
-import useStyles from "./useStyles"
+import useStyles from "../themes/useStyles"
 import styled from "@emotion/styled"
 
 const Layout = styled.div`
