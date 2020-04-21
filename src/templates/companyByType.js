@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 
-import Layout from "../components/layout"
 import GoToSearch from "../components/goToSearch"
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
@@ -89,7 +88,7 @@ const CompanyByType = ({ data, pageContext }) => {
   }
 
   return (
-    <Layout>
+    <>
       <Seo
         title={`Crushing WFH | ${type}`}
         description={tagLine}
@@ -148,7 +147,7 @@ const CompanyByType = ({ data, pageContext }) => {
       <section>
         <ContactForm />
       </section>
-    </Layout>
+    </>
   )
 }
 

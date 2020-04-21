@@ -2,16 +2,12 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import CountUp from "react-countup"
-import {ThemeProvider} from "@material-ui/core";
 
-import wfhTheme from '../themes/theme'
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Logo from "../components/logo"
 import ContactForm from "../components/contactForm"
 import CompaniesSample from "../components/companiesSample"
 import AddNewTool from "../components/addNewTool"
-
 
 const HeaderSection = styled.section`
   margin-bottom: 50px;
@@ -70,7 +66,6 @@ const FlexBox = styled.div`
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
 `
 
-
 const Title = styled.h1`
   text-align: center;
   color: rebeccapurple;
@@ -118,12 +113,8 @@ const IndexPage = ({ data }) => {
     Icons[node.data.IconName] = node.data.Icon.localFiles[0]
   })
 
-  console.log(wfhTheme);
-  
-
   return (
-    <ThemeProvider theme={wfhTheme}>
-    <Layout>
+    <>
       <SEO title="Crushing WFH" />
       <HeaderSection>
         <IconContainer>
@@ -205,8 +196,7 @@ const IndexPage = ({ data }) => {
       <section style={{ marginTop: `90px` }}>
         <ContactForm />
       </section>
-    </Layout>
-    </ThemeProvider>
+    </>
   )
 }
 

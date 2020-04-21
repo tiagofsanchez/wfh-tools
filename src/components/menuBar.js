@@ -1,14 +1,26 @@
 import React from "react"
-import { AppBar, Toolbar, IconButton, Typography , Badge } from "@material-ui/core"
+import {
+  AppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  Badge,
+  useTheme,
+} from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import NotificationsIcon from "@material-ui/icons/Notifications"
+import WbSunnyIcon from "@material-ui/icons/WbSunny"
+import NightsStayIcon from "@material-ui/icons/NightsStay"
+
 import Notifications from "./notifications"
 import MyDrawer from "./drawer"
 import useStyles from "../themes/useStyles"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
+const MenuBar = ({ toogleDarkMode }) => {
+  const theme = useTheme()
+  const type = theme.palette.type
 
-const MenuBar = () => {
   const classes = useStyles()
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -54,18 +66,15 @@ const MenuBar = () => {
     setIsNotOpen(!isNotOpen)
   }
 
-
-  
-
   return (
-    <div className={classes.grow} >
+    <div className={classes.grow}>
       <MyDrawer
         isDrawerOpen={isDrawerOpen}
         toggleDrawer={toggleDrawer}
         typeOfCompanies={data.Type.edges}
       />
       <Notifications onOpen={isNotOpen} onClose={closeNotHandler} />
-      <AppBar position="fixed" className={classes.appBar} >
+      <AppBar position="fixed" className={classes.appBar} color="primary">
         <Toolbar>
           <IconButton
             edge="start"
@@ -83,12 +92,19 @@ const MenuBar = () => {
           </Link>
           <div className={classes.grow} />
           <IconButton
+            aria-label="toogle theme"
+            color="inherit"
+            onClick={toogleDarkMode}
+          >
+           {type === 'light' ? <WbSunnyIcon fontSize='small' /> : <NightsStayIcon fontSize='small'/>}
+          </IconButton>
+          <IconButton
             aria-label="show new notifications"
             color="inherit"
             onClick={closeNotHandler}
           >
-            <Badge variant="dot" color="secondary">
-              <NotificationsIcon />
+            <Badge variant="dot" color="secondary" >
+              <NotificationsIcon fontSize='small' />
             </Badge>
           </IconButton>
         </Toolbar>

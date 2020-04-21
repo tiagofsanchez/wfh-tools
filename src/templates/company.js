@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql} from "gatsby"
+import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 
@@ -68,7 +68,6 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 `
 
 const Icon = styled.span`
@@ -87,16 +86,15 @@ const Hlink = styled.a`
 `
 
 const AltFlexBox = styled.div`
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-width: 95%;
-margin: auto;
-@media (max-width: 380px) {
- width: 100%
-}
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: auto;
+  @media (max-width: 380px) {
+    width: 100%;
+  }
 `
-
 
 const Company = props => {
   const company = props.data.company.data
@@ -114,11 +112,11 @@ const Company = props => {
       })
     }
   })
-   
+
   const image = company.Thumbnail.localFiles[0].publicURL
 
   return (
-    <Layout>
+    <>
       <SEO
         title={`Crushing WFH | ${company.Name}`}
         description={company.Description}
@@ -132,7 +130,7 @@ const Company = props => {
         />
       </Thumbnail>
       <CompanyName>{company.Name}</CompanyName>
-      {company.Age && <AgeGap ageArray={company.Age}/>}
+      {company.Age && <AgeGap ageArray={company.Age} />}
       <Label>Description</Label>
       <Description>{company.Description}</Description>
       {company.Screenshot && (
@@ -158,7 +156,13 @@ const Company = props => {
           <Icon role="img" aria-label="webpage">
             🕸️
           </Icon>
-          <Hlink href={company.Website} rel="noreferrer noopener" target="_blank">webpage &#10132;</Hlink>
+          <Hlink
+            href={company.Website}
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            webpage &#10132;
+          </Hlink>
         </Box>
       </Other>
       <section>
@@ -179,7 +183,7 @@ const Company = props => {
       <section style={{ marginTop: `80px` }}>
         <ContactForm />
       </section>
-    </Layout>
+    </>
   )
 }
 
@@ -227,7 +231,7 @@ export const companyData = graphql`
               localFiles {
                 publicURL
                 childImageSharp {
-                  fluid (grayscale: true) {
+                  fluid(grayscale: true) {
                     ...GatsbyImageSharpFluid
                   }
                 }

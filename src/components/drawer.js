@@ -1,4 +1,5 @@
 import React from "react"
+import {withStyles} from '@material-ui/core'
 import Drawer from "@material-ui/core/Drawer"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
@@ -7,7 +8,6 @@ import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import useStyles from "../themes/useStyles"
-import { withStyles } from "@material-ui/core/styles"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import HomeWorkIcon from "@material-ui/icons/HomeWork"
@@ -93,7 +93,7 @@ const MyDrawer = React.memo(
     )
 
     return (
-      <WFHDrawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
+      <WFHDrawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer} >
         {list}
       </WFHDrawer>
     )

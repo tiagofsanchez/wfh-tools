@@ -3,7 +3,6 @@ import styled from "@emotion/styled"
 import { graphql } from "gatsby"
 import useFormInput from "../hooks/useFormInput"
 
-import Layout from "../components/layout"
 import SEO from "../components/seo"
 import SearcResults from "../components/searchResults"
 import ResultsSummary from "../components/resultsSummary"
@@ -75,18 +74,22 @@ const Search = props => {
   if (search.value !== null) {
     filteredCompanies = selectedTypesArray.filter(
       company =>
-        company.node.data.Name.toLowerCase().includes(search.value.toLowerCase()) ||
+        company.node.data.Name.toLowerCase().includes(
+          search.value.toLowerCase()
+        ) ||
         company.node.data.Description.toLowerCase().includes(
           search.value.toLowerCase()
         ) ||
-        company.node.data.Type.toLowerCase().includes(search.value.toLowerCase())
+        company.node.data.Type.toLowerCase().includes(
+          search.value.toLowerCase()
+        )
     )
   }
 
   const numberOfCompanies = filteredCompanies.length
 
   return (
-    <Layout>
+    <>
       <SEO title="Crushing WFH | Search" />
       <section style={{ marginBottom: `25px` }}>
         <Title>
@@ -111,7 +114,7 @@ const Search = props => {
         <ResultsSummary numberOfCompanies={numberOfCompanies} />
         <SearcResults filteredCompanies={filteredCompanies} />
       </section>
-    </Layout>
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
+import { withStyles } from "@material-ui/core"
 import Dialog from "@material-ui/core/Dialog"
 import AppBar from "@material-ui/core/AppBar"
 import ToolBar from "@material-ui/core/Toolbar"
@@ -12,6 +13,8 @@ import SearchResults from "./searchResults"
 import CloseIcon from "@material-ui/icons/Close"
 import useStyles from "../themes/useStyles"
 import styled from "@emotion/styled"
+
+
 
 const Layout = styled.div`
   margin: 0 auto 40px auto;
