@@ -1,5 +1,6 @@
 import React from "react"
 import {withStyles} from '@material-ui/core'
+import { makeStyles } from "@material-ui/core/styles"
 import Drawer from "@material-ui/core/Drawer"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
@@ -7,7 +8,6 @@ import AddIcon from "@material-ui/icons/Add"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
-import useStyles from "../themes/useStyles"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import HomeWorkIcon from "@material-ui/icons/HomeWork"
@@ -19,6 +19,17 @@ const primaryMenu = [
   { name: "Home", slug: "/", icon: <HomeWorkIcon fontSize="large" /> },
   { name: "Search", slug: "/search", icon: <SearchIcon fontSize="large" /> },
 ]
+
+const useStyles = makeStyles(theme => ({
+  list: {
+    width: 300,
+    maxHeight: "100vh",
+    overflow: "auto",
+  },
+  
+}))
+
+
 
 const WFHDrawer = withStyles({
   paper: {

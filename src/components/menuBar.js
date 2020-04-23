@@ -14,14 +14,15 @@ import NightsStayIcon from "@material-ui/icons/NightsStay"
 
 import Notifications from "./notifications"
 import MyDrawer from "./drawer"
-import useStyles from "../themes/useStyles"
 import { Link, graphql, useStaticQuery } from "gatsby"
+
+
+
 
 const MenuBar = ({ toogleDarkMode }) => {
   const theme = useTheme()
   const type = theme.palette.type
 
-  const classes = useStyles()
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -67,18 +68,17 @@ const MenuBar = ({ toogleDarkMode }) => {
   }
 
   return (
-    <div className={classes.grow}>
+    <div style={{flexGrow: `1`}}>
       <MyDrawer
         isDrawerOpen={isDrawerOpen}
         toggleDrawer={toggleDrawer}
         typeOfCompanies={data.Type.edges}
       />
       <Notifications onOpen={isNotOpen} onClose={closeNotHandler} />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" style={{ marginBottom: `50px`}}>
         <Toolbar>
           <IconButton
             edge="start"
-            className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer}
@@ -86,11 +86,11 @@ const MenuBar = ({ toogleDarkMode }) => {
             <MenuIcon />
           </IconButton>
           <Link to="/" style={{ textDecoration: `none`, color: `white` }}>
-            <Typography className={classes.title} variant="h6" noWrap>
+            <Typography variant="h6" style={{fontWeight: `900`}} noWrap>
               {data.site.siteMetadata.title}
             </Typography>
           </Link>
-          <div className={classes.grow} />
+          <div style={{flexGrow: `1`}} />
           <IconButton
             aria-label="toogle theme"
             color="inherit"

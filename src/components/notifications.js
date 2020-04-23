@@ -11,7 +11,6 @@ import Typography from "@material-ui/core/Typography"
 import SearchResults from "./searchResults"
 
 import CloseIcon from "@material-ui/icons/Close"
-import useStyles from "../themes/useStyles"
 import styled from "@emotion/styled"
 
 const Layout = styled.div`
@@ -25,7 +24,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 })
 
 const Notifications = ({ onOpen, onClose }) => {
-  const classes = useStyles()
   const theme = useTheme()
   const mode = theme.palette.type
   const data = useStaticQuery(graphql`
@@ -62,12 +60,12 @@ const Notifications = ({ onOpen, onClose }) => {
   const newCompanies = data.allAirtable.edges
   return (
     <Dialog fullScreen open={onOpen} TransitionComponent={Transition}>
-      <AppBar className={classes.appBar}>
+      <AppBar position="fixed" style={{ marginBottom: `50px`}} >
         <ToolBar>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography variant="h6" noWrap>
             Notifications
           </Typography>
-          <div className={classes.grow} />
+          <div style={{flexGrow: `1`}} />
           <IconButton
             aria-label="close notifications"
             color="inherit"
