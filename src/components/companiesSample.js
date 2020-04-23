@@ -2,23 +2,18 @@ import React from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-import { Typography, useTheme, Box } from "@material-ui/core"
-
-import ListOfCompanies from "./listOfCompanies"
-import GoToSearch from "./goToSearch"
+import { Typography, useTheme } from "@material-ui/core"
 
 const _ = require("lodash")
 
 const ColumnFlex = styled.div`
+  width: 320px; 
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 320px;
+  align-items: center;
+  height: 380px;
   margin: 20px;
   padding: 5px;
-  align-items: ${props => (props.start ? "flex-start" : "center")};
-  justify-content: center;
-  flex: 1 1 280px;
   @media (max-width: 680px) {
     height: auto;
   }
@@ -38,88 +33,38 @@ const Description = styled.p`
   margin-bottom: 0;
 `
 
-const CompaniesSample = ({
-  companiesArray,
-  icon,
-  title,
-  right,
-  description,
-}) => {
+const CompaniesSample = ({ icon, title, description }) => {
   const theme = useTheme()
   const type = theme.palette.type
 
   return (
-    <>
-      {right ? (
-        <>
-          <ColumnFlex start="true">
-            {companiesArray.map(company => {
-              return <ListOfCompanies company={company} key={company.id} />
-            })}
-            <GoToSearch />
-          </ColumnFlex>
-          <ColumnFlex>
-            <Typography
-              variant="h4"
-              align="center"
-              style={
-                type === "light"
-                  ? { color: theme.palette.primary.main }
-                  : { color: theme.palette.primary.light }
-              }
-            >
-              <Box fontWeight={900}>{title}</Box>
-            </Typography>
-            <Link to={`${_.kebabCase(title)}/`}>
-              <SectionImage>
-                <Img fluid={icon} alt={title} />
-              </SectionImage>
-            </Link>
-            <Description
-              style={
-                type === "light" ? { color: theme.palette.primary.dark } : null
-              }
-            >
-              {description}
-            </Description>
-          </ColumnFlex>
-        </>
-      ) : (
-        <>
-          <ColumnFlex>
-            <Typography
-              variant="h4"
-              align="center"
-              style={
-                type === "light"
-                  ? { color: theme.palette.primary.main }
-                  : { color: theme.palette.primary.light }
-              }
-            >
-              <Box fontWeight={900}>{title}</Box>
-            </Typography>
-            <Link to={`${_.kebabCase(title)}/`}>
-              <SectionImage>
-                <Img fluid={icon} alt={title} />
-              </SectionImage>
-            </Link>
-            <Description
-              style={
-                type === "light" ? { color: theme.palette.primary.dark } : null
-              }
-            >
-              {description}
-            </Description>
-          </ColumnFlex>
-          <ColumnFlex start="true">
-            {companiesArray.map(company => {
-              return <ListOfCompanies company={company} key={company.id} />
-            })}
-            <GoToSearch />
-          </ColumnFlex>
-        </>
-      )}
-    </>
+      <div style={{display: `flex`, flexWrap: `wrap`}}>
+      <ColumnFlex>
+        <Typography
+          variant="h4"
+          align="center"
+          style={
+            type === "light"
+              ? { color: theme.palette.primary.main, fontWeight: `900` }
+              : { color: theme.palette.primary.light, fontWeight: `900` }
+          }
+        >
+          {title}
+        </Typography>
+        <Link to={`${_.kebabCase(title)}/`}>
+          <SectionImage>
+            <Img fluid={icon} alt={title} />
+          </SectionImage>
+        </Link>
+        <Description
+          style={
+            type === "light" ? { color: theme.palette.primary.dark } : null
+          }
+        >
+          {description}
+        </Description>
+      </ColumnFlex>
+      </div>
   )
 }
 
