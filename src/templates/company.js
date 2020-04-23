@@ -2,7 +2,8 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
-import { useTheme } from "@material-ui/core"
+import { useTheme , Paper} from "@material-ui/core"
+
 
 import SEO from "../components/seo"
 import CompanyCard from "../components/companyCard"
@@ -50,9 +51,7 @@ const Other = styled.div`
   display: flex;
   margin: auto;
   padding: 20px;
-  border-radius: 8px;
   margin-bottom: 30px;
-  box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
   @media (max-width: 380px) {
     flex-direction: column;
     align-items: center;
@@ -154,6 +153,7 @@ const Company = props => {
         </>
       )}
       <Label>Price and webpage</Label>
+      <Paper>
       <Other>
         <Box>
           <Icon role="img" aria-labelledby="costs">
@@ -175,17 +175,20 @@ const Company = props => {
           </Hlink>
         </Box>
       </Other>
+      </Paper>
       <section>
         <Label>You might also like</Label>
         <AltFlexBox>
           {alternativesArray.map(company => {
             return (
+              <Paper style={{margin: `5px`}}>
               <CompanyCard
                 key={company.Name}
                 name={company.Name}
                 slug={company.slug}
                 icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
               />
+              </Paper>
             )
           })}
         </AltFlexBox>

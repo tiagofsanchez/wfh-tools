@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import { useTheme, Typography, Box } from "@material-ui/core"
+import { useTheme, Typography, Box , Paper } from "@material-ui/core"
 import styled from "@emotion/styled"
 
 import GoToSearch from "../components/goToSearch"
@@ -134,6 +134,7 @@ const CompanyByType = ({ data, pageContext }) => {
                       node.data.Thumbnail.localFiles[0].childImageSharp.fluid)
                 const brief = company.Description
                 return (
+                  <Paper style={{margin: '20px'}}>
                   <CompanyCard
                     big={true}
                     key={company.Name}
@@ -142,6 +143,7 @@ const CompanyByType = ({ data, pageContext }) => {
                     icon={icon}
                     slug={company.slug}
                   />
+                  </Paper>
                 )
               })}
             </Container>

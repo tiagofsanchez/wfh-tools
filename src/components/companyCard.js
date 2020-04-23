@@ -10,13 +10,8 @@ const CardContainer = styled.div`
   margin: 10px;
   flex-direction: column;
   align-items: center;
-  width: ${props => props.big ? '300px' : '150px'}; 
+  width: ${props => props.big ? '300px' : '130px'}; 
   height: ${props => props.big ? '400px' : '175px'};
-  border-radius: 8px;
-  box-shadow: 1px 1px 2px 2px rgba(204, 204, 204, 0.4);
-  &:hover {
-    box-shadow: 1px 1px 4px 4px rgba(102, 51, 153, 0.4);
-  }
 `
 
 const LogoContainer = styled.div`
