@@ -2,6 +2,7 @@ import React from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
+import { Typography, useTheme, Box } from "@material-ui/core"
 
 import ListOfCompanies from "./listOfCompanies"
 import GoToSearch from "./goToSearch"
@@ -12,11 +13,11 @@ const ColumnFlex = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 320px; 
+  height: 320px;
   margin: 20px;
-  padding: 5px; 
+  padding: 5px;
   align-items: ${props => (props.start ? "flex-start" : "center")};
-  justify-content: center; 
+  justify-content: center;
   flex: 1 1 280px;
   @media (max-width: 680px) {
     height: auto;
@@ -32,19 +33,10 @@ const SectionImage = styled.div`
 `
 const Description = styled.p`
   letter-spacing: 1px;
-  color: rebeccapurple;
   padding: 20px;
   font-weight: 600;
-  text-align: center;
   margin-bottom: 0;
 `
-
-const H1 = styled.h1`
-  color: rebeccapurple;
-  fontweight: 900;
-  text-align: center;
-`
-
 
 const CompaniesSample = ({
   companiesArray,
@@ -53,6 +45,9 @@ const CompaniesSample = ({
   right,
   description,
 }) => {
+  const theme = useTheme()
+  const type = theme.palette.type
+
   return (
     <>
       {right ? (
@@ -64,29 +59,60 @@ const CompaniesSample = ({
             <GoToSearch />
           </ColumnFlex>
           <ColumnFlex>
-            <H1 >{title}</H1>
-            <Link to={`${_.kebabCase(title)}/`}>
-              <SectionImage >
-                <Img fluid={icon} alt={title}  />
-              </SectionImage>
-            </Link>
-            <Description>{description}</Description>
-          </ColumnFlex>
-        </>
-      ) : (
-        <>
-          <ColumnFlex>
-            <H1>{title}</H1>
+            <Typography
+              variant="h4"
+              align="center"
+              style={
+                type === "light"
+                  ? { color: theme.palette.primary.main }
+                  : { color: theme.palette.primary.light }
+              }
+            >
+              <Box fontWeight={900}>{title}</Box>
+            </Typography>
             <Link to={`${_.kebabCase(title)}/`}>
               <SectionImage>
                 <Img fluid={icon} alt={title} />
               </SectionImage>
             </Link>
-            <Description>{description}</Description>
+            <Description
+              style={
+                type === "light" ? { color: theme.palette.primary.dark } : null
+              }
+            >
+              {description}
+            </Description>
+          </ColumnFlex>
+        </>
+      ) : (
+        <>
+          <ColumnFlex>
+            <Typography
+              variant="h4"
+              align="center"
+              style={
+                type === "light"
+                  ? { color: theme.palette.primary.main }
+                  : { color: theme.palette.primary.light }
+              }
+            >
+              <Box fontWeight={900}>{title}</Box>
+            </Typography>
+            <Link to={`${_.kebabCase(title)}/`}>
+              <SectionImage>
+                <Img fluid={icon} alt={title} />
+              </SectionImage>
+            </Link>
+            <Description
+              style={
+                type === "light" ? { color: theme.palette.primary.dark } : null
+              }
+            >
+              {description}
+            </Description>
           </ColumnFlex>
           <ColumnFlex start="true">
             {companiesArray.map(company => {
-    
               return <ListOfCompanies company={company} key={company.id} />
             })}
             <GoToSearch />

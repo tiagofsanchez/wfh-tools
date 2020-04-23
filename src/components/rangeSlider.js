@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import styled from '@emotion/styled';
 import useStyles from '../themes/useStyles'
@@ -9,17 +9,17 @@ margin-bottom: 35px;
 text-align: center;
 `
 
-const WFHSlider = withStyles({
-  root: {
-    color: `rebeccapurple`,
-  },
-})(Slider)
 
 function valuetext(value) {
   return `${value}`;
 }
 
+
+
+
 function RangeSlider(props) {
+  const theme = useTheme();
+  const mode = theme.palette.type
   const { minAge , maxAge ,onAgeSelection } = props  
   const classes = useStyles();
   const [value, setValue] = React.useState([minAge, maxAge]);
@@ -33,7 +33,7 @@ function RangeSlider(props) {
   return (
     <div className={classes.rangeSlider}>
       <Label>Select the age group</Label>
-      <WFHSlider
+      <Slider
         value={value}
         min={minAge}
         max={maxAge}
@@ -42,6 +42,7 @@ function RangeSlider(props) {
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
+        // style={mode === "dark" ? {color: theme.palette.primary.light} : {color: theme.palette.primary.main}}
       />
     </div>
   )

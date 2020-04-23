@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
+import { useTheme, Typography, Box } from "@material-ui/core"
 import styled from "@emotion/styled"
 
 import GoToSearch from "../components/goToSearch"
@@ -41,14 +42,10 @@ const Container = styled.div`
   justify-content: center;
 `
 
-const PageTitle = styled.h1`
-  color: rebeccapurple;
-  font-weight: 900;
-  text-align: center;
-  margin-bottom: 0;
-`
-
 const CompanyByType = ({ data, pageContext }) => {
+  const theme = useTheme()
+  const mode = theme.palette.type
+
   const companies = data.allAirtable.edges
   const [filteredCompanies, setFilteredCompanies] = useState(companies)
   const type = pageContext.type
@@ -100,7 +97,17 @@ const CompanyByType = ({ data, pageContext }) => {
           <Thumbnail>
             <Img fluid={iconThumbnail.childImageSharp.fluid} />
           </Thumbnail>
-          <PageTitle>{type}</PageTitle>
+          <Typography
+            variant="h4"
+            align="center"
+            style={
+              mode === "light"
+                ? { color: theme.palette.primary.main }
+                : { color: theme.palette.primary.light }
+            }
+          >
+            <Box fontWeight={900}>{type}</Box>
+          </Typography>
           <TagLine>{tagLine}</TagLine>
           {type === "kids" ? (
             <>

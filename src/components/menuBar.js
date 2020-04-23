@@ -74,7 +74,7 @@ const MenuBar = ({ toogleDarkMode }) => {
         typeOfCompanies={data.Type.edges}
       />
       <Notifications onOpen={isNotOpen} onClose={closeNotHandler} />
-      <AppBar position="fixed" className={classes.appBar} color="primary">
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -96,15 +96,19 @@ const MenuBar = ({ toogleDarkMode }) => {
             color="inherit"
             onClick={toogleDarkMode}
           >
-           {type === 'light' ? <WbSunnyIcon fontSize='small' /> : <NightsStayIcon fontSize='small'/>}
+            {type === "light" ? (
+              <WbSunnyIcon fontSize="small" />
+            ) : (
+              <NightsStayIcon fontSize="small" />
+            )}
           </IconButton>
           <IconButton
             aria-label="show new notifications"
             color="inherit"
             onClick={closeNotHandler}
           >
-            <Badge variant="dot" color="secondary" >
-              <NotificationsIcon fontSize='small' />
+            <Badge variant="dot" color="secondary">
+              <NotificationsIcon fontSize="small" />
             </Badge>
           </IconButton>
         </Toolbar>

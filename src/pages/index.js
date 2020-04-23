@@ -216,8 +216,8 @@ export const query = graphql`
             Thumbnail {
               localFiles {
                 childImageSharp {
-                  fixed(width: 30, height: 30, grayscale: true) {
-                    ...GatsbyImageSharpFixed
+                  fluid( grayscale: true) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }

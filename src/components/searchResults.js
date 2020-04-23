@@ -1,5 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
+import { useTheme } from "@material-ui/core"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 import PropTypes from "prop-types"
@@ -15,14 +16,13 @@ const Thumbnail = styled.div`
 `
 const CompanyName = styled.h3`
   font-weight: 900;
-  color: black;
   margin-bottom: 0;
   margin-right: 20px;
 `
 const Container = styled.div`
-margin: 8px auto;  
-padding: 8px;
-&:hover {
+  margin: 8px auto;
+  padding: 8px;
+  &:hover {
     background-color: #ece6ff;
     border-radius: 5px;
   }
@@ -48,14 +48,14 @@ const TitleTag = styled.div`
 `
 
 const CreatedDays = styled.div`
-margin-left: 5px;
-font-size: 15px;
-color: gray
+  margin-left: 5px;
+  font-size: 15px;
+  color: gray;
 `
 
 const Flex = styled.div`
-display: flex;
-margin-top: 5px;
+  display: flex;
+  margin-top: 5px;
 `
 
 const CompanyContainer = styled.div`
@@ -68,8 +68,8 @@ const ContentContainer = styled.div`
 `
 const Description = styled.p`
   letter-spacing: 1px;
-  color: gray;
-  margin-bottom: 0;
+  font-weight: 600;
+  margin-bottom: 10px;
 `
 
 const SearchResults = ({ filteredCompanies, onClose }) => {
@@ -89,7 +89,7 @@ const SearchResults = ({ filteredCompanies, onClose }) => {
           return (
             <Link
               to={`/${data.slug}`}
-              style={{ textDecoration: `none` }}
+              style={{ textDecoration: `none`, color:'inherit' }}
               key={data.slug}
               onClick={onClose}
             >

@@ -1,10 +1,12 @@
 import React from "react"
-import styled from '@emotion/styled'
-import AddNewTool from './addNewTool';
+import styled from "@emotion/styled"
+import { useTheme } from "@material-ui/core"
+import AddNewTool from "./addNewTool"
 
 const H1 = styled.h1`
-  color: rebeccapurple;
   fontweight: 900;
+  margin-top: 50px;
+  text-align: center;
 `
 
 const Paragraph = styled.p`
@@ -16,9 +18,18 @@ const Paragraph = styled.p`
 `
 
 const CallToAction = () => {
+  const theme = useTheme()
+  const mode = theme.palette.type
+
   return (
     <>
-      <H1 style={{ textAlign: `center` }}>
+      <H1
+        style={
+          mode === "dark"
+            ? { color: theme.palette.primary.light }
+            : { color: theme.palette.primary.main }
+        }
+      >
         Don't find the tool{" "}
         <span role="img" aria-label="Tools">
           ⚒️
@@ -26,8 +37,8 @@ const CallToAction = () => {
         that you love?
       </H1>
       <Paragraph>
-        Don't worry! Let us know the tool you would like to see in the
-        database. We can add it for you!
+        Don't worry! Let us know the tool you would like to see in the database.
+        We can add it for you!
       </Paragraph>
       <AddNewTool />
     </>

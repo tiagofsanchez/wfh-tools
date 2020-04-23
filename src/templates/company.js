@@ -2,6 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
+import { useTheme } from "@material-ui/core"
 
 import SEO from "../components/seo"
 import CompanyCard from "../components/companyCard"
@@ -22,8 +23,7 @@ const CompanyName = styled.h1`
   margin: auto;
   font-weight: 900;
   text-align: center;
-  color: rebeccapurple;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 `
 
 const Label = styled.h3`
@@ -97,6 +97,8 @@ const AltFlexBox = styled.div`
 
 const Company = props => {
   const company = props.data.company.data
+  const theme = useTheme()
+  const mode = theme.palette.type
 
   const allCompaniesArray = props.data.alternatives.edges
   const alternativesArray = []
@@ -128,7 +130,15 @@ const Company = props => {
           alt={company.Name}
         />
       </Thumbnail>
-      <CompanyName>{company.Name}</CompanyName>
+      <CompanyName
+        style={
+          mode === "dark"
+            ? { color: theme.palette.primary.light }
+            : { color: theme.palette.primary.main }
+        }
+      >
+        {company.Name}
+      </CompanyName>
       {company.Age && <AgeGap ageArray={company.Age} />}
       <Label>Description</Label>
       <Description>{company.Description}</Description>

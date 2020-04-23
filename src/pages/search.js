@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import { graphql } from "gatsby"
+import { useTheme } from "@material-ui/core"
 import useFormInput from "../hooks/useFormInput"
 
 import SEO from "../components/seo"
@@ -10,13 +11,21 @@ import ResultsSummary from "../components/resultsSummary"
 const Title = styled.h2`
   font-weight: 900;
   text-align: center;
-  color: rebeccapurple;
   margin-bottom: 20px;
   line-height: 40px;
 `
 
+const Flex = styled.div`
+display: flex;
+flex-wrap:wrap;
+margin:auto;
+`
+
 const SearchBar = styled.input`
-  width: 100%;
+  flex: 1 1 300px;
+  width: 300px;
+  margin:auto;
+  margin:5px;
   padding: 10px;
   border: 2px solid rebeccapurple;
   border-radius: 8px;
@@ -26,9 +35,12 @@ const SearchBar = styled.input`
   }
 `
 
+
 const Select = styled.select`
   width: 270px;
-  padding: 0px 0px 0px 5px;
+  flex: 1 1 270px;
+  padding: 5px;
+  margin: 5px;
   color: rebeccapurple;
   border: 2px solid #ece6ff;
   background-color: #ece6ff;
@@ -43,6 +55,8 @@ const Select = styled.select`
 `
 
 const Search = props => {
+  const theme = useTheme();
+  const mode = theme.palette.type;
   const search = useFormInput("")
   const selectedSearch = useFormInput("All")
 
@@ -92,23 +106,31 @@ const Search = props => {
     <>
       <SEO title="Crushing WFH | Search" />
       <section style={{ marginBottom: `25px` }}>
-        <Title>
-          Search for{" "}
-          <Select {...selectedSearch}>
-            <option>All</option>
-            {typesArray.map(type => (
-              <option value={type} key={type}>
-                {type}
-              </option>
-            ))}
-          </Select>{" "}
-          tools
+        <Title
+          style={
+            mode === "dark"
+              ? { color: theme.palette.primary.light }
+              : { color: theme.palette.primary.main }
+          }
+        >
+          Search your tools
         </Title>
+        <Flex>
+        <Select {...selectedSearch}>
+          <option>All</option>
+          {typesArray.map(type => (
+            <option value={type} key={type}>
+              {type}
+            </option>
+          ))}
+        </Select>
         <SearchBar
           placeholder="Search company here..."
           type="text"
+          style={mode ==='dark' ? {borderColor: theme.palette.primary.light} : {borderColor: theme.palette.primary.main}}
           {...search}
         />
+        </Flex>
       </section>
       <section>
         <ResultsSummary numberOfCompanies={numberOfCompanies} />

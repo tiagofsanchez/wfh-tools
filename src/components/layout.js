@@ -17,7 +17,6 @@ const ExternalLink = styled.a`
 
 const Layout = React.memo(({ children }) => {
   const [theme, toogleDarkMode] = useDarkMode()
-  console.log(theme.palette.type)
 
   return (
     <div className="app-wrapper">

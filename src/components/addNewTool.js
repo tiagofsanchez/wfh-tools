@@ -18,7 +18,7 @@ const Button = styled.a`
   }
 `
 
-const AddNewTool = props => {
+const AddNewTool = () => {
   return (
     <Button
       href="https://airtable.com/shrKIvCX7rU3tY3CN"

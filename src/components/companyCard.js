@@ -26,7 +26,6 @@ const LogoContainer = styled.div`
 `
 
 const CompanyName = styled.h2`
-  color: rebeccapurple;
   width: 100%;
   margin-top: 15px;
   text-align: center;
@@ -42,7 +41,7 @@ const Description = styled.p`
 
 const CompanyCard = ({ name, brief, icon, slug, big }) => {
   return (
-    <Link to={slug} style={{ textDecoration: `none` }}>
+    <Link to={slug} style={{ textDecoration: `none` , color:`inherit` }}>
       <CardContainer big={big}>
         <LogoContainer big={big}>
           <Img fluid={icon} alt={name} />

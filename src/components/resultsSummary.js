@@ -1,10 +1,10 @@
 import React from "react"
+import { useTheme } from "@material-ui/core"
 import styled from "@emotion/styled"
 
 const SearchTitle = styled.h5`
   margin-top: 20px;
   text-align: center;
-  color: rebeccapurple;
   margin: auto;
   `
 
@@ -17,12 +17,13 @@ const Span = styled.span`
   background-color: #ece6ff;
 `
 
-const ResultsSummary = props => {
-    const { numberOfCompanies } = props;
+const ResultsSummary = ({ numberOfCompanies }) => {
+    const theme = useTheme()
+    const mode = theme.palette.type
 
     return (
     <>
-      <SearchTitle>
+      <SearchTitle style={mode==='dark' ? {color: theme.palette.primary.light} : {color: theme.palette.primary.main}}> 
         You have
         <Span>{numberOfCompanies}</Span>
         options
