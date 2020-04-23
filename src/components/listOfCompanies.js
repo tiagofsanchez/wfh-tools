@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import {Typography, Box , useTheme} from "@material-ui/core" 
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
 

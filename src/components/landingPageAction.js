@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "@emotion/styled"
 import CountUp from "react-countup"
-import { Typography, useTheme, Button, Box, Paper } from "@material-ui/core"
-import { Link } from 'gatsby'
+import { Typography, useTheme, Button, Box } from "@material-ui/core"
+import { Link } from "gatsby"
 
 import Logo from "../components/logo"
 
@@ -20,8 +20,9 @@ const CompanyCounter = styled.span`
 `
 
 const ButtonContainer = styled.div`
-  text-align: center;
+  justify-content: center;
   margin: 20px;
+  display: flex;
 `
 
 const LandingPageAction = ({ totalNumberOfCompanies }) => {
@@ -35,7 +36,7 @@ const LandingPageAction = ({ totalNumberOfCompanies }) => {
       <Typography
         variant="h3"
         align="center"
-        gutterBottom="true"
+        gutterBottom={true}
         style={
           mode === "dark"
             ? { color: theme.palette.primary.light, fontWeight: `900` }
@@ -47,7 +48,7 @@ const LandingPageAction = ({ totalNumberOfCompanies }) => {
       <Typography
         variant="h6"
         align="center"
-        gutterBottom="true"
+        gutterBottom={true}
         style={
           mode === "dark"
             ? { color: theme.palette.secondary.light, fontWeight: `600` }
@@ -60,33 +61,25 @@ const LandingPageAction = ({ totalNumberOfCompanies }) => {
       <CompanyCounter>
         <CountUp start={0} end={totalNumberOfCompanies} duration={8} />
       </CompanyCounter>
-      <Box align="center">Tools ⚒️ and counting</Box>
+      <Box align="center">
+        Tools{" "}
+        <span role="img" aria-labelledby="tools">
+          ⚒️
+        </span>{" "}
+        and counting
+      </Box>
       <ButtonContainer>
-        <Link to='/search' style={{textDecoration: `none`}}>
-        <Button variant="contained" color="primary" size="large">
-          Search tools
-        </Button>
+        <Link to="/search" style={{ textDecoration: `none` }}>
+          <Button variant="contained" color="primary">
+            Search tools
+          </Button>
         </Link>
         <Button
-         href="https://airtable.com/shrKIvCX7rU3tY3CN"
-         rel="noreferrer noopener"
-         target="_blank"
+          href="https://airtable.com/shrKIvCX7rU3tY3CN"
+          rel="noreferrer noopener"
+          target="_blank"
           variant="outlined"
-          color="primary"
-          size="large"
-          style={
-            mode === "dark"
-              ? {
-                  color: theme.palette.primary.light,
-                  fontWeight: `900`,
-                  marginLeft: `10px`,
-                }
-              : {
-                  color: theme.palette.primary.main,
-                  fontWeight: `900`,
-                  marginLeft: `10px`,
-                }
-          }
+          style={{marginLeft: `10px`}}
         >
           Contribute
         </Button>

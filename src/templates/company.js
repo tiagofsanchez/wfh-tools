@@ -79,7 +79,6 @@ const Source = styled.div`
 `
 
 const Hlink = styled.a`
-  color: rebeccapurple;
   font-weight: 900;
   text-decoration: none;
 `
@@ -112,6 +111,7 @@ const Company = props => {
         Name: node.data.Name,
       })
     }
+    return alternativesArray
   })
 
   const image = company.Thumbnail.localFiles[0].publicURL
@@ -156,19 +156,20 @@ const Company = props => {
       <Label>Price and webpage</Label>
       <Other>
         <Box>
-          <Icon role="img" aria-lable="costs">
+          <Icon role="img" aria-labelledby="costs">
             💰
           </Icon>
           <Source>{company.Costs}</Source>
         </Box>
         <Box>
-          <Icon role="img" aria-label="webpage">
+          <Icon role="img" aria-labelledby="webpage">
             🕸️
           </Icon>
           <Hlink
             href={company.Website}
             rel="noreferrer noopener"
             target="_blank"
+            style={mode==='dark' ? {color: theme.palette.primary.light}:{color: theme.palette.primary.main}}
           >
             webpage &#10132;
           </Hlink>

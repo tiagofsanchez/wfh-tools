@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTheme } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import styled from '@emotion/styled';
 import useStyles from '../themes/useStyles'
@@ -18,8 +17,6 @@ function valuetext(value) {
 
 
 function RangeSlider(props) {
-  const theme = useTheme();
-  const mode = theme.palette.type
   const { minAge , maxAge ,onAgeSelection } = props  
   const classes = useStyles();
   const [value, setValue] = React.useState([minAge, maxAge]);
@@ -42,7 +39,6 @@ function RangeSlider(props) {
         aria-labelledby="range-slider"
         getAriaValueText={valuetext}
         valueLabelDisplay="on"
-        // style={mode === "dark" ? {color: theme.palette.primary.light} : {color: theme.palette.primary.main}}
       />
     </div>
   )

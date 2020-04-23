@@ -19,6 +19,7 @@ function ages(array) {
   let ageArrayInt = []
   array.map(age => {
     ageArrayInt.push(Number(age))
+    return ageArrayInt
   })
   return {
     minAge: Math.min(...ageArrayInt),

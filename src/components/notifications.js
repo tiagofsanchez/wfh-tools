@@ -1,20 +1,18 @@
 import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import PropTypes from "prop-types"
-import { withStyles } from "@material-ui/core"
+import { useTheme, Button } from "@material-ui/core"
 import Dialog from "@material-ui/core/Dialog"
 import AppBar from "@material-ui/core/AppBar"
 import ToolBar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Slide from "@material-ui/core/Slide"
-import Typography from '@material-ui/core/Typography'
+import Typography from "@material-ui/core/Typography"
 import SearchResults from "./searchResults"
 
 import CloseIcon from "@material-ui/icons/Close"
 import useStyles from "../themes/useStyles"
 import styled from "@emotion/styled"
-
-
 
 const Layout = styled.div`
   margin: 0 auto 40px auto;
@@ -28,6 +26,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 const Notifications = ({ onOpen, onClose }) => {
   const classes = useStyles()
+  const theme = useTheme()
+  const mode = theme.palette.type
   const data = useStaticQuery(graphql`
     query Notifications {
       allAirtable(
@@ -65,7 +65,7 @@ const Notifications = ({ onOpen, onClose }) => {
       <AppBar className={classes.appBar}>
         <ToolBar>
           <Typography className={classes.title} variant="h6" noWrap>
-            Latest 15 tools added
+            Notifications
           </Typography>
           <div className={classes.grow} />
           <IconButton
@@ -78,6 +78,47 @@ const Notifications = ({ onOpen, onClose }) => {
         </ToolBar>
       </AppBar>
       <Layout>
+        <Typography
+          variant="h3"
+          align="center"
+          style={
+            mode === "dark"
+              ? { color: theme.palette.primary.light, fontWeight: `900` }
+              : { color: theme.palette.primary.main, fontWeight: `900` }
+          }
+        >
+          Latest tools added
+        </Typography>
+        <div style={{ textAlign: `center` }}>
+          <Typography
+            variant="h6"
+            align="center"
+            gutterBottom={true}
+            style={
+              mode === "dark"
+                ? { color: theme.palette.secondary.light, fontWeight: `600` }
+                : { color: theme.palette.secondary.main, fontWeight: `600` }
+            }
+          >
+            Help us by contributing to this list
+          </Typography>
+          <Button
+            href="https://airtable.com/shrKIvCX7rU3tY3CN"
+            rel="noreferrer noopener"
+            target="_blank"
+            variant="outlined"
+          >
+            Contribute
+          </Button>
+        </div>
+        <br />
+        <div
+          style={{
+            borderBottom: `1px solid #eeeeee`,
+            width: `80%`,
+            margin: `auto`,
+          }}
+        />
         <SearchResults filteredCompanies={newCompanies} onClose={onClose} />
       </Layout>
     </Dialog>
