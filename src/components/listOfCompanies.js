@@ -12,6 +12,7 @@ const Container = styled.div`
   &:hover {
     background-color: #ece6ff;
     border-radius: 5px;
+    color: black;
   }
 `
 const ImgContainer = styled.div`
@@ -21,6 +22,12 @@ width: 50px;
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
+`
+
+const CompanyName = styled.h3`
+font-weight: 900; 
+margin-bottom: 0;
+margin-left: 10px;
 `
 
 const ListOfCompanies = ({ company }) => {
@@ -39,9 +46,9 @@ const ListOfCompanies = ({ company }) => {
               style={{ margin: `10px` }}
             />
           </ImgContainer>
-          <Typography component="div" variant='h6'>
-            <Box fontWeight="fontWeightBold" color="text.primary" >{company.data.Name}</Box>
-          </Typography>
+         
+            <CompanyName >{company.data.Name}</CompanyName>
+       
         </FlexBox>
       </Link>
     </Container>

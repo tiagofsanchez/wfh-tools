@@ -1,75 +1,17 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
-import CountUp from "react-countup"
 
 import SEO from "../components/seo"
-import Logo from "../components/logo"
+import LandingPageAction from "../components/landingPageAction"
 import ContactForm from "../components/contactForm"
 import CompaniesSample from "../components/companiesSample"
-import AddNewTool from "../components/addNewTool"
-
-const HeaderSection = styled.section`
-  margin-bottom: 50px;
-  padding: 0px 10px 20px 10px;
-  background-color: #eeeeee;
-  box-shadow: 0px 0px 6px 0px #eeeeee;
-  border-radius: 10px;
-`
-
-const Span = styled.span`
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 50%, #ece6ff 40%);
-  border-bottom: 2px solid rebeccapurple;
-`
-
-const IconContainer = styled.div`
-  width: 100px;
-  margin: auto;
-  margin-bottom: 15px;
-`
-
-const Flex = styled.div`
-  display: flex;
-  justify-content: center;
-`
-
-const CompanyCounter = styled.span`
-  color: rebeccapurple;
-  font-size: 49px;
-  font-weight: 900;
-  margin-right: 15px;
-`
-
-const Paragraph = styled.p`
-  color: black;
-  font-size: 18px;
-  line-height: 40px;
-  font-weight: 700;
-  text-align: center;
-  display: inline;
-`
-
-const Description = styled.p`
-  font-size: 25px;
-  letter-spacing: 1px;
-  line-height: 40px;
-  margin-bottom: 25px;
-  font-weight: 700;
-  text-align: center;
-  color: gray;
-`
 
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: ${props => (props.right ? "wrap-reverse" : "wrap ")};
-`
-
-const Title = styled.h1`
-  text-align: center;
-  color: rebeccapurple;
-  fontweight: 900;
 `
 
 const IndexPage = ({ data }) => {
@@ -116,30 +58,9 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO title="Crushing WFH" />
-      <HeaderSection>
-        <IconContainer>
-          <Logo />
-        </IconContainer>
-        <Title>Crushing Work From Home</Title>
-        <Flex>
-          <CompanyCounter>
-            <CountUp start={0} end={totalNumberOfCompanies} duration={8} />
-          </CompanyCounter>
-          <Paragraph>tools and counting!</Paragraph>
-        </Flex>
-        <Description>
-          <Span>Search</Span> the tools{" "}
-          <span role="img" aria-labelledby="Tools">
-            ⚒️
-          </span>{" "}
-          you need to WFH!{" "}
-        </Description>
-        <Description>
-          The tool that you love is not here? You can <Span>add the tool</Span>{" "}
-          in!
-        </Description>
-        <AddNewTool />
-      </HeaderSection>
+      <section style={{ marginBottom: `50px` }}>
+        <LandingPageAction totalNumberOfCompanies={totalNumberOfCompanies} />
+      </section>
       <section style={{ marginBottom: `50px` }}>
         <FlexBox right>
           <CompaniesSample
@@ -216,7 +137,7 @@ export const query = graphql`
             Thumbnail {
               localFiles {
                 childImageSharp {
-                  fluid( grayscale: true) {
+                  fluid(grayscale: true) {
                     ...GatsbyImageSharpFluid
                   }
                 }

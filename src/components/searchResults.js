@@ -25,6 +25,7 @@ const Container = styled.div`
   &:hover {
     background-color: #ece6ff;
     border-radius: 5px;
+    color: black;
   }
 `
 
@@ -36,13 +37,15 @@ const HitContainer = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
 `
-const TitleTag = styled.div`
+const TitleTag = styled.h6`
+  margin-bottom: 0;
   display: inline-block;
   float: left;
   font-weight: 900;
   color: rebeccapurple;
   background-color: #cccccc;
   padding: 2px 5px 2px 5px;
+  margin-right: 5px;
   border-radius: 4px;
   text-decoration: none;
 `
@@ -53,15 +56,12 @@ const CreatedDays = styled.div`
   color: gray;
 `
 
-const Flex = styled.div`
-  display: flex;
-  margin-top: 5px;
-`
 
 const CompanyContainer = styled.div`
   flex: 1 1 120px;
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 `
 const ContentContainer = styled.div`
   flex: 1 1 400px;
@@ -89,7 +89,7 @@ const SearchResults = ({ filteredCompanies, onClose }) => {
           return (
             <Link
               to={`/${data.slug}`}
-              style={{ textDecoration: `none`, color:'inherit' }}
+              style={{ textDecoration: `none`, color: "inherit" }}
               key={data.slug}
               onClick={onClose}
             >
@@ -105,10 +105,8 @@ const SearchResults = ({ filteredCompanies, onClose }) => {
                   </CompanyContainer>
                   <ContentContainer>
                     <Description>{brief.slice(0, 100)}...</Description>
-                    <Flex>
-                      <TitleTag>{data.Type}</TitleTag>
-                      <CreatedDays> Published: {data.Created_time}</CreatedDays>
-                    </Flex>
+                    <TitleTag>{data.Type}</TitleTag>
+                    <CreatedDays> Published: {data.Created_time}</CreatedDays>
                   </ContentContainer>
                 </HitContainer>
               </Container>

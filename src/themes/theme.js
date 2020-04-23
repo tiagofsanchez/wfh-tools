@@ -4,6 +4,7 @@ import { useState  } from "react"
 const wfhTheme = {
   palette: {
     common: { black: "#000", white: "#fff" },
+    type: 'dark',
     primary: {
       light: "rgba(236, 230, 255, 1)",
       main: "rgba(102, 51, 153, 1)",
@@ -11,9 +12,9 @@ const wfhTheme = {
       contrastText: "#fff"
     },
     secondary: {
-      light: "rgba(245, 166, 35, 0.61)",
-      main: "rgba(245, 166, 35, 1)",
-      dark: "rgba(162, 102, 3, 1)",
+      light: "#f5f5f5",
+      main: "#424242",
+      dark: "#212121",
       contrastText: "#fff"
     },
     error: {
