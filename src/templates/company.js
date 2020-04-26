@@ -2,8 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
 import Img from "gatsby-image"
-import { useTheme , Paper} from "@material-ui/core"
-
+import { useTheme, Paper } from "@material-ui/core"
 
 import SEO from "../components/seo"
 import CompanyCard from "../components/companyCard"
@@ -59,13 +58,15 @@ const Other = styled.div`
 `
 const Box = styled.div`
   flex: 1 1 80px;
-  padding: 15px 0 5px 0;
+  padding: 15px 0 15px 0;
   margin-top: 40px;
   margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  height: auto;
 `
 
 const Icon = styled.span`
@@ -154,40 +155,44 @@ const Company = props => {
       )}
       <Label>Price and webpage</Label>
       <Paper>
-      <Other>
-        <Box>
-          <Icon role="img" aria-labelledby="costs">
-            💰
-          </Icon>
-          <Source>{company.Costs}</Source>
-        </Box>
-        <Box>
-          <Icon role="img" aria-labelledby="webpage">
-            🕸️
-          </Icon>
-          <Hlink
-            href={company.Website}
-            rel="noreferrer noopener"
-            target="_blank"
-            style={mode==='dark' ? {color: theme.palette.primary.light}:{color: theme.palette.primary.main}}
-          >
-            webpage &#10132;
-          </Hlink>
-        </Box>
-      </Other>
+        <Other>
+          <Box>
+            <Icon role="img" aria-labelledby="costs">
+              💰
+            </Icon>
+            <Source>{company.Costs}</Source>
+          </Box>
+          <Box>
+            <Icon role="img" aria-labelledby="webpage">
+              🕸️
+            </Icon>
+            <Hlink
+              href={company.Website}
+              rel="noreferrer noopener"
+              target="_blank"
+              style={
+                mode === "dark"
+                  ? { color: theme.palette.primary.light }
+                  : { color: theme.palette.primary.main }
+              }
+            >
+              webpage &#10132;
+            </Hlink>
+          </Box>
+        </Other>
       </Paper>
       <section>
         <Label>You might also like</Label>
         <AltFlexBox>
           {alternativesArray.map(company => {
             return (
-              <Paper style={{margin: `5px`}}>
-              <CompanyCard
-                key={company.Name}
-                name={company.Name}
-                slug={company.slug}
-                icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
-              />
+              <Paper style={{ margin: `5px` }}>
+                <CompanyCard
+                  key={company.Name}
+                  name={company.Name}
+                  slug={company.slug}
+                  icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
+                />
               </Paper>
             )
           })}

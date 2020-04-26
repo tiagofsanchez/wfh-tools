@@ -11,7 +11,7 @@ const FlexBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-` 
+`
 
 const IndexPage = ({ data }) => {
   //TODO: this could probably be and UTIL (YES, Will need to use UTIL HERE, to messy)
@@ -39,12 +39,12 @@ const IndexPage = ({ data }) => {
 
       <FlexBox>
         {Icons.map(type => (
-          <Paper style={{margin: '20px'}}>
-          <CompaniesSample
-            icon={type.icon}
-            title={type.name}
-            description={type.description}
-          />
+          <Paper style={{ margin: "20px" }}>
+            <CompaniesSample
+              icon={type.icon}
+              title={type.name}
+              description={type.description}
+            />
           </Paper>
         ))}
       </FlexBox>
@@ -81,7 +81,10 @@ export const query = graphql`
         }
       }
     }
-    Icons: allAirtable(filter: { data: { Created_time: { eq: null } } }) {
+    Icons: allAirtable(
+      filter: { data: { Created_time: { eq: null } } }
+      sort: { order: ASC, fields: data___Name }
+      ) {
       edges {
         node {
           data {
