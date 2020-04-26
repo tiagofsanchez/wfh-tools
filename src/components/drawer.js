@@ -4,20 +4,24 @@ import { makeStyles } from "@material-ui/core/styles"
 import Drawer from "@material-ui/core/Drawer"
 import List from "@material-ui/core/List"
 import Divider from "@material-ui/core/Divider"
-import AddIcon from "@material-ui/icons/Add"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemText from "@material-ui/core/ListItemText"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import HomeWorkIcon from "@material-ui/icons/HomeWork"
-import SearchIcon from "@material-ui/icons/Search"
+// import {  HomeWorkIcon , SearchIcon ,CloudDownloadIcon , AddIcon} from "@material-ui/icons"
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import SearchIcon from '@material-ui/icons/Search';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
+import AddIcon from '@material-ui/icons/Add'
+
 
 const _ = require("lodash")
 
 const primaryMenu = [
   { name: "Home", slug: "/", icon: <HomeWorkIcon fontSize="large" /> },
   { name: "Search", slug: "/search", icon: <SearchIcon fontSize="large" /> },
+  { name: "Download tools", slug: "/downloadtools", icon: <CloudDownloadIcon fontSize="large" />}
 ]
 
 const useStyles = makeStyles(theme => ({
@@ -61,6 +65,19 @@ const MyDrawer = React.memo(
               </ListItem>
             </Link>
           ))}
+            <a
+            href="https://airtable.com/shrKIvCX7rU3tY3CN"
+            rel="noreferrer noopener"
+            target="_blank"
+            style={{ color: `white`, textDecoration: `none` }}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <AddIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary={"Add new tool"} />
+            </ListItem>
+          </a>
         </List>
         <Divider />
         <List>
@@ -83,22 +100,6 @@ const MyDrawer = React.memo(
               </Link>
             )
           })}
-        </List>
-        <Divider />
-        <List>
-          <a
-            href="https://airtable.com/shrKIvCX7rU3tY3CN"
-            rel="noreferrer noopener"
-            target="_blank"
-            style={{ color: `white`, textDecoration: `none` }}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <AddIcon fontSize="large" />
-              </ListItemIcon>
-              <ListItemText primary={"Add new tool"} />
-            </ListItem>
-          </a>
         </List>
       </div>
     )
