@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import AgeGap from "../components/ageGap"
+import Funding from "../components/funding"
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -46,10 +47,11 @@ const Description = styled.p`
 `
 
 const Other = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   margin: auto;
   padding: 20px;
+  border-radius: 4px;
   margin-bottom: 30px;
   @media (max-width: 380px) {
     flex-direction: column;
@@ -65,7 +67,6 @@ const Box = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   height: auto;
 `
 
@@ -98,6 +99,8 @@ const Company = props => {
   const company = props.data.company.data
   const theme = useTheme()
   const mode = theme.palette.type
+
+  console.log(company)
 
   const allCompaniesArray = props.data.alternatives.edges
   const alternativesArray = []
@@ -141,7 +144,8 @@ const Company = props => {
       </CompanyName>
       {company.Age && <AgeGap ageArray={company.Age} />}
       <Label>Description</Label>
-      <Description>{company.Description}</Description>
+      <Description dangerouslySetInnerHTML={{ __html: company.Description }} />
+
       {company.Screenshot && (
         <>
           <Label>Screenshot</Label>
@@ -154,8 +158,9 @@ const Company = props => {
         </>
       )}
       <Label>Price and webpage</Label>
-      <Paper>
-        <Other>
+      
+     
+        <Other style={{backgroundColor: theme.palette.background.paper}}>
           <Box>
             <Icon role="img" aria-labelledby="costs">
               💰
@@ -180,15 +185,24 @@ const Company = props => {
             </Hlink>
           </Box>
         </Other>
-      </Paper>
-      <section>
+   
+
+      <section style={{ marginTop: `40px`}}>
+        {company.Funding_M_ && (
+          <Funding
+            investors={company.Investors}
+            funding={company.Funding_M_}
+            fundingSource={company.FundingSource}
+          />
+        )}
+      </section>
+      <section style={{ marginTop: `40px` }}>
         <Label>You might also like</Label>
         <AltFlexBox>
           {alternativesArray.map(company => {
             return (
-              <Paper style={{ margin: `5px` }}>
+              <Paper style={{ margin: `5px` }} key={company.Name}>
                 <CompanyCard
-                  key={company.Name}
                   name={company.Name}
                   slug={company.slug}
                   icon={company.Thumbnail.localFiles[0].childImageSharp.fluid}
@@ -217,6 +231,9 @@ export const companyData = graphql`
         slug
         Costs
         Age
+        Funding_M_
+        Investors
+        FundingSource
         Thumbnail {
           localFiles {
             publicURL

@@ -39,7 +39,7 @@ const IndexPage = ({ data }) => {
 
       <FlexBox>
         {Icons.map(type => (
-          <Paper style={{ margin: "20px" }}>
+          <Paper style={{ margin: "20px" }} key={type.name}>
             <CompaniesSample
               icon={type.icon}
               title={type.name}
