@@ -1,10 +1,11 @@
-import React from "react"
+import React, { useState } from "react"
 import PropTypes from "prop-types"
 import { ThemeProvider, CssBaseline } from "@material-ui/core"
 
 import { useDarkMode } from "../themes/theme"
 import MenuBar from "./menuBar"
 import Image from "./image"
+import Featured from "./featured"
 import styled from "@emotion/styled"
 import "./layout.css"
 
@@ -17,12 +18,18 @@ const ExternalLink = styled.a`
 
 const Layout = React.memo(({ children }) => {
   const [theme, toogleDarkMode] = useDarkMode()
+  const [featured, setFeatured] = useState(true)
+
+  const closeFeatureHandler = () => { 
+    setFeatured(false)
+  }
 
   return (
     <div className="app-wrapper">
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <MenuBar toogleDarkMode={toogleDarkMode} />
+
           <div
             style={{
               margin: `0 auto`,
@@ -31,7 +38,10 @@ const Layout = React.memo(({ children }) => {
               padding: `0 1.0875rem 1.45rem`,
             }}
           >
-            <main>{children}</main>
+            <main>
+              {featured && ( <Featured closeFeature={closeFeatureHandler} /> )}
+              {children}
+            </main>
             <footer style={{ textAlign: `center`, marginTop: `80px` }}>
               © {new Date().getFullYear()}, Built with
               {` `}
