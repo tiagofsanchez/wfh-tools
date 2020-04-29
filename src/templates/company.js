@@ -9,6 +9,7 @@ import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import AgeGap from "../components/ageGap"
 import Funding from "../components/funding"
+// import Navigation from '../components/breadcrums'
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -100,8 +101,6 @@ const Company = props => {
   const theme = useTheme()
   const mode = theme.palette.type
 
-  console.log(company)
-
   const allCompaniesArray = props.data.alternatives.edges
   const alternativesArray = []
   allCompaniesArray.map(alternative => {
@@ -127,6 +126,7 @@ const Company = props => {
         image={image}
         slug={company.slug}
       />
+      {/* <Navigation /> */}
       <Thumbnail>
         <Img
           fluid={company.Thumbnail.localFiles[0].childImageSharp.fluid}

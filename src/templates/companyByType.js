@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import { useTheme, Typography, Box , Paper } from "@material-ui/core"
+import { useTheme, Typography, Box, Paper } from "@material-ui/core"
 import styled from "@emotion/styled"
 
 import GoToSearch from "../components/goToSearch"
@@ -10,6 +10,7 @@ import ContactForm from "../components/contactForm"
 import Seo from "../components/seo"
 import RangeSlider from "../components/rangeSlider"
 import ResultsSummary from "../components/resultsSummary"
+// import Navigation from '../components/breadcrums'
 
 const _ = require("lodash")
 
@@ -92,6 +93,7 @@ const CompanyByType = ({ data, pageContext }) => {
         image={iconThumbnail.publicURL}
         slug={typeSlug}
       />
+      {/* <Navigation /> */}
       <Container>
         <Flex>
           <Thumbnail>
@@ -134,15 +136,14 @@ const CompanyByType = ({ data, pageContext }) => {
                       node.data.Thumbnail.localFiles[0].childImageSharp.fluid)
                 const brief = company.Description
                 return (
-                  <Paper style={{margin: '20px'}}>
-                  <CompanyCard
-                    big={true}
-                    key={company.Name}
-                    name={company.Name}
-                    brief={brief}
-                    icon={icon}
-                    slug={company.slug}
-                  />
+                  <Paper style={{ margin: "20px" }} key={company.Name}>
+                    <CompanyCard
+                      big={true}
+                      name={company.Name}
+                      brief={brief}
+                      icon={icon}
+                      slug={company.slug}
+                    />
                   </Paper>
                 )
               })}

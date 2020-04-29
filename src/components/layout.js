@@ -6,6 +6,7 @@ import { useDarkMode } from "../themes/theme"
 import MenuBar from "./menuBar"
 import Image from "./image"
 import Featured from "./featured"
+import Navigation from './breadcrums';
 import styled from "@emotion/styled"
 import "./layout.css"
 
@@ -15,12 +16,18 @@ const ExternalLink = styled.a`
   border-radius: 2px;
   text-decoration: none;
 `
+const Root = styled.div`
+  margin: 0 auto;
+  margin-top: 120px;
+  max-width: 960px;
+  padding: 0 1.0875rem 1.45rem;
+`
 
 const Layout = React.memo(({ children }) => {
   const [theme, toogleDarkMode] = useDarkMode()
   const [featured, setFeatured] = useState(true)
 
-  const closeFeatureHandler = () => { 
+  const closeFeatureHandler = () => {
     setFeatured(false)
   }
 
@@ -29,17 +36,9 @@ const Layout = React.memo(({ children }) => {
       <ThemeProvider theme={theme}>
         <CssBaseline>
           <MenuBar toogleDarkMode={toogleDarkMode} />
-
-          <div
-            style={{
-              margin: `0 auto`,
-              marginTop: `120px`,
-              maxWidth: 960,
-              padding: `0 1.0875rem 1.45rem`,
-            }}
-          >
+          <Root>
             <main>
-              {featured && ( <Featured closeFeature={closeFeatureHandler} /> )}
+              {featured && <Featured closeFeature={closeFeatureHandler} />}
               {children}
             </main>
             <footer style={{ textAlign: `center`, marginTop: `80px` }}>
@@ -53,7 +52,7 @@ const Layout = React.memo(({ children }) => {
                 Tiago
               </ExternalLink>
             </footer>
-          </div>
+          </Root>
         </CssBaseline>
       </ThemeProvider>
     </div>
