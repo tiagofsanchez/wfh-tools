@@ -9,7 +9,6 @@ import CompanyCard from "../components/companyCard"
 import ContactForm from "../components/contactForm"
 import AgeGap from "../components/ageGap"
 import Funding from "../components/funding"
-// import Navigation from '../components/breadcrums'
 
 const Thumbnail = styled.div`
   width: 200px;
@@ -126,7 +125,6 @@ const Company = props => {
         image={image}
         slug={company.slug}
       />
-      {/* <Navigation /> */}
       <Thumbnail>
         <Img
           fluid={company.Thumbnail.localFiles[0].childImageSharp.fluid}
@@ -145,49 +143,7 @@ const Company = props => {
       {company.Age && <AgeGap ageArray={company.Age} />}
       <Label>Description</Label>
       <Description dangerouslySetInnerHTML={{ __html: company.Description }} />
-
-      {company.Screenshot && (
-        <>
-          <Label>Screenshot</Label>
-          <Screenshot>
-            <Img
-              fluid={company.Screenshot.localFiles[0].childImageSharp.fluid}
-              alt={company.Name}
-            />
-          </Screenshot>
-        </>
-      )}
-      <Label>Price and webpage</Label>
-      
-     
-        <Other style={{backgroundColor: theme.palette.background.paper}}>
-          <Box>
-            <Icon role="img" aria-labelledby="costs">
-              💰
-            </Icon>
-            <Source>{company.Costs}</Source>
-          </Box>
-          <Box>
-            <Icon role="img" aria-labelledby="webpage">
-              🕸️
-            </Icon>
-            <Hlink
-              href={company.Website}
-              rel="noreferrer noopener"
-              target="_blank"
-              style={
-                mode === "dark"
-                  ? { color: theme.palette.primary.light }
-                  : { color: theme.palette.primary.main }
-              }
-            >
-              webpage &#10132;
-            </Hlink>
-          </Box>
-        </Other>
-   
-
-      <section style={{ marginTop: `40px`}}>
+      <section style={{ marginTop: `40px` }}>
         {company.Funding_M_ && (
           <Funding
             investors={company.Investors}
@@ -196,6 +152,45 @@ const Company = props => {
           />
         )}
       </section>
+      <section style={{ marginTop: `40px` }}>
+        {company.Screenshot && (
+          <>
+            <Label>Screenshot</Label>
+            <Screenshot>
+              <Img
+                fluid={company.Screenshot.localFiles[0].childImageSharp.fluid}
+                alt={company.Name}
+              />
+            </Screenshot>
+          </>
+        )}
+      </section>
+      <Label>Price and webpage</Label>
+      <Other style={{ backgroundColor: theme.palette.background.paper }}>
+        <Box>
+          <Icon role="img" aria-labelledby="costs">
+            💰
+          </Icon>
+          <Source>{company.Costs}</Source>
+        </Box>
+        <Box>
+          <Icon role="img" aria-labelledby="webpage">
+            🕸️
+          </Icon>
+          <Hlink
+            href={company.Website}
+            rel="noreferrer noopener"
+            target="_blank"
+            style={
+              mode === "dark"
+                ? { color: theme.palette.primary.light }
+                : { color: theme.palette.primary.main }
+            }
+          >
+            webpage &#10132;
+          </Hlink>
+        </Box>
+      </Other>
       <section style={{ marginTop: `40px` }}>
         <Label>You might also like</Label>
         <AltFlexBox>

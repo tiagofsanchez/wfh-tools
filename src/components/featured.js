@@ -8,27 +8,26 @@ import {
 } from "@material-ui/core"
 import CloseIcon from "@material-ui/icons/Close"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     width: "100%",
-    marginBottom: theme.spacing(4),
+    marginBottom: '50px',
     height: "60px",
     backgroundColor: "#ffb74d",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    color: theme.palette.primary.main,
   },
   title: {
     padding: "10px 0 10px 20px",
     fontWeight: "900",
+    color: "rgba(102, 51, 153, 1)",
   },
   link: {
     textDecoration: "none",
-    color: theme.palette.primary.main,
     borderBottom: "2px solid white",
   },
-}))
+})
 
 const Featured = ({closeFeature}) => {
   const classes = useStyles()
