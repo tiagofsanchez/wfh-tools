@@ -48,7 +48,10 @@ const Featured = ({ closeFeature }) => {
       >
         Featured in UDACITY! Check out the{" "}
         <a
-          className={classes.link}
+          style={{
+                textDecoration: "none",
+                borderBottom: "2px solid white",
+              }}
           href="https://blog.udacity.com/2020/04/udacity-grad-crushing-wfh-creates-a-new-web-app.html"
           rel="noreferrer noopener"
           target="_blank"
