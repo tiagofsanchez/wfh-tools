@@ -2,7 +2,7 @@ import React from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-import { Typography, useTheme } from "@material-ui/core"
+import { Typography } from "@material-ui/core"
 
 const _ = require("lodash")
 
@@ -27,16 +27,8 @@ const SectionImage = styled.div`
     width: 90px;
   }
 `
-const Description = styled.h5`
-  letter-spacing: 1px;
-  padding: 20px;
-  font-weight: 800;
-  margin-bottom: 0;
-`
 
 const CompaniesSample = ({ icon, title, description }) => {
-  const theme = useTheme()
-  const type = theme.palette.type
 
   return (
     <Link

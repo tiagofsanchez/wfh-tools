@@ -6,7 +6,6 @@ import { useDarkMode } from "../themes/theme"
 import MenuBar from "./menuBar"
 import Image from "./image"
 import Featured from "./featured"
-import Navigation from './breadcrums';
 import styled from "@emotion/styled"
 import "./layout.css"
 

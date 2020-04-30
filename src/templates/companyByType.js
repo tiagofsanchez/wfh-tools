@@ -10,7 +10,6 @@ import ContactForm from "../components/contactForm"
 import Seo from "../components/seo"
 import RangeSlider from "../components/rangeSlider"
 import ResultsSummary from "../components/resultsSummary"
-// import Navigation from '../components/breadcrums'
 
 const _ = require("lodash")
 
@@ -93,7 +92,6 @@ const CompanyByType = ({ data, pageContext }) => {
         image={iconThumbnail.publicURL}
         slug={typeSlug}
       />
-      {/* <Navigation /> */}
       <Container>
         <Flex>
           <Thumbnail>
