@@ -1,7 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import styled from "@emotion/styled"
-import { Paper, Box, useTheme } from "@material-ui/core"
+import { Box, useTheme } from "@material-ui/core"
+import FundingGraph from '../components/fundingGraph';
 
 const Label = styled.h3`
   font-weight: 900;
@@ -28,13 +29,18 @@ const FundingSource = styled.div`
   margin: 5px;
   border-radius: 4px;
 `
+const GraphContainer = styled.div`
+padding: 20px;
+margin: 5px;
+border-radius: 4px;
+`
 
 const Hlink = styled.a`
   font-weight: 900;
   text-decoration: none;
 `
 
-const Funding = ({ investors, funding, fundingSource }) => {
+const Funding = ({ investors, funding, fundingSource , fundingHistory}) => {
   const theme = useTheme()
   const mode = theme.palette.type
 
@@ -50,12 +56,10 @@ const Funding = ({ investors, funding, fundingSource }) => {
             (Musd)
           </Box>
         </FundingFigures>
-
         <FundingSource style={{backgroundColor:theme.palette.background.paper}}>
           <Box component="p" style={{ marginBottom: `5px` }}>
             {investors}
           </Box>
-
           <Hlink
             href={fundingSource}
             rel="noreferrer noopener"
@@ -70,6 +74,9 @@ const Funding = ({ investors, funding, fundingSource }) => {
           </Hlink>
         </FundingSource>
       </FlexContainer>
+      <GraphContainer style={{backgroundColor:theme.palette.background.paper}}>
+      <FundingGraph fundingHistory={fundingHistory} />
+      </GraphContainer>
     </div>
   )
 }

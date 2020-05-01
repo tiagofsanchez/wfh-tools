@@ -116,6 +116,8 @@ const Company = props => {
   })
 
   const image = company.Thumbnail.localFiles[0].publicURL
+  const fundingHistory = company.FundingHistory.split(", ")
+  
 
   return (
     <>
@@ -149,6 +151,7 @@ const Company = props => {
             investors={company.Investors}
             funding={company.Funding_M_}
             fundingSource={company.FundingSource}
+            fundingHistory={fundingHistory}
           />
         )}
       </section>
@@ -229,6 +232,7 @@ export const companyData = graphql`
         Funding_M_
         Investors
         FundingSource
+        FundingHistory
         Thumbnail {
           localFiles {
             publicURL

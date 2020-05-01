@@ -30,7 +30,7 @@ module.exports = {
         tables: [
           {
             baseId: process.env.AIRTABLE_BASE_ID,
-            tableName: `WFH TOOLS`,
+            tableName: `WFHTOOLS`,
             mapping: { Screenshot: `fileNode`, Thumbnail: `fileNode` },
           },
           {
