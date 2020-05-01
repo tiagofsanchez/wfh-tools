@@ -7,19 +7,20 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts"
+import { useTheme } from "@material-ui/core"
 import PropTypes from "prop-types"
 
 const FundingGraph = ({ fundingHistory }) => {
+  const theme = useTheme()
+
   let graphData = []
-  fundingHistory.map(yearAndMoney => {
+  fundingHistory.split(", ").map(yearAndMoney => {
     graphData.push({
       name: yearAndMoney.slice(0, 4),
-      raised: yearAndMoney.slice(5),
+      Raised: yearAndMoney.slice(5),
     })
     return graphData
   })
-
-  console.log(graphData)
 
   return (
     <div style={{ margin: `auto` }}>
@@ -28,12 +29,18 @@ const FundingGraph = ({ fundingHistory }) => {
           data={graphData}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
+          <XAxis dataKey="name" padding={{ left: 10, right: 10 }} />
+          <YAxis unit="$ Musd" padding={{ top: 30 }} />
+          <Tooltip
+            contentStyle={{
+              borderRadius: "4px",
+              backgroundColor: theme.palette.background.paper,
+            }}
+            formatter={(value) => (`${value}$ Musd`)}
+          />
           <Area
             type="monotone"
-            dataKey="raised"
+            dataKey="Raised"
             stroke="#8884d8"
             fill="#8884d8"
           />
@@ -44,7 +51,7 @@ const FundingGraph = ({ fundingHistory }) => {
 }
 
 FundingGraph.propTypes = {
-  fundingHistory: PropTypes.array.isRequired,
+  fundingHistory: PropTypes.string.isRequired,
 }
 
 export default FundingGraph

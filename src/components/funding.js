@@ -74,9 +74,9 @@ const Funding = ({ investors, funding, fundingSource , fundingHistory}) => {
           </Hlink>
         </FundingSource>
       </FlexContainer>
-      <GraphContainer style={{backgroundColor:theme.palette.background.paper}}>
-      <FundingGraph fundingHistory={fundingHistory} />
-      </GraphContainer>
+      {fundingHistory && <GraphContainer style={{backgroundColor:theme.palette.background.paper}}>
+       <FundingGraph fundingHistory={fundingHistory} />
+      </GraphContainer>}
     </div>
   )
 }

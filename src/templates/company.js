@@ -116,7 +116,7 @@ const Company = props => {
   })
 
   const image = company.Thumbnail.localFiles[0].publicURL
-  const fundingHistory = company.FundingHistory.split(", ")
+  const fundingHistory = company.FundingHistory
   
 
   return (
