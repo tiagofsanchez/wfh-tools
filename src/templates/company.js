@@ -146,16 +146,6 @@ const Company = props => {
       <Label>Description</Label>
       <Description dangerouslySetInnerHTML={{ __html: company.Description }} />
       <section style={{ marginTop: `40px` }}>
-        {company.Funding_M_ && (
-          <Funding
-            investors={company.Investors}
-            funding={company.Funding_M_}
-            fundingSource={company.FundingSource}
-            fundingHistory={fundingHistory}
-          />
-        )}
-      </section>
-      <section style={{ marginTop: `40px` }}>
         {company.Screenshot && (
           <>
             <Label>Screenshot</Label>
@@ -168,6 +158,7 @@ const Company = props => {
           </>
         )}
       </section>
+      <section>
       <Label>Price and webpage</Label>
       <Other style={{ backgroundColor: theme.palette.background.paper }}>
         <Box>
@@ -194,6 +185,17 @@ const Company = props => {
           </Hlink>
         </Box>
       </Other>
+      </section>
+      <section style={{ marginTop: `40px` }}>
+        {company.Funding_M_ && (
+          <Funding
+            investors={company.Investors}
+            funding={company.Funding_M_}
+            fundingSource={company.FundingSource}
+            fundingHistory={fundingHistory}
+          />
+        )}
+      </section>
       <section style={{ marginTop: `40px` }}>
         <Label>You might also like</Label>
         <AltFlexBox>

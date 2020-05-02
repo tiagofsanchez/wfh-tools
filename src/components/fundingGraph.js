@@ -17,10 +17,12 @@ const FundingGraph = ({ fundingHistory }) => {
   fundingHistory.split(", ").map(yearAndMoney => {
     graphData.push({
       name: yearAndMoney.slice(0, 4),
-      Raised: yearAndMoney.slice(5),
+      Raised: parseInt(yearAndMoney.slice(5)),
     })
     return graphData
   })
+
+  console.log(graphData)
 
   return (
     <div style={{ margin: `auto` }}>
@@ -29,14 +31,19 @@ const FundingGraph = ({ fundingHistory }) => {
           data={graphData}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
-          <XAxis dataKey="name" padding={{ left: 10, right: 10 }} />
+          <XAxis
+            dataKey="name"
+            padding={{ left: 10, right: 10 }}
+            type="number"
+            domain={["dataMin", "dataMax"]}
+          />
           <YAxis unit="$ Musd" padding={{ top: 30 }} />
           <Tooltip
             contentStyle={{
               borderRadius: "4px",
               backgroundColor: theme.palette.background.paper,
             }}
-            formatter={(value) => (`${value}$ Musd`)}
+            formatter={value => `${value}$ Musd`}
           />
           <Area
             type="monotone"

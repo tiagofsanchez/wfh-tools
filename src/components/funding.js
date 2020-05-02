@@ -47,6 +47,9 @@ const Funding = ({ investors, funding, fundingSource , fundingHistory}) => {
   return (
     <div>
       <Label>Funding</Label>
+      {fundingHistory && <GraphContainer style={{backgroundColor:theme.palette.background.paper}}>
+       <FundingGraph fundingHistory={fundingHistory} />
+      </GraphContainer>}
       <FlexContainer>
         <FundingFigures  style={{backgroundColor: theme.palette.background.paper}}>
           <Box component="h2" align="center" style={{ marginBottom: `0` }}>
@@ -74,9 +77,6 @@ const Funding = ({ investors, funding, fundingSource , fundingHistory}) => {
           </Hlink>
         </FundingSource>
       </FlexContainer>
-      {fundingHistory && <GraphContainer style={{backgroundColor:theme.palette.background.paper}}>
-       <FundingGraph fundingHistory={fundingHistory} />
-      </GraphContainer>}
     </div>
   )
 }
