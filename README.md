@@ -12,9 +12,26 @@ If you want to contribute: Feel free to reach out if you have any feedback aroun
 ## Screenshots
 
 ### Home Page
-
+You will be able to find the different type of companies available
 ![homepage](./src/images/HomepageView.png)
 
+### Company Page
+Here you will have the details about the company itself
+![company page](./src/images/CompanyView.PNG)
+
+### Company Types Page
+All the company organized by the Type
+
+![type page](./src/images/TypeView.PNG)
+
 ### Search Page
+Where you will be able to search for all the tools
 
 ![search page](./src/images/SearchView.png)
+
+### Download Page
+Yup, you actually can download all the tools.
+
+![download page](./src/images/DownloadView.PNG)
+
+
