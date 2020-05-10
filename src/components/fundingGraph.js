@@ -16,13 +16,12 @@ const FundingGraph = ({ fundingHistory }) => {
   let graphData = []
   fundingHistory.split(", ").map(yearAndMoney => {
     graphData.push({
-      name: yearAndMoney.slice(0, 4),
+      name: parseInt(yearAndMoney.slice(0, 4)),
       Raised: parseInt(yearAndMoney.slice(5)),
     })
     return graphData
   })
 
-  console.log(graphData)
 
   return (
     <div style={{ margin: `auto` }}>
@@ -34,10 +33,8 @@ const FundingGraph = ({ fundingHistory }) => {
           <XAxis
             dataKey="name"
             padding={{ left: 10, right: 10 }}
-            type="number"
-            domain={["dataMin", "dataMax"]}
           />
-          <YAxis unit="$ Musd" padding={{ top: 30 }} />
+          <YAxis unit="$ Musd" padding={{ top: 30 }} type="number" />
           <Tooltip
             contentStyle={{
               borderRadius: "4px",

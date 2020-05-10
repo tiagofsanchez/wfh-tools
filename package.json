@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "crushingwfh",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "All the tools you need so that you can work from home!",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Tiago Sanchez <tiagofsanchez@gmail.com>",
   "dependencies": {
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -50,9 +50,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/tiagofsanchez/wfh-tools"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/tiagofsanchez/wfh-tools/issues"
   }
 }
