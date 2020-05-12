@@ -29,7 +29,14 @@ const TagLine = styled.h4`
   margin-bottom: 0;
 `
 
-const CompanyByTypeHeader = ({filteredCompanies , filterByAge , iconThumbnail, type, tagLine}) => {
+const CompanyByTypeHeader = ({
+  filteredCompanies,
+  filterByAge,
+  iconThumbnail,
+  type,
+  tagLine,
+  viewType
+}) => {
   const theme = useTheme()
   const mode = theme.palette.type
   return (
@@ -52,10 +59,18 @@ const CompanyByTypeHeader = ({filteredCompanies , filterByAge , iconThumbnail, t
       {type === "kids" ? (
         <>
           <RangeSlider minAge={2} maxAge={15} onAgeSelection={filterByAge} />
-          <ResultsSummary numberOfCompanies={filteredCompanies.length} />
+          <ResultsSummary
+            numberOfCompanies={filteredCompanies.length}
+            viewType={viewType}
+            type={type}
+          />
         </>
       ) : (
-        <ResultsSummary numberOfCompanies={filteredCompanies.length} />
+        <ResultsSummary
+          numberOfCompanies={filteredCompanies.length}
+          viewType={viewType}
+          type={type}
+        />
       )}
     </Flex>
   )

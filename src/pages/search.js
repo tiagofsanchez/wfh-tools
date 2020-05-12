@@ -133,7 +133,7 @@ const Search = props => {
         </Flex>
       </section>
       <section>
-        <ResultsSummary numberOfCompanies={numberOfCompanies} />
+        <ResultsSummary numberOfCompanies={numberOfCompanies} viewType={(data)=>console.log(data) }/>
         <SearcResults filteredCompanies={filteredCompanies} />
       </section>
     </>

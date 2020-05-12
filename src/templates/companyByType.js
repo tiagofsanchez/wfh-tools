@@ -24,10 +24,12 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;`
 
+
 const CompanyByType = ({ data, pageContext }) => {
 
   const companies = data.allAirtable.edges
   const [filteredCompanies, setFilteredCompanies] = useState(companies)
+  const [ big , setBig] = useState(true)
 
   const type = pageContext.type
   const typeSlug = `${_.kebabCase(type)}/`
@@ -64,6 +66,10 @@ const CompanyByType = ({ data, pageContext }) => {
     )
     setFilteredCompanies(filteredByAge)
   }
+ 
+  const viewType = changedBig => {
+    setBig(changedBig)
+  } 
 
   return (
     <>
@@ -80,6 +86,7 @@ const CompanyByType = ({ data, pageContext }) => {
           iconThumbnail={iconThumbnail}
           type={type}
           tagLine={tagLine}
+          viewType={viewType}
         />
         <section>
           <Flex>
@@ -95,9 +102,9 @@ const CompanyByType = ({ data, pageContext }) => {
                 return (
                   <Card style={{ margin: "20px" }} key={company.Name}>
                     <CompanyCard
-                      big={true}
+                      big={big}
                       name={company.Name}
-                      brief={brief}
+                      brief={big && brief}
                       icon={icon}
                       slug={company.slug}
                     />
