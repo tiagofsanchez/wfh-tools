@@ -41,6 +41,13 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: { 
+        spaceId: `veix4kn3d9am`,
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN, 
+      }
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

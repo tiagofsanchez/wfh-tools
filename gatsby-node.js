@@ -14,6 +14,14 @@ exports.createPages = async function({ actions, graphql }) {
           }
         }
       }
+      posts: allContentfulBlogPost {
+        edges {
+          node {
+            title
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -36,7 +44,6 @@ exports.createPages = async function({ actions, graphql }) {
       typesArray.push(company.data.Type)
     }
   })
-  
 
   // creates all the pages for me programmatically
   typesArray.forEach(type => {
@@ -44,6 +51,16 @@ exports.createPages = async function({ actions, graphql }) {
       path: `${_.kebabCase(type)}/`,
       component: require.resolve(`./src/templates/companyByType.js`),
       context: { type },
+    })
+  })
+
+  const allPosts = data.posts.edges
+  allPosts.forEach(edge => {
+    console.log(edge);
+    const slug = edge.node.slug
+    actions.createPage({
+      path: slug,
+      component: require.resolve(`./src/templates/blogPost.js`),
     })
   })
 }
