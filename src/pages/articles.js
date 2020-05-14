@@ -43,21 +43,17 @@ const Articles = ({ data }) => {
           Documenting how the future of work will be like
         </Typography>
         <br />
-        {postsArray.map(post => {
-          console.log(post)
-
-          return (
-            <>
-              <Link
-                to={`articles/${_.kebabCase(post.node.slug)}`}
-                style={{ textDecoration: `none`, color: `inherit` }}
-              >
-                <PostCard key={post.node.title} post={post} />
-              </Link>
-              <br />
-            </>
-          )
-        })}
+        {postsArray.map(post => (
+          <>
+            <Link
+              to={`articles/${_.kebabCase(post.node.slug)}`}
+              style={{ textDecoration: `none`, color: `inherit` }}
+            >
+              <PostCard key={post.node.title} post={post} />
+            </Link>
+            <br />
+          </>
+        ))}
       </Container>
       <section style={{ marginTop: `80px` }}>
         <ContactForm />

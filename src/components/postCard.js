@@ -20,9 +20,6 @@ const PostCard = ({ post }) => {
           <Typography component="h5" variant="h5">
             {post.node.title}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            A brief description here...
-          </Typography>
         </CardContent>
       </CardActionArea>
     </Card>
