@@ -14,7 +14,7 @@ const FlexBox = styled.div`
 `
 
 const IndexPage = ({ data }) => {
-  //TODO: this could probably be and UTIL (YES, Will need to use UTIL HERE, to messy)
+  //TODO: this could probably be UTIL
   //TOD0 III: implement 'new companies' tag in the landing page
   const allCompaniesArray = data.allAirtable.edges
   const totalNumberOfCompanies = allCompaniesArray.length

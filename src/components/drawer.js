@@ -33,13 +33,12 @@ const useStyles = makeStyles(theme => ({
   
 }))
 
-
-
 const WFHDrawer = withStyles({
   paper: {
     backgroundColor: `rebeccapurple`,
   },
 })(Drawer)
+
 
 const MyDrawer = React.memo(
   ({ isDrawerOpen, toggleDrawer, typeOfCompanies }) => {

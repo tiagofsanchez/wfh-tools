@@ -1,17 +1,40 @@
 import React from "react"
 import { graphql } from "gatsby"
+import { Typography , CardMedia } from '@material-ui/core'
 
-const BlogPost = props => {
-  console.log(props)
+const BlogPost = ({ data }) => {
+  console.log(data.post.slug)
 
-  return <div>my blog post!</div>
+  const title = data.post.title
+
+  return (
+    <>
+       <CardMedia
+          component="img"
+          image={data.post.thumbnail.fluid.srcWebp}
+          style={{ height: `300px` }}
+        />
+      <Typography>{title}</Typography>
+    </>
+  )
 }
 
 export const blogPost = graphql`
   query post($slug: String) {
     post: contentfulBlogPost(slug: { eq: $slug }) {
-      slug
       title
+      slug
+      thumbnail {
+        fluid {
+          base64
+          tracedSVG
+          srcWebp
+          srcSetWebp
+        }
+      }
+      article {
+        article
+      }
     }
   }
 `

@@ -4,20 +4,15 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Badge,
   useTheme,
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
-import NotificationsIcon from "@material-ui/icons/Notifications"
 import WbSunnyIcon from "@material-ui/icons/WbSunny"
 import NightsStayIcon from "@material-ui/icons/NightsStay"
 
 import Notifications from "./notifications"
 import MyDrawer from "./drawer"
 import { Link, graphql, useStaticQuery } from "gatsby"
-
-
-
 
 const MenuBar = ({ toogleDarkMode }) => {
   const theme = useTheme()
@@ -68,14 +63,14 @@ const MenuBar = ({ toogleDarkMode }) => {
   }
 
   return (
-    <div style={{flexGrow: `1`}}>
+    <div style={{ flexGrow: `1` }}>
       <MyDrawer
         isDrawerOpen={isDrawerOpen}
         toggleDrawer={toggleDrawer}
         typeOfCompanies={data.Type.edges}
       />
       <Notifications onOpen={isNotOpen} onClose={closeNotHandler} />
-      <AppBar position="fixed" style={{ marginBottom: `50px`}}>
+      <AppBar position="fixed" style={{ marginBottom: `50px` }}>
         <Toolbar>
           <IconButton
             edge="start"
@@ -86,11 +81,21 @@ const MenuBar = ({ toogleDarkMode }) => {
             <MenuIcon />
           </IconButton>
           <Link to="/" style={{ textDecoration: `none`, color: `white` }}>
-            <Typography variant="h6" style={{fontWeight: `900`}} noWrap>
+            <Typography variant="h6" style={{ fontWeight: `900` }} noWrap>
               {data.site.siteMetadata.title}
             </Typography>
           </Link>
-          <div style={{flexGrow: `1`}} />
+          <div style={{ flexGrow: `1` }} />
+          <Link
+            to="/articles"
+            style={{
+              textDecoration: "none",
+              marginRight: `5px`,
+              color: `white`,
+            }}
+          >
+            Articles
+          </Link>
           <IconButton
             aria-label="toogle theme"
             color="inherit"
@@ -101,15 +106,6 @@ const MenuBar = ({ toogleDarkMode }) => {
             ) : (
               <NightsStayIcon fontSize="small" />
             )}
-          </IconButton>
-          <IconButton
-            aria-label="show new notifications"
-            color="inherit"
-            onClick={closeNotHandler}
-          >
-            <Badge variant="dot" color="secondary">
-              <NotificationsIcon fontSize="small" />
-            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
