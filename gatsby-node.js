@@ -56,7 +56,6 @@ exports.createPages = async function({ actions, graphql }) {
 
   const allPosts = data.posts.edges
   allPosts.forEach(edge => {
-    console.log(edge);
     const slug = edge.node.slug
     actions.createPage({
       path: `/articles/${slug}/`,
