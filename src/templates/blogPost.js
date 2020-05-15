@@ -1,25 +1,34 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Typography , CardMedia , useTheme } from '@material-ui/core'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Typography, CardMedia, useTheme } from "@material-ui/core"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-import ContactForm from '../components/contactForm';
+import Seo from '../components/seo';
+import ContactForm from "../components/contactForm"
 
 const BlogPost = ({ data }) => {
-  const theme = useTheme();
-  const mode = theme.palette.type;
-  const title = data.post.title;
-  const document = data.post.childContentfulBlogPostArticleRichTextNode.json;
+  const theme = useTheme()
+  const mode = theme.palette.type
+  const title = data.post.title
+  const document = data.post.childContentfulBlogPostArticleRichTextNode.json
+  const description = document.content[0].content[0].value
+
   return (
     <>
+      <Seo 
+      title={title}
+      slug={data.post.slug}
+      description={description}
+      image={data.post.thumbnail.fluid.srcWebp}
+      />
       <CardMedia
         component="img"
         image={data.post.thumbnail.fluid.srcWebp}
-        style={{ height: `300px` , borderRadius: `4px` }}
+        style={{ height: `300px`, borderRadius: `4px` }}
       />
 
       <Typography
-        variant="h3"
+        variant="h4"
         gutterBottom={true}
         style={
           mode === "dark"
@@ -29,7 +38,6 @@ const BlogPost = ({ data }) => {
       >
         {title}
       </Typography>
-     
       {documentToReactComponents(document)}
       <section style={{ marginTop: `80px` }}>
         <ContactForm />
@@ -43,7 +51,9 @@ export const blogPost = graphql`
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       slug
-      childContentfulBlogPostArticleRichTextNode {json}
+      childContentfulBlogPostArticleRichTextNode {
+        json
+      }
       thumbnail {
         fluid {
           base64

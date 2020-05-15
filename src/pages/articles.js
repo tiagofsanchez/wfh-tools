@@ -40,7 +40,7 @@ const Articles = ({ data }) => {
               : { color: theme.palette.secondary.main, fontWeight: `600` }
           }
         >
-          Documenting how the future of work will be like
+          Trying to document how the future of work will be like
         </Typography>
         <br />
         {postsArray.map(post => (
@@ -64,7 +64,7 @@ const Articles = ({ data }) => {
 
 export const query = graphql`
   query blogPosts {
-    posts: allContentfulBlogPost {
+    posts: allContentfulBlogPost (sort: {fields: date, order: DESC}){
       edges {
         node {
           title
