@@ -1,4 +1,5 @@
 import React from "react"
+import Img from "gatsby-image"
 import {
   Card,
   CardContent,
@@ -8,14 +9,13 @@ import {
 } from "@material-ui/core"
 
 const PostCard = ({ post }) => {
+  console.log(post)
   return (
     <Card variant="outlined">
       <CardActionArea>
-        <CardMedia
-          component="img"
-          image={post.node.thumbnail.fluid.srcWebp}
-          style={{ height: `300px` }}
-        />
+      
+          <Img fluid={post.node.thumbnail.fluid} />
+    
         <CardContent>
           <Typography component="h5" variant="h5">
             {post.node.title}

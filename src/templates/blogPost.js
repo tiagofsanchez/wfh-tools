@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Typography, CardMedia, useTheme } from "@material-ui/core"
+import Img from "gatsby-image"
+import { Typography, useTheme } from "@material-ui/core"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import Seo from '../components/seo';
@@ -10,23 +11,22 @@ const BlogPost = ({ data }) => {
   const theme = useTheme()
   const mode = theme.palette.type
   const title = data.post.title
+
   const document = data.post.childContentfulBlogPostArticleRichTextNode.json
-  const description = document.content[0].content[0].value
+  const description = document.content[0].content[0].value  
 
   return (
     <>
-      <Seo 
-      title={title}
-      slug={data.post.slug}
-      description={description}
-      image={data.post.thumbnail.fluid.srcWebp}
-      />
-      <CardMedia
-        component="img"
+      <Seo
+        title={title}
+        slug={data.post.slug}
+        description={description}
         image={data.post.thumbnail.fluid.srcWebp}
-        style={{ height: `300px`, borderRadius: `4px` }}
       />
-
+      <Img
+        fluid={data.post.thumbnail.fluid}
+        style={{ height: `300px`, borderRadius: `4px`, marginBottom: `30px` }}
+      />
       <Typography
         variant="h4"
         gutterBottom={true}
@@ -56,10 +56,7 @@ export const blogPost = graphql`
       }
       thumbnail {
         fluid {
-          base64
-          tracedSVG
-          srcWebp
-          srcSetWebp
+          ...GatsbyContentfulFluid
         }
       }
     }

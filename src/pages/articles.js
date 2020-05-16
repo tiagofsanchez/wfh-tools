@@ -64,17 +64,13 @@ const Articles = ({ data }) => {
 
 export const query = graphql`
   query blogPosts {
-    posts: allContentfulBlogPost (sort: {fields: date, order: DESC}){
+    posts: allContentfulBlogPost(sort: { fields: date, order: DESC }) {
       edges {
         node {
           title
           thumbnail {
-            title
             fluid {
-              base64
-              tracedSVG
-              srcWebp
-              srcSetWebp
+              ...GatsbyContentfulFluid
             }
           }
           slug
