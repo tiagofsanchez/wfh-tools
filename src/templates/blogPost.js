@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import { Typography, useTheme } from "@material-ui/core"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
 import Seo from '../components/seo';
 import ContactForm from "../components/contactForm"
@@ -11,9 +10,8 @@ const BlogPost = ({ data }) => {
   const theme = useTheme()
   const mode = theme.palette.type
   const title = data.post.title
-
-  const document = data.post.childContentfulBlogPostArticleRichTextNode.json
-  const description = document.content[0].content[0].value  
+  const article = data.post.childContentfulBlogPostTextTextNode.childMarkdownRemark.html;
+  const description = data.post.childContentfulBlogPostTextTextNode.childMarkdownRemark.excerpt  
 
   return (
     <>
@@ -38,7 +36,7 @@ const BlogPost = ({ data }) => {
       >
         {title}
       </Typography>
-      {documentToReactComponents(document)}
+      <section dangerouslySetInnerHTML={{ __html: article }} />
       <section style={{ marginTop: `80px` }}>
         <ContactForm />
       </section>
@@ -51,8 +49,10 @@ export const blogPost = graphql`
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
       slug
-      childContentfulBlogPostArticleRichTextNode {
-        json
+      childContentfulBlogPostTextTextNode {
+        childMarkdownRemark {
+          html
+        }
       }
       thumbnail {
         fluid {

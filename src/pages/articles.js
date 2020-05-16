@@ -74,8 +74,10 @@ export const query = graphql`
             }
           }
           slug
-          article {
-            article
+          childContentfulBlogPostTextTextNode {
+            childMarkdownRemark {
+              excerpt
+            }
           }
         }
       }
