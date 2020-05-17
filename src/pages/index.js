@@ -1,11 +1,12 @@
 import React from "react"
 import { graphql } from "gatsby"
 import styled from "@emotion/styled"
-import { Paper } from "@material-ui/core"
+import { useTheme , Typography } from '@material-ui/core'
 import SEO from "../components/seo"
 import LandingPageAction from "../components/landingPageAction"
 import ContactForm from "../components/contactForm"
 import CompaniesSample from "../components/companiesSample"
+// import EmblaCarouselComponent from '../components/carousel';
 
 const FlexBox = styled.div`
   display: flex;
@@ -14,6 +15,9 @@ const FlexBox = styled.div`
 `
 
 const IndexPage = ({ data }) => {
+  const theme = useTheme()
+  const mode = theme.palette.type
+
   //TODO: this could probably be UTIL
   //TOD0 III: implement 'new companies' tag in the landing page
   const allCompaniesArray = data.allAirtable.edges
@@ -33,21 +37,50 @@ const IndexPage = ({ data }) => {
   return (
     <>
       <SEO title="Crushing WFH" />
-      <section style={{ marginBottom: `50px` }}>
+      <section style={{ marginBottom: `70px` }}>
         <LandingPageAction totalNumberOfCompanies={totalNumberOfCompanies} />
       </section>
-
-      <FlexBox>
-        {Icons.map(type => (
-          <Paper style={{ margin: "20px" }} key={type.name}>
+      <section style={{ marginBottom: `70px` }}>
+      <Typography
+        variant="h4"
+        component="h4"
+        align="center"
+        gutterBottom={true}
+        style={
+          mode === "dark"
+            ? { color: theme.palette.primary.light, fontWeight: `900` }
+            : { color: theme.palette.primary.main, fontWeight: `900` }
+        }
+      >
+        Type of tools
+      </Typography>
+        <FlexBox>
+          {Icons.map(type => (
             <CompaniesSample
+              key={type.name}
               icon={type.icon}
               title={type.name}
               description={type.description}
             />
-          </Paper>
-        ))}
-      </FlexBox>
+          ))}
+        </FlexBox>
+      </section>
+      <section>
+      {/* <Typography
+        variant="h4"
+        component="h4"
+        align="center"
+        gutterBottom={true}
+        style={
+          mode === "dark"
+            ? { color: theme.palette.primary.light, fontWeight: `900` }
+            : { color: theme.palette.primary.main, fontWeight: `900` }
+        }
+      >
+        Articles
+      </Typography>
+       */}
+      </section>
       <section style={{ marginTop: `90px` }}>
         <ContactForm />
       </section>

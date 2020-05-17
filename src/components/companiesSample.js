@@ -2,58 +2,54 @@ import React from "react"
 import Img from "gatsby-image"
 import styled from "@emotion/styled"
 import { Link } from "gatsby"
-import { Typography } from "@material-ui/core"
+import {
+  Typography,
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+} from "@material-ui/core"
 
 const _ = require("lodash")
 
-const ColumnFlex = styled.div`
-  width: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 380px;
-  margin: 20px;
-  padding: 5px;
-  justify-content: space-between;
-  @media (max-width: 680px) {
-    height: auto;
-  }
-`
 const SectionImage = styled.div`
   width: 150px;
-  margin: 20px 0px 0px 0px;
+  margin: auto;
   padding: 20px;
-  @media (max-width: 680px) {
-    width: 90px;
-  }
 `
 
 const CompaniesSample = ({ icon, title, description }) => {
-
   return (
-    <Link
-      style={{
-        display: `flex`,
-        flexWrap: `wrap`,
-        textDecoration: `none`,
-        color: `inherit`,
-        padding: `10px`,
-      }}
-      to={`${_.kebabCase(title)}/`}
-    >
-      <ColumnFlex>
-        <Typography variant="h4" align="center" style={{ fontWeight: `900` }}>
+    <Card style={{ flex: `1 1 280px`, padding: `20px`, margin: `10px` }}>
+      <CardContent style={{ height: `80px` }}>
+        <Typography
+          variant="h5"
+          component="h5"
+          align="center"
+          style={{ fontWeight: `600` }}
+        >
           {title}
         </Typography>
-
-        <SectionImage>
-          <Img fluid={icon} alt={title} />
-        </SectionImage>
-        <Typography component="h6" variant="h6" style={{ fontWeight: `600` }}>
+      </CardContent>
+      <SectionImage>
+        <Img fluid={icon} alt={title} />
+      </SectionImage>
+      <CardContent style={{ height: `150px` }}>
+        <Typography component="body1" variant="body1">
           {description}
         </Typography>
-      </ColumnFlex>
-    </Link>
+      </CardContent>
+      <CardActions>
+        <Button size="large" style={{ fontWeight: `900` }} variant="outlined" >
+          <Link
+            style={{ textDecoration: `none`, color: `inherit` }}
+            to={`${_.kebabCase(title)}/`}
+          >
+            Learn More
+          </Link>
+        </Button>
+      </CardActions>
+    </Card>
   )
 }
 
