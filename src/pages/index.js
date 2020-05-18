@@ -1,22 +1,19 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql , Link } from "gatsby"
 import styled from "@emotion/styled"
-import { useTheme , Typography } from '@material-ui/core'
+import { useTheme, Typography } from "@material-ui/core"
 import SEO from "../components/seo"
 import LandingPageAction from "../components/landingPageAction"
+import Carousel from "../components/carousel"
+import PostCard from '../components/postCard'
 import ContactForm from "../components/contactForm"
-import CompaniesSample from "../components/companiesSample"
-// import EmblaCarouselComponent from '../components/carousel';
 
-const FlexBox = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`
+const _ = require("lodash")
 
 const IndexPage = ({ data }) => {
   const theme = useTheme()
   const mode = theme.palette.type
+  const postsArray = data.posts.edges
 
   //TODO: this could probably be UTIL
   //TOD0 III: implement 'new companies' tag in the landing page
@@ -41,45 +38,54 @@ const IndexPage = ({ data }) => {
         <LandingPageAction totalNumberOfCompanies={totalNumberOfCompanies} />
       </section>
       <section style={{ marginBottom: `70px` }}>
-      <Typography
-        variant="h4"
-        component="h4"
-        align="center"
-        gutterBottom={true}
-        style={
-          mode === "dark"
-            ? { color: theme.palette.primary.light, fontWeight: `900` }
-            : { color: theme.palette.primary.main, fontWeight: `900` }
-        }
-      >
-        Type of tools
-      </Typography>
-        <FlexBox>
-          {Icons.map(type => (
-            <CompaniesSample
-              key={type.name}
-              icon={type.icon}
-              title={type.name}
-              description={type.description}
-            />
-          ))}
-        </FlexBox>
+        <Typography
+          variant="h4"
+          component="h4"
+          align="center"
+          gutterBottom={true}
+          style={
+            mode === "dark"
+              ? { color: theme.palette.primary.light, fontWeight: `900` }
+              : { color: theme.palette.primary.main, fontWeight: `900` }
+          }
+        >
+          Type of tools
+        </Typography>
+        <Typography
+          variant="body1"
+          component="body"
+          align="center"
+          gutterBottom={true}
+        >
+          Check out the different tools that we have, just swip...
+        </Typography>
+        <Carousel icons={Icons} />
       </section>
       <section>
-      {/* <Typography
+        <Typography
         variant="h4"
         component="h4"
         align="center"
         gutterBottom={true}
         style={
           mode === "dark"
-            ? { color: theme.palette.primary.light, fontWeight: `900` }
-            : { color: theme.palette.primary.main, fontWeight: `900` }
+            ? { color: theme.palette.primary.light, fontWeight: `900`, marginBottom: `40px` }
+            : { color: theme.palette.primary.main, fontWeight: `900`, marginBottom: `40px` }
         }
       >
-        Articles
+        Latest articles
       </Typography>
-       */}
+      {postsArray.map(post => (
+          <>
+            <Link
+              to={`articles/${_.kebabCase(post.node.slug)}`}
+              style={{ textDecoration: `none`, color: `inherit` }}
+            >
+              <PostCard key={post.node.title} post={post} />
+            </Link>
+            <br />
+          </>
+        ))}
       </section>
       <section style={{ marginTop: `90px` }}>
         <ContactForm />
@@ -117,7 +123,7 @@ export const query = graphql`
     Icons: allAirtable(
       filter: { data: { Created_time: { eq: null } } }
       sort: { order: ASC, fields: data___Name }
-      ) {
+    ) {
       edges {
         node {
           data {
@@ -132,6 +138,24 @@ export const query = graphql`
                   }
                 }
               }
+            }
+          }
+        }
+      }
+    }
+    posts: allContentfulBlogPost(sort: { fields: date, order: DESC }) {
+      edges {
+        node {
+          title
+          thumbnail {
+            fluid {
+              ...GatsbyContentfulFluid
+            }
+          }
+          slug
+          childContentfulBlogPostTextTextNode {
+            childMarkdownRemark {
+              excerpt
             }
           }
         }

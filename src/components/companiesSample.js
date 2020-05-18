@@ -18,9 +18,15 @@ const SectionImage = styled.div`
   padding: 20px;
 `
 
-const CompaniesSample = ({ icon, title, description }) => {
+const CompaniesSample = ({ icon, title, description , windowWidth }) => { 
+  
+let cardheight = `80px`
+if (windowWidth < 600 ) {
+  cardheight = `150px`
+ }
+
   return (
-    <Card style={{ flex: `1 1 280px`, padding: `20px`, margin: `10px` }}>
+    <Card style={{ flex: `0 0 280px`, padding: `20px`, margin: `10px` }}>
       <CardContent style={{ height: `80px` }}>
         <Typography
           variant="h5"
@@ -34,7 +40,7 @@ const CompaniesSample = ({ icon, title, description }) => {
       <SectionImage>
         <Img fluid={icon} alt={title} />
       </SectionImage>
-      <CardContent style={{ height: `150px` }}>
+      <CardContent style={{ height: cardheight }}>
         <Typography component="body1" variant="body1">
           {description}
         </Typography>
