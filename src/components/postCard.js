@@ -8,7 +8,6 @@ import {
 } from "@material-ui/core"
 
 const PostCard = ({ post }) => {
-  console.log(post)
   return (
     <Card variant="outlined">
       <CardActionArea>
