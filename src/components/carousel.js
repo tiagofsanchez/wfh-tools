@@ -1,10 +1,8 @@
 import React from "react"
 import EmblaCarousel from "./emblaCarousel"
 import CompaniesSample from "./companiesSample"
-import useWindowWidth from '../hooks/useWidth';
 
 const Carousel = ({ icons }) => {
-  const width = useWindowWidth();
   return (
     <EmblaCarousel>
       {icons.map(type => (
@@ -13,7 +11,6 @@ const Carousel = ({ icons }) => {
           icon={type.icon}
           title={type.name}
           description={type.description}
-          windowWidth={width}
         />
       ))}
     </EmblaCarousel>

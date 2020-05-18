@@ -12,13 +12,16 @@ const PostCard = ({ post }) => {
   return (
     <Card variant="outlined">
       <CardActionArea>
-        <Img fluid={post.node.thumbnail.fluid} />
+        <Img fluid={post.node.thumbnail.fluid} style={{ height: `300px` }} />
         <CardContent>
           <Typography component="h5" variant="h5" gutterBottom="true">
             {post.node.title}
           </Typography>
-          <Typography component='body1' variant="body1">
-            {post.node.childContentfulBlogPostTextTextNode.childMarkdownRemark.excerpt}
+          <Typography component="body1" variant="body1">
+            {
+              post.node.childContentfulBlogPostTextTextNode.childMarkdownRemark
+                .excerpt
+            }
           </Typography>
         </CardContent>
       </CardActionArea>

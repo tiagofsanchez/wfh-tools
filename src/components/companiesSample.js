@@ -17,13 +17,16 @@ const SectionImage = styled.div`
   margin: auto;
   padding: 20px;
 `
+const Content = styled.div`
+height: 80px; 
+padding: 8px;
+@media (max-width: 600px) { 
+  height: 120px;
+}
+`
 
-const CompaniesSample = ({ icon, title, description , windowWidth }) => { 
+const CompaniesSample = ({ icon, title, description }) => { 
   
-let cardheight = `80px`
-if (windowWidth < 600 ) {
-  cardheight = `150px`
- }
 
   return (
     <Card style={{ flex: `0 0 280px`, padding: `20px`, margin: `10px` }}>
@@ -40,11 +43,11 @@ if (windowWidth < 600 ) {
       <SectionImage>
         <Img fluid={icon} alt={title} />
       </SectionImage>
-      <CardContent style={{ height: cardheight }}>
+      <Content >
         <Typography component="body1" variant="body1">
           {description}
         </Typography>
-      </CardContent>
+      </Content>
       <CardActions>
         <Button size="large" style={{ fontWeight: `900` }} variant="outlined" >
           <Link

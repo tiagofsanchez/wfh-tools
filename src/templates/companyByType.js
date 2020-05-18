@@ -100,7 +100,7 @@ const CompanyByType = ({ data, pageContext }) => {
                       node.data.Thumbnail.localFiles[0].childImageSharp.fluid)
                 const brief = company.Description
                 return (
-                  <Card style={{ margin: "20px" }} key={company.Name}>
+                  <Card style={{ margin: "5px" }} key={company.Name}>
                     <CompanyCard
                       big={big}
                       name={company.Name}
