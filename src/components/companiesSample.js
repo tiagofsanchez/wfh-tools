@@ -18,10 +18,10 @@ const SectionImage = styled.div`
   padding: 20px;
 `
 const Content = styled.div`
-height: 80px; 
+height: 100px; 
 padding: 8px;
 @media (max-width: 600px) { 
-  height: 120px;
+  height: 150px;
 }
 `
 
@@ -44,7 +44,7 @@ const CompaniesSample = ({ icon, title, description }) => {
         <Img fluid={icon} alt={title} />
       </SectionImage>
       <Content >
-        <Typography component="body1" variant="body1">
+        <Typography variant='subtitle1'>
           {description}
         </Typography>
       </Content>

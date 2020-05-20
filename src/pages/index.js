@@ -52,8 +52,7 @@ const IndexPage = ({ data }) => {
           Type of tools
         </Typography>
         <Typography
-          variant="body1"
-          component="body"
+          variant='subtitle1'
           align="center"
           gutterBottom={true}
         >
@@ -61,7 +60,7 @@ const IndexPage = ({ data }) => {
         </Typography>
         <Carousel icons={Icons} />
       </section>
-      <section>
+      <section style={{width: `90%` , margin: `auto`}}> 
         <Typography
         variant="h4"
         component="h4"

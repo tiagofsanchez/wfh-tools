@@ -16,7 +16,7 @@ const PostCard = ({ post }) => {
           <Typography component="h5" variant="h5" gutterBottom="true">
             {post.node.title}
           </Typography>
-          <Typography component="body1" variant="body1">
+          <Typography variant='subtitle1'>
             {
               post.node.childContentfulBlogPostTextTextNode.childMarkdownRemark
                 .excerpt

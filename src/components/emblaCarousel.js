@@ -14,7 +14,6 @@ const EmblaContainer = styled.div`
   display: flex;
   padding: 10px;
   width: 110%;
-  postion:absolute;
 `
 
 const SlideContainer = styled.div`
